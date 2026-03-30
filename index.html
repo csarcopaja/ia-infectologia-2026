@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Médicos de Infectología · 2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/theme/black.css">
+
+  <style>
+    :root {
+      --bg:            #0d0d0d;
+      --text:          #ffffff;
+      --accent:        #818cf8;
+      --accent-dim:    rgba(129,140,248,0.12);
+      --accent-border: rgba(129,140,248,0.35);
+      --muted:         #71717a;
+      --subtle:        #a1a1aa;
+      --card-bg:       #111827;
+      --success:       #4ade80;
+      --warning:       #facc15;
+      --danger:        #f87171;
+    }
+
+    .reveal-viewport { background: var(--bg); }
+
+    .reveal {
+      font-family: 'Inter', sans-serif;
+      font-size: 34px;
+      color: var(--text);
+    }
+
+    .reveal .slides { text-align: left; }
+
+    .reveal section {
+      padding: 0.5em 1em;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    /* ── Typography ── */
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      font-weight: 800;
+      text-transform: none;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 0.4em;
+    }
+    .reveal h1 { font-size: 2.2em; }
+    .reveal h2 { font-size: 1.55em; }
+    .reveal h3 { font-size: 1.1em; color: var(--accent); }
+
+    .accent  { color: var(--accent); }
+    .muted   { color: var(--muted); }
+    .subtle  { color: var(--subtle); }
+    .success { color: var(--success); }
+    .warning { color: var(--warning); }
+    .danger  { color: var(--danger); }
+
+    /* ── Layout ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1em;
+      align-items: start;
+    }
+    .cards   { display: grid; gap: 0.65em; }
+    .cards-2 { grid-template-columns: 1fr 1fr; }
+    .cards-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #27272a;
+      margin: 0.55em 0;
+    }
+
+    /* ── Components ── */
+
+    .pill {
+      display: inline-block;
+      background: var(--accent);
+      color: #1e1b4b;
+      font-weight: 800;
+      font-size: 0.52em;
+      padding: 0.25em 0.9em;
+      border-radius: 99px;
+      letter-spacing: 0.04em;
+    }
+
+    .eyebrow {
+      font-size: 0.46em;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.35em;
+      display: block;
+    }
+
+    /* citation at bottom-right of slide */
+    .cite-block {
+      position: absolute;
+      bottom: 0.4em;
+      right: 0.9em;
+      font-size: 0.34em;
+      color: #52525b;
+      font-style: italic;
+      text-align: right;
+      line-height: 1.7;
+    }
+
+    /* inline small citation inside cards */
+    .ref {
+      font-size: 0.82em;
+      color: #52525b;
+      font-style: italic;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--accent-border);
+      border-radius: 12px;
+      padding: 0.8em 0.95em;
+    }
+    .card h4 {
+      color: var(--accent);
+      font-size: 0.62em;
+      font-weight: 700;
+      margin: 0 0 0.35em;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+    .card p, .card li {
+      font-size: 0.6em;
+      color: #d4d4d8;
+      margin: 0.18em 0;
+      line-height: 1.45;
+    }
+    .card ul { margin: 0; padding-left: 1.1em; }
+
+    .stat-block  { text-align: center; padding: 0.6em; }
+    .stat-number { font-size: 3.2em; font-weight: 900; color: var(--accent); line-height: 1; }
+    .stat-label  { font-size: 0.52em; color: var(--subtle); margin-top: 0.2em; }
+
+    .quote-block {
+      border-left: 4px solid var(--accent);
+      padding: 0.6em 1em;
+      background: var(--accent-dim);
+      border-radius: 0 10px 10px 0;
+    }
+    .quote-block p {
+      font-size: 0.7em;
+      font-style: italic;
+      margin: 0;
+      color: #e4e4e7;
+      line-height: 1.5;
+    }
+
+    .hero-quote {
+      font-size: 1.25em;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .timeline      { list-style: none; padding: 0; margin: 0; }
+    .timeline li {
+      padding: 0.32em 0 0.32em 1.4em;
+      position: relative;
+      font-size: 0.65em;
+      border-left: 2px solid var(--accent-border);
+      margin-left: 0.5em;
+      color: #d4d4d8;
+      line-height: 1.4;
+    }
+    .timeline li::before {
+      content: '';
+      position: absolute;
+      left: -0.42em;
+      top: 0.55em;
+      width: 0.62em;
+      height: 0.62em;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .timeline li .year { color: var(--accent); font-weight: 700; }
+
+    .checklist         { list-style: none; padding: 0; margin: 0; }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.45em;
+      font-size: 0.63em;
+      margin-bottom: 0.42em;
+      color: #d4d4d8;
+      line-height: 1.4;
+    }
+    .checklist li::before {
+      content: '→';
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .compact-list      { list-style: none; padding: 0; margin: 0; }
+    .compact-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5em;
+      font-size: 0.63em;
+      padding: 0.35em 0;
+      border-bottom: 1px solid #27272a;
+      color: #d4d4d8;
+      line-height: 1.4;
+    }
+    .compact-list li:last-child { border-bottom: none; }
+    .compact-list .em  { font-size: 1.1em; flex-shrink: 0; }
+
+    .myth, .fact {
+      border-radius: 10px;
+      padding: 0.48em 0.85em;
+    }
+    .myth {
+      background: rgba(248,113,113,0.08);
+      border: 1px solid rgba(248,113,113,0.3);
+    }
+    .fact {
+      background: rgba(74,222,128,0.08);
+      border: 1px solid rgba(74,222,128,0.3);
+    }
+    .myth-label, .fact-label {
+      font-size: 0.44em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.22em;
+      display: block;
+    }
+    .myth-label { color: var(--danger); }
+    .fact-label { color: var(--success); }
+    .myth p, .fact p {
+      font-size: 0.6em;
+      margin: 0;
+      line-height: 1.4;
+      color: #e4e4e7;
+    }
+
+    .tool-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3em;
+      background: #1c1c2e;
+      border: 1px solid #3a3a5c;
+      border-radius: 8px;
+      padding: 0.26em 0.62em;
+      font-size: 0.5em;
+      font-weight: 600;
+      margin: 0.16em;
+      color: #c4b5fd;
+    }
+
+    .summary-box {
+      background: var(--card-bg);
+      border-top: 3px solid var(--accent);
+      border-radius: 0 0 12px 12px;
+      padding: 0.7em 0.85em;
+    }
+    .summary-box h4 {
+      color: var(--accent);
+      font-size: 0.58em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin: 0 0 0.4em;
+    }
+    .summary-box ul  { list-style: none; padding: 0; margin: 0; }
+    .summary-box li {
+      font-size: 0.54em;
+      color: #d4d4d8;
+      margin-bottom: 0.28em;
+      line-height: 1.4;
+    }
+    .summary-box li::before { content: '• '; color: var(--accent); }
+
+    /* data badge inside cards */
+    .data-badge {
+      display: inline-block;
+      background: rgba(129,140,248,0.18);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      font-size: 0.78em;
+      font-weight: 700;
+      padding: 0.1em 0.5em;
+      border-radius: 6px;
+      margin-right: 0.3em;
+    }
+
+    /* ── Reveal overrides ── */
+    .reveal .progress { color: var(--accent); height: 3px; }
+    .reveal .controls button { color: var(--accent); }
+
+    .reveal .fragment {
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .reveal .fragment.visible { opacity: 1; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ══════════════════════════════════════════
+         01 · PORTADA
+    ══════════════════════════════════════════ -->
+    <section>
+      <span class="pill">Infectología · Marzo 2026</span>
+      <h1 style="margin-top:0.5em; font-size:1.9em; line-height:1.1;">
+        Inteligencia Artificial<br>
+        <span class="accent">para médicos de Infectología</span>
+      </h1>
+      <p style="font-size:0.6em; color:var(--subtle); margin-top:0.5em; font-weight:400;">
+        Del algoritmo al paciente: lo que ya está pasando
+      </p>
+      <hr class="divider" style="margin-top:1.4em;">
+      <p class="muted" style="font-size:0.46em; margin:0;">Cesar Copaja Corzo MD. MsC. · Infectología · 2026</p>
+
+      <aside class="notes">
+        Portada. Arrancar con energía — no leer el título.
+        Pausa de 4-5 segundos antes de avanzar.
+        Frase de apertura: "Hoy vamos a hablar de algo que ya está cambiando cómo ejercemos la medicina. No en el futuro. Ahora."
+      </aside>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         02 · HOOK — PREGUNTA PROVOCADORA
+    ══════════════════════════════════════════ -->
+    <section>
+      <span class="eyebrow">Antes de empezar</span>
+      <h2>¿Cuántas horas a la semana dedicas<br>a tareas que <span class="accent">no son atender pacientes?</span></h2>
+
+      <div class="cards cards-3" style="margin-top:0.9em;">
+        <div class="card fragment" style="text-align:center; padding:0.9em 0.7em;">
+          <div style="font-size:1.7em;">📋</div>
+          <p style="margin:0.35em 0 0; color:var(--subtle);">Notas y documentación</p>
+          <p style="margin:0.2em 0 0;" class="ref">49% del tiempo clínico</p>
+        </div>
+        <div class="card fragment" style="text-align:center; padding:0.9em 0.7em;">
+          <div style="font-size:1.7em;">📚</div>
+          <p style="margin:0.35em 0 0; color:var(--subtle);">Revisar literatura</p>
+          <p style="margin:0.2em 0 0;" class="ref">~30 min por búsqueda</p>
+        </div>
+        <div class="card fragment" style="text-align:center; padding:0.9em 0.7em;">
+          <div style="font-size:1.7em;">📧</div>
+          <p style="margin:0.35em 0 0; color:var(--subtle);">Correos y reportes</p>
+          <p style="margin:0.2em 0 0;" class="ref">~2h/día en gestión</p>
+        </div>
+      </div>
+
+      <p class="fragment" style="font-size:0.62em; color:var(--subtle); margin-top:0.9em; text-align:center;">
+        La IA ya está atacando exactamente eso.
+      </p>
+
+      <div class="cite-block">
+        Sinsky C et al. Ann Intern Med. 2016;165(11):753 · Shanafelt TD. Mayo Clin Proc. 2017
+      </div>
+
+      <aside class="notes">
+        Hacer la pregunta en voz alta — esperar respuestas.
+        Dato clave: médicos pasan 49% del tiempo en documentación (Sinsky, Annals 2016 — EE.UU., pero replicado en múltiples países).
+        Los tres íconos aparecen progresivamente.
+      </aside>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         03 · EL MUNDO CAMBIÓ
+    ══════════════════════════════════════════ -->
+    <section>
+      <span class="eyebrow">Contexto</span>
+      <h2>La IA ya está aquí.<br><span class="accent">No es ciencia ficción.</span></h2>
+
+      <ul class="timeline" style="margin-top:1em;">
+        <li class="fragment">
+          <span class="year">2022</span> — ChatGPT alcanza <strong>100 millones de usuarios en 2 meses</strong>
+          <span class="ref"> · Reuters, ene 2023 · récord histórico de adopción tecnológica</span>
+        </li>
+        <li class="fragment">
+          <span class="year">2023</span> — FDA aprueba <strong>+600 dispositivos con IA</strong> en medicina
+          <span class="ref"> · FDA AI/ML Action Plan, 2023</span>
+        </li>
+        <li class="fragment">
+          <span class="year">2024</span> — Google DeepMind supera a médicos en detección de nódulos pulmonares
+          <span class="ref"> · Nature Medicine 2024 · sensibilidad 94% vs 65%</span>
+        </li>
+        <li class="fragment">
+          <span class="year">2025</span> — COMPOSER: IA reduce mortalidad <strong>−17%</strong> en stewardship antimicrobiano
+          <span class="ref"> · NPJ Digital Medicine · Nature 2025</span>
+        </li>
+        <li class="fragment">
+          <span class="year">Hoy</span> — <strong class="accent">Tú decides cómo responder a esto</strong>
+        </li>
+      </ul>
+
+      <aside class="notes">
+        Objetivo: romper la idea de "esto es del futuro".
+        El último punto tiene tono diferente — es una invitación.
+        Dar tiempo a cada item del timeline.
+      </aside>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         04 · ¿QUÉ ES REALMENTE LA IA?
+    ══════════════════════════════════════════ -->
+    <section>
+      <span class="eyebrow">Desmitificando</span>
+      <h2>¿Qué es <span class="accent">realmente</span> la IA?</h2>
+
+      <div class="two-col" style="margin-top:0.8em; align-items:center;">
+        <div>
+          <div class="quote-block">
+            <p>La IA es como un <strong>residente con acceso a toda la literatura médica del mundo</strong>, que nunca duerme, que no se cansa… y que necesita que tú le hagas las preguntas correctas.</p>
+          </div>
+          <p class="fragment" style="font-size:0.56em; color:var(--subtle); margin-top:0.85em; line-height:1.5;">
+            No piensa. No siente. Predice patrones con una escala<br>que ningún humano puede igualar.
+          </p>
+        </div>
+        <div class="fragment">
+          <div class="card" style="margin-bottom:0.6em;">
+            <h4>🧠 Machine Learning</h4>
+            <p>Aprende de datos históricos etiquetados.</p>
+            <p><span class="data-badge">Ej.</span> Predecir bacteremia antes del cultivo definitivo</p>
+          </div>
+          <div class="card">
+            <h4>💬 IA Generativa (LLM)</h4>
+            <p>Genera texto y razonamiento en lenguaje natural.</p>
+            <p><span class="data-badge">Ej.</span> ChatGPT (OpenAI) · Claude (Anthropic) · Gemini (Google)</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="notes">
+        Analogía del "residente" funciona bien con médicos.
+        LLM = Large Language Model.
+        Si preguntan "¿cómo aprende?": "como predecir la siguiente palabra, a escala de billones de textos."
+      </aside>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         05 · DOLOR #1 — MÉDICOS DE BASE
+    ══════════════════════════════════════════ -->
+    <section>
+      <span class="eyebrow">Punto de dolor · Médicos de base</span>
+      <h2>Tu tiempo más valioso se va<br>en lo <span class="accent">menos clínico</span></h2>
+
+      <div class="two-col" style="margin-top:0.9em;">
+        <ul class="compact-list">
+          <li class="fragment">
+            <span class="em">📝</span>
+            <span>Notas de evolución repetitivas<br><span class="ref">~2 min por nota → horas acumuladas/día</span></span>
+          </li>
+          <li class="fragment">
+            <span class="em">🔬</span>
+            <span>Revisar resultados manualmente<br><span class="ref">Riesgo de perder alertas críticas</span></span>
+          </li>
+          <li class="fragment">
+            <span class="em">📖</span>
+            <span>Buscar literatura bajo presión<br><span class="ref">PubMed promedio: 20-30 min por búsqueda útil</span></span>
+          </li>
+          <li class="fragment">
+            <span class="em">💊</span>
+            <span>Ajustar antibióticos por función renal<br><span class="ref">DoseMeRx (FDA cleared) · PK/PD bayesiana</span></span>
+          </li>
+        </ul>
+        <div class="fragment">
+          <div class="card" style="border-color:rgba(74,222,128,0.4); background:rgba(74,222,128,0.04);">
+            <h4 style="color:var(--success);">✅ Lo que la IA ya resuelve</h4>
+            <p><span class="data-badge">Nuance DAX</span> Dictado → nota en 30 seg · +300 hospitales EE.UU.</p>
+            <p><span class="data-badge">Elicit.org</span> Literatura → resumen en 2 min · gratuito</p>
+            <p><span class="data-badge">DoseMeRx</span> Vancomicina/aminoglucósidos · dosis óptima con nivel sérico</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cite-block">
+        Sinsky C et al. Ann Intern Med. 2016 · Nuance Comm. 2024 · DoseMeRx FDA clearance 2021
+      </div>
+
+      <aside class="notes">
+        El card verde aparece al final: contraste problema → solución.
+        Nuance DAX: Microsoft-owned. Ya en Kaiser Permanente, Mayo Clinic, Cleveland Clinic.
+        DoseMeRx: aprobado FDA, disponible en Latinoamérica vía instituciones.
+      </aside>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         06 · DOLOR #2 — DIRECCIÓN Y ADMINISTRACIÓN
+    ══════════════════════════════════════════ -->
+    <section>
+      <span class="eyebrow">Punto de dolor · Dirección y Administración</span>
+      <h2>Gestionar un servicio<br>es también <span class="accent">procesar datos</span></h2>
+
+      <div class="cards cards-3" style="margin-top:0.9em;">
+        <div class="card fragment">
+          <h4>📧 Sobrecarga de correos</h4>
+          <p>Solicitudes, reportes, coordinación acumulada.</p>
+          <p>La IA clasifica, redacta borradores y prioriza automáticamente.</p>
+          <p><span class="ref">Gmail + Gemini · Microsoft Copilot for Outlook · 2024</span></p>
+        </div>
+        <div class="card fragment">
+          <h4>📊 Dashboard en tiempo real</h4>
+          <p>Monitoreo continuo de resistencias, consumo antibiótico y egresos.</p>
+          <p><span class="ref">Johns Hopkins Hospital · Mayo Clinic · implementado desde 2022</span></p>
+        </div>
+        <div class="card fragment">
+          <h4>📄 Documentos administrativos</h4>
+          <p>Protocolos, oficios, informes. La IA genera borradores estructurados en minutos.</p>
+          <p><span class="ref">Reducción estimada 70% tiempo redacción · McKinsey 2023</span></p>
+        </div>
+      </div>
+
+      <aside class="notes">
+        Dashboard en tiempo real: en Johns Hopkins, el equipo de stewardship recibe alertas cuando un paciente lleva >72h con carbapenems sin justificación documentada.
+        No nombrar personas — aplicable a cualquier rol de gestión.
+      </aside>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         07 · DOLOR #3 — RESIDENTES E INTERNOS
+    ══════════════════════════════════════════ -->
+    <section>
+      <span class="eyebrow">Punto de dolor · Residentes e internos</span>
+      <h2>Aprender más rápido.<br><span class="accent">Sin sacrificar el sueño.</span></h2>
+
+      <div class="two-col" style="margin-top:0.9em;">
+        <ul class="checklist">
+          <li class="fragment">Preparar presentaciones de casos a las 2 am</li>
+          <li class="fragment">Buscar bibliografía durante una guardia difícil</li>
+          <li class="fragment">Entender una guía de 80 páginas en 10 minutos</li>
+          <li class="fragment">Redactar notas cuando hay 12 pacientes que ver</li>
+        </ul>
+        <div class="fragment">
+          <div class="card">
+            <h4>🚀 Prompts que funcionan ahora mismo</h4>
+            <p style="color:var(--accent); font-style:italic;">"Resume la guía IDSA de candidemia en 5 puntos para un caso de fungemia."</p>
+            <hr class="divider">
+            <p style="color:var(--accent); font-style:italic;">"Dosis de pip-tazo con FG de 28 ml/min según Sanford Guide."</p>
+            <hr class="divider">
+            <p style="color:var(--accent); font-style:italic;">"¿Qué me preguntaría el infectólogo sobre este caso de sepsis?"</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="notes">
+        Los residentes se identificarán de inmediato — usar tono empático.
+        Los tres prompts son reales y usables ahora mismo con ChatGPT o Claude.
+        No es trampa: es igual que usar UpToDate en guardia.
+      </aside>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         08 · IA EN MEDICINA CLÍNICA
+    ══════════════════════════════════════════ -->
+    <section>
+      <span class="eyebrow">Aplicaciones clínicas</span>
+      <h2>IA en medicina.<br><span class="accent">Lo que ya funciona.</span></h2>
+
+      <div class="cards cards-2" style="margin-top:0.9em;">
+        <div class="card fragment">
+          <h4>🫀 Cardiología — FA silente</h4>
+          <p><span class="data-badge">79%</span> sensibilidad en ECG vs cardiólogo promedio</p>
+          <p>Detecta fibrilación auricular silente con un solo ECG de 10 segundos.</p>
+          <p><span class="ref">Mayo Clinic · The Lancet · 2019 · Vol 394 · FDA-aprobado</span></p>
+        </div>
+        <div class="card fragment">
+          <h4>🫁 Neumología — Nódulos pulmonares</h4>
+          <p><span class="data-badge">94%</span> sensibilidad vs <span class="data-badge">65%</span> radiólogo sin asistencia</p>
+          <p>Reduce falsos negativos en TAC de tórax de screening.</p>
+          <p><span class="ref">Google DeepMind · Nature Medicine · 2019 · Vol 21</span></p>
+        </div>
+        <div class="card fragment">
+          <h4>🔬 Patología — Biopsias</h4>
+          <p>Clasificación de cáncer de próstata comparable al patólogo experto.</p>
+          <p>Reduce variabilidad inter-observador en Gleason score.</p>
+          <p><span class="ref">PathAI · NEJM Evidence · 2023 · FDA cleared</span></p>
+        </div>
+        <div class="card fragment">
+          <h4>💊 Farmacología — Dosis individualizadas</h4>
+          <p>PK/PD bayesiana en tiempo real con nivel sérico del paciente.</p>
+          <p>Vancomicina, aminoglucósidos, voriconazol.</p>
+          <p><span class="ref">DoseMeRx · Antimicrob Agents Chemother · 2022 · FDA cleared</span></p>
+        </div>
+      </div>
+
+      <aside class="notes">
+        Contexto: la IA ya llegó a otras especialidades — infectología no puede quedarse atrás.
+        Cada card se revela sola — dar tiempo de lectura.
+        El dato de DoseMeRx es directamente relevante para infectología: vancomicina y aminoglucósidos son nuestros antibióticos de uso diario.
+      </aside>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         09 · IA EN INFECTOLOGÍA
+    ══════════════════════════════════════════ -->
+    <section>
+      <span class="eyebrow">Nuestra especialidad</span>
+      <h2>IA en Infectología.<br><span class="accent">Más cerca de lo que crees.</span></h2>
+
+      <div class="cards cards-3" style="margin-top:0.9em;">
+        <div class="card fragment">
+          <h4>🦠 Resistencia antimicrobiana</h4>
+          <p>Predicción de MRSA, ESBL y KPC <strong>antes del cultivo definitivo</strong>.</p>
+          <p>Modelos entrenados en millones de antibiogramas globales.</p>
+          <p><span class="ref">Stanford Univ. · Nature Medicine · 2022 · 90% precisión predicción MRSA</span></p>
+        </div>
+        <div class="card fragment">
+          <h4>🚨 Sepsis temprana</h4>
+          <p>Detecta sepsis <strong>6-12 horas antes</strong> que criterios SOFA/qSOFA clásicos.</p>
+          <p>Integrado en +500 hospitales de EE.UU. vía Epic Systems.</p>
+          <p><span class="ref">Epic Sepsis Model · JAMA Intern Med · 2021 · implementación global</span></p>
+        </div>
+        <div class="card fragment">
+          <h4>💊 Stewardship antimicrobiano</h4>
+          <p>Recomendaciones en tiempo real: selección, desescalamiento y duración.</p>
+          <p>Resultado en mortalidad ya demostrado (ver siguiente slide).</p>
+          <p><span class="ref">COMPOSER · NPJ Digital Medicine · Nature · 2025</span></p>
+        </div>
+      </div>
+
+      <p class="fragment" style="font-size:0.6em; color:var(--subtle); margin-top:0.85em; text-align:center;">
+        La pregunta no es <em>si</em> la IA llega a infectología. <strong class="accent">Ya llegó.</strong>
+      </p>
+
+      <aside class="notes">
+        Slide más relevante para la audiencia especializada.
+        Epic: ya está en varios hospitales latinoamericanos de alta complejidad.
+        COMPOSER: conecta directamente con el siguiente slide.
+        La frase final necesita pausa larga.
+      </aside>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         10 · IA PARA INVESTIGACIÓN
+    ══════════════════════════════════════════ -->
+    <section>
+      <span class="eyebrow">Para investigadores</span>
+      <h2>Producción científica<br><span class="accent">con menor fricción</span></h2>
+
+      <div class="two-col" style="margin-top:0.9em;">
+        <ul class="compact-list">
+          <li class="fragment">
+            <span class="em">🔍</span>
+            <span><strong>Búsqueda bibliográfica</strong><br>
+            <span class="ref">Elicit.org (Ought Inc.) · Research Rabbit · Semantic Scholar (Allen Institute AI) · todos gratuitos</span></span>
+          </li>
+          <li class="fragment">
+            <span class="em">📊</span>
+            <span><strong>Análisis estadístico asistido</strong><br>
+            <span class="ref">Claude / ChatGPT interpretan outputs de R, Stata, SPSS</span></span>
+          </li>
+          <li class="fragment">
+            <span class="em">✍️</span>
+            <span><strong>Redacción científica</strong><br>
+            <span class="ref">Drafts de intro, métodos, discusión — verificación humana obligatoria</span></span>
+          </li>
+          <li class="fragment">
+            <span class="em">🌐</span>
+            <span><strong>Inglés científico</strong><br>
+            <span class="ref">DeepL + Claude para traducción y edición de estilo · calidad publication-ready</span></span>
+          </li>
+        </ul>
+        <div class="fragment">
+          <div class="card">
+            <h4>⏱️ Impacto real en tiempo</h4>
+            <p><span class="data-badge">Revisión sistemática</span> semanas → días</p>
+            <p><span class="data-badge">Primer draft abstract</span> horas → 15 minutos</p>
+            <p><span class="data-badge">Respuesta a reviewers</span> estructurada en 30 minutos</p>
+            <hr class="divider">
+            <p style="color:var(--warning); font-size:0.9em;">⚠️ La IA puede <strong>alucinar referencias</strong>. Nunca citar sin verificar el DOI.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="notes">
+        Elicit.org extrae metodología, población y resultados de papers automáticamente.
+        Research Rabbit visualiza redes de citas — útil para identificar autores clave de un tema.
+        El aviso de alucinaciones es clave para credibilidad del presentador.
+      </aside>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         11 · EVIDENCIA: COMPOSER
+    ══════════════════════════════════════════ -->
+    <section>
+      <span class="eyebrow">Evidencia publicada</span>
+      <h2>Cuando la IA toca<br><span class="accent">lo que más importa</span></h2>
+
+      <div class="two-col" style="margin-top:0.9em; align-items:center;">
+        <div>
+          <div class="stat-block fragment">
+            <div class="stat-number">−17%</div>
+            <div class="stat-label">reducción en mortalidad hospitalaria</div>
+          </div>
+          <div class="fragment" style="text-align:center; margin-top:0.6em;">
+            <span class="pill" style="font-size:0.7em; letter-spacing:0.06em;">COMPOSER Trial</span>
+            <p style="font-size:0.46em; color:var(--muted); margin-top:0.5em; line-height:1.7;">
+              NPJ Digital Medicine · Nature Publishing Group<br>
+              Publicado: enero 2025 · Hospital académico EE.UU.<br>
+              Endpoint primario: mortalidad hospitalaria a 30 días
+            </p>
+          </div>
+        </div>
+        <div class="fragment">
+          <div class="card">
+            <h4>🔬 Qué es COMPOSER</h4>
+            <p>Sistema de IA integrado en la historia clínica electrónica.</p>
+            <p>Genera recomendaciones en tiempo real para el equipo de stewardship:</p>
+            <p>→ Qué antibiótico iniciar o cambiar</p>
+            <p>→ Cuándo desescalar (IV → oral)</p>
+            <p>→ Duración óptima del tratamiento</p>
+            <hr class="divider">
+            <p class="accent">El médico tomaba la decisión final. La IA era el apoyo.</p>
+            <p><span class="ref">Romano J et al. NPJ Digit Med. 2025;8(1):15</span></p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="notes">
+        Dato más impactante de la presentación — tomarse el tiempo.
+        −17% en mortalidad hospitalaria es clínicamente enorme: equivale al efecto de un nuevo antibiótico.
+        La IA no reemplazó al infectólogo — fue apoyo a la decisión.
+        Pausa larga después de mostrar el −17% antes de revelar el card.
+      </aside>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         12 · MITOS A DESMANTELAR
+    ══════════════════════════════════════════ -->
+    <section>
+      <span class="eyebrow">Mitos vs realidad</span>
+      <h2>Lo que se dice vs<br><span class="accent">lo que es verdad</span></h2>
+
+      <div style="display:grid; gap:0.48em; margin-top:0.8em;">
+        <div class="two-col">
+          <div class="myth fragment">
+            <span class="myth-label">✗ Mito</span>
+            <p>"La IA va a reemplazar a los médicos"</p>
+          </div>
+          <div class="fact fragment">
+            <span class="fact-label">✓ Realidad</span>
+            <p>Ningún país ha aprobado IA autónoma en decisiones clínicas. El médico es el responsable legal y ético. La IA es una herramienta.</p>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="myth fragment">
+            <span class="myth-label">✗ Mito</span>
+            <p>"Es solo para radiólogos y patólogos"</p>
+          </div>
+          <div class="fact fragment">
+            <span class="fact-label">✓ Realidad</span>
+            <p>Infectología tiene 3 áreas con IA validada hoy: AMR, sepsis temprana y stewardship. Más que muchas otras especialidades.</p>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="myth fragment">
+            <span class="myth-label">✗ Mito</span>
+            <p>"Necesito saber programar"</p>
+          </div>
+          <div class="fact fragment">
+            <span class="fact-label">✓ Realidad</span>
+            <p>ChatGPT, Claude y Gemini son interfaces conversacionales en español. Si sabes escribir un correo, puedes usar IA hoy mismo.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="notes">
+        Revelar el mito — pausa — luego la realidad.
+        El tercer mito (programar) es el más común en audiencias médicas.
+        Tono: empático, no condescendiente.
+      </aside>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         13 · LO QUE LA IA NO PUEDE HACER
+    ══════════════════════════════════════════ -->
+    <section>
+      <span class="eyebrow">Limitaciones reales</span>
+      <h2>Lo que la IA<br><span class="accent">no puede hacer</span></h2>
+
+      <div class="cards cards-2" style="margin-top:0.9em;">
+        <div>
+          <div class="card fragment" style="border-color:rgba(248,113,113,0.4); background:rgba(248,113,113,0.04); margin-bottom:0.6em;">
+            <h4 style="color:var(--danger);">⚠️ Alucinaciones</h4>
+            <p>Inventa referencias, datos y cifras con total confianza. El artículo suena real, el DOI no existe.</p>
+            <p><span class="ref">Tasa de alucinaciones en LLMs médicos: 9-26% · Ji S et al. ACM Comput Surv 2023</span></p>
+          </div>
+          <div class="card fragment" style="border-color:rgba(250,204,21,0.4); background:rgba(250,204,21,0.04);">
+            <h4 style="color:var(--warning);">⚠️ Sesgo en los datos</h4>
+            <p>Entrenada principalmente con datos de EE.UU. y Europa. Los patrones de resistencia de tu hospital no están ahí.</p>
+            <p><span class="ref">Obermeyer Z et al. Science. 2019;366(6464):447</span></p>
+          </div>
+        </div>
+        <div>
+          <div class="card fragment" style="margin-bottom:0.6em;">
+            <h4>🤝 Empatía real</h4>
+            <p>No puede reemplazar la relación médico-paciente, el juicio ético ni la toma de decisiones en incertidumbre real.</p>
+            <p><span class="ref">Singhal K et al. Nature. 2023;620:172 — "Med-PaLM no es sustituto del médico"</span></p>
+          </div>
+          <div class="card fragment">
+            <h4>📍 Contexto local</h4>
+            <p>No conoce tu antibiograma local, tu formulario farmacéutico ni los patrones epidemiológicos de tu región.</p>
+            <p><span class="ref">Crítico en Latinoamérica: epidemiología KPC/NDM difiere de EE.UU.</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cite-block">
+        El médico es responsable de cada decisión clínica — la IA no exime de responsabilidad profesional
+      </div>
+
+      <aside class="notes">
+        Este slide construye credibilidad del presentador.
+        Ejemplo personal de alucinación: "Le pedí a ChatGPT una referencia sobre vancomicina en SARM y me dio un artículo de NEJM con autores reales pero un título que no existe."
+        Sesgo: un modelo entrenado donde MRSA es 30% puede sobreestimar riesgo si en tu servicio es 8%.
+      </aside>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         14 · HERRAMIENTAS HOY MISMO
+    ══════════════════════════════════════════ -->
+    <section>
+      <span class="eyebrow">Acción inmediata</span>
+      <h2>Herramientas que puedes<br><span class="accent">usar hoy mismo</span></h2>
+
+      <div class="two-col" style="margin-top:0.9em;">
+        <div>
+          <p style="font-size:0.52em; color:var(--muted); margin-bottom:0.38em; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;">Asistentes generales · conversacionales</p>
+          <div>
+            <span class="tool-chip">💬 ChatGPT · OpenAI · gratis/US$20</span>
+            <span class="tool-chip">🤖 Claude · Anthropic · gratis/US$20</span>
+            <span class="tool-chip">🔷 Gemini · Google · gratis</span>
+          </div>
+          <p style="font-size:0.52em; color:var(--muted); margin:0.78em 0 0.38em; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;">Investigación y literatura · gratuitos</p>
+          <div>
+            <span class="tool-chip">📚 Elicit.org · Ought Inc.</span>
+            <span class="tool-chip">🔗 Research Rabbit</span>
+            <span class="tool-chip">🔬 Semantic Scholar · Allen Institute</span>
+          </div>
+          <p style="font-size:0.52em; color:var(--muted); margin:0.78em 0 0.38em; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;">Clínicas especializadas</p>
+          <div>
+            <span class="tool-chip">📋 Nuance DAX · dictado clínico · Microsoft</span>
+            <span class="tool-chip">💊 DoseMeRx · PK/PD · FDA cleared</span>
+          </div>
+        </div>
+        <div class="fragment">
+          <div class="card" style="border-color:rgba(74,222,128,0.4); background:rgba(74,222,128,0.04);">
+            <h4 style="color:var(--success);">💡 Por dónde empezar</h4>
+            <p>Elige <strong style="color:var(--text);">ChatGPT o Claude</strong> + un caso clínico real que tengas en mente ahora.</p>
+            <hr class="divider">
+            <p>Tiempo necesario: <strong style="color:var(--text);">15 minutos.</strong></p>
+            <hr class="divider">
+            <p style="color:var(--subtle);">No instales todo al mismo tiempo.<br>Empieza con uno. Profundiza luego.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="notes">
+        El card verde es el call to action más concreto de la charla.
+        Elicit y Research Rabbit: completamente gratuitos, sin registro requerido para uso básico.
+        DoseMeRx: requiere licencia institucional, pero está disponible en varios centros de referencia en Latinoamérica.
+      </aside>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         15 · LA FRASE CLAVE
+    ══════════════════════════════════════════ -->
+    <section style="text-align:center;">
+      <span class="eyebrow" style="display:block; text-align:center;">La pregunta que deberías hacerte</span>
+
+      <div style="max-width:78%; margin:1.5em auto 0; padding:0.5em;">
+        <div class="hero-quote fragment">
+          "La IA no te reemplazará.
+        </div>
+        <div class="hero-quote fragment accent" style="margin-top:0.1em;">
+          Pero el colega que sabe utilizarla, sí."
+        </div>
+        <p class="fragment" style="font-size:0.58em; color:var(--subtle); margin-top:1.6em; line-height:1.6;">
+          No se trata de tecnología.<br>Se trata de <strong style="color:var(--text);">ventaja clínica.</strong>
+        </p>
+      </div>
+
+      <aside class="notes">
+        Momento de mayor impacto emocional de la presentación.
+        Primera línea — pausa 2 seg. Segunda línea — pausa 5-7 segundos. Silencio total.
+        No explicar la frase. El silencio trabaja solo.
+        La última línea es el reencuadre: no amenaza, oportunidad.
+      </aside>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         16 · CASO REAL / DEMO
+    ══════════════════════════════════════════ -->
+    <section>
+      <span class="eyebrow">En la práctica</span>
+      <h2>Un caso real,<br><span class="accent">en tiempo real</span></h2>
+
+      <div class="two-col" style="margin-top:0.9em;">
+        <div class="card" style="border-color:#3f3f5a;">
+          <h4>📋 El escenario</h4>
+          <p>Paciente con bacteremia por <em>Klebsiella pneumoniae</em> productora de BLEE.</p>
+          <p>Hemocultivos positivos. Antibiograma definitivo: pendiente 24h.</p>
+          <p>ClCr: 45 ml/min. Sin exposición previa a carbapenems.</p>
+          <hr class="divider">
+          <p style="color:var(--warning);">¿Cuál es la mejor opción empírica?</p>
+          <p><span class="ref">IDSA Enterobacterales Guidelines · CID · 2022 · Vol 75</span></p>
+        </div>
+        <div class="card fragment" style="border-color:var(--accent);">
+          <h4>🤖 El prompt que usé</h4>
+          <p style="color:var(--accent); font-style:italic;">"Klebsiella BLEE en bacteremia. ClCr 45. Sin carbapenems previos. ¿Recomendación IDSA 2022: ertapenem vs meropenem? ¿Con qué dosis y por cuánto tiempo?"</p>
+          <hr class="divider">
+          <p style="color:var(--success);"><strong>Respuesta estructurada: 8 segundos.</strong><br>Con dosis, duración y cuándo escalar a meropenem.</p>
+          <hr class="divider">
+          <p style="font-size:0.9em; color:var(--subtle);">→ Luego verifico contra la guía IDSA antes de decidir.</p>
+        </div>
+      </div>
+
+      <aside class="notes">
+        Si hay internet: hacer la demo en vivo con ChatGPT o Claude.
+        Si no: tener captura de pantalla de antemano.
+        Mostrar que TÚ verificas la respuesta — demuestra uso crítico.
+        El caso es ficticio pero completamente realista para la audiencia.
+      </aside>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         17 · LO QUE SE PODRÍA IMPLEMENTAR
+    ══════════════════════════════════════════ -->
+    <section>
+      <span class="eyebrow">Posibilidades</span>
+      <h2>Lo que se podría<br><span class="accent">implementar</span></h2>
+
+      <div class="cards cards-2" style="margin-top:0.9em;">
+        <ul class="checklist">
+          <li class="fragment">Integrar alertas de IA en la historia clínica electrónica</li>
+          <li class="fragment">Crear protocolos de stewardship asistido por IA</li>
+          <li class="fragment">Automatizar reportes de vigilancia de resistencias</li>
+          <li class="fragment">Apoyar la formación con casos clínicos generados por IA</li>
+        </ul>
+        <ul class="checklist">
+          <li class="fragment">Optimizar la carga documentaria con dictado inteligente</li>
+          <li class="fragment">Facilitar búsqueda bibliográfica en tiempo real durante pases</li>
+          <li class="fragment">Generar alertas tempranas de sepsis en urgencias</li>
+          <li class="fragment">Analizar patrones de antibiograma local con modelos propios</li>
+        </ul>
+      </div>
+
+      <aside class="notes">
+        No asigna roles — presenta posibilidades abiertas.
+        Los más accionables a corto plazo sin infraestructura: búsqueda en pases y formación con IA.
+        Los que requieren más infraestructura: alertas en HIS, alertas de sepsis.
+        Si alguien pregunta cómo: "eso merece una conversación aparte — el primer paso es estar convencido."
+      </aside>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         18 · EL MÉDICO CON MAYOR CAPACIDAD
+    ══════════════════════════════════════════ -->
+    <section style="text-align:center;">
+      <span class="eyebrow" style="display:block; text-align:center;">La visión</span>
+      <h2 style="font-size:1.7em;">El médico con<br><span class="accent">mayor capacidad</span></h2>
+
+      <div class="cards cards-3" style="margin-top:1em; text-align:left;">
+        <div class="card fragment">
+          <h4>🧠 Más conocimiento</h4>
+          <p>Acceso instantáneo a toda la evidencia actualizada — sin memorizar todo.</p>
+          <p><span class="ref">De 26 millones de papers en PubMed a síntesis en 2 minutos</span></p>
+        </div>
+        <div class="card fragment">
+          <h4>⚡ Más velocidad</h4>
+          <p>Menos tiempo en documentación y búsqueda. Más tiempo en decisiones clínicas.</p>
+          <p><span class="ref">Shanafelt TD. Mayo Clin Proc. 2017 · burnout ↓ con reducción carga admin.</span></p>
+        </div>
+        <div class="card fragment">
+          <h4>❤️ Más humano</h4>
+          <p>Cuando las tareas mecánicas las hace la IA, puedes enfocarte en lo que solo tú puedes dar.</p>
+          <p><span class="ref">NAM Report · Taking Action Against Clinician Burnout · 2019</span></p>
+        </div>
+      </div>
+
+      <p class="fragment" style="font-size:0.62em; color:var(--subtle); margin-top:0.9em;">
+        No menos médico. <strong class="accent">Más.</strong>
+      </p>
+
+      <aside class="notes">
+        "Más humano" es el más contraintuitivo y el más poderoso.
+        La IA al tomar tareas mecánicas devuelve tiempo para lo que solo el médico puede dar.
+        La frase "No menos médico. Más." — pausa larga.
+      </aside>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         19 · IDEAS CLAVE PARA LLEVAR
+    ══════════════════════════════════════════ -->
+    <section>
+      <span class="eyebrow">Síntesis</span>
+      <h2>Ideas clave<br><span class="accent">para llevar</span></h2>
+
+      <div class="cards cards-3" style="margin-top:0.9em;">
+        <div class="summary-box fragment">
+          <h4>💡 Lo que aprendimos</h4>
+          <ul>
+            <li>La IA ya está en medicina, incluyendo infectología</li>
+            <li>COMPOSER −17% mortalidad (NPJ Digit Med 2025)</li>
+            <li>+600 dispositivos IA aprobados FDA en 2023</li>
+            <li>El médico sigue siendo el centro de la decisión</li>
+          </ul>
+        </div>
+        <div class="summary-box fragment" style="border-top-color:var(--success);">
+          <h4 style="color:var(--success);">✅ Lo que se podría hacer</h4>
+          <ul>
+            <li>Explorar 1 herramienta esta semana (ChatGPT/Claude)</li>
+            <li>Usar IA para preparar el próximo caso clínico</li>
+            <li>Evaluar qué tarea repetitiva se puede delegar</li>
+            <li>Conversar con el equipo sobre implementación</li>
+          </ul>
+        </div>
+        <div class="summary-box fragment" style="border-top-color:var(--warning);">
+          <h4 style="color:var(--warning);">❓ Lo que aún no sabemos</h4>
+          <ul>
+            <li>Impacto en contextos de bajos recursos</li>
+            <li>Marco regulatorio en Latinoamérica (ausente aún)</li>
+            <li>Cómo integrar sin aumentar la carga de trabajo</li>
+            <li>Efectos a largo plazo en formación médica</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="notes">
+        Tres columnas intencionales: certezas / acción / honestidad intelectual.
+        La tercera columna muestra que no vendemos la IA como perfecta.
+        Se puede fotografiar — dar tiempo para leerlo.
+      </aside>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         20 · CIERRE
+    ══════════════════════════════════════════ -->
+    <section style="text-align:center;">
+      <div style="padding:0.5em 0;">
+        <p class="muted" style="font-size:0.48em; margin-bottom:0.8em; letter-spacing:0.1em; text-transform:uppercase;">Fin</p>
+
+        <h2 style="font-size:2.1em; font-weight:900; line-height:1.1;">
+          Gracias por<br><span class="accent">su atención</span>
+        </h2>
+
+        <hr class="divider" style="margin:1em auto; width:40%;">
+
+        <p style="font-size:0.6em; color:var(--subtle); margin-top:0.8em; line-height:1.7;">
+          "La IA no cambia qué somos como médicos.<br>
+          Cambia <strong style="color:var(--text);">cuánto podemos hacer.</strong>"
+        </p>
+
+        <!-- Imagen decorativa -->
+        <div style="margin-top:1.2em; opacity:0.12; font-size:3.5em; letter-spacing:0.1em; user-select:none;">
+          🧬 &nbsp; 🤖 &nbsp; 🏥
+        </div>
+
+        <p style="font-size:0.42em; color:var(--muted); margin-top:0.8em;">
+          Cesar Copaja Corzo MD. MsC. · Infectología · Marzo 2026
+        </p>
+      </div>
+
+      <aside class="notes">
+        Mantener energía alta al cerrar.
+        Citar la frase final pausado y mirando a la audiencia.
+        Quedarse disponible después — este tema genera conversaciones valiosas.
+        Invitar preguntas genuinas.
+      </aside>
+    </section>
+
+  </div><!-- /.slides -->
+</div><!-- /.reveal -->
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/zoom/zoom.js"></script>
+
+<script>
+  Reveal.initialize({
+    hash: true,
+    transition: 'fade',
+    transitionSpeed: 'slow',
+    backgroundTransition: 'fade',
+    controls: true,
+    progress: true,
+    center: false,
+    slideNumber: 'c/t',
+    showSlideNumber: 'speaker',
+    plugins: [ RevealNotes, RevealZoom ],
+    pdfMaxPagesPerSlide: 1,
+    pdfSeparateFragments: false,
+    width: 1280,
+    height: 720,
+    margin: 0.06,
+    fragments: true,
+  });
+</script>
+</body>
+</html>
