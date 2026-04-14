@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cómo escribir y publicar tu primer caso clínico</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/monokai.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --text: #ffffff;
+      --accent: #00c9a7;
+      --secondary: #9ca3af;
+      --danger: #ef4444;
+      --warning: #fb923c;
+    }
+    .reveal-viewport { background: var(--bg); }
+    .reveal { font-family: 'Inter', system-ui, sans-serif; color: var(--text); }
+    .reveal h1 { font-size: 2.6em; font-weight: 900; line-height: 1.05; color: var(--text); text-transform: none; letter-spacing: -0.02em; }
+    .reveal h2 { font-size: 1.9em; font-weight: 700; color: var(--text); text-transform: none; }
+    .reveal h3 { font-size: 1.0em; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.6em; }
+    .reveal p { font-size: 1.05em; font-weight: 400; line-height: 1.5; margin: 0.4em 0; }
+    .reveal ul { list-style: none; padding: 0; margin: 0.6em 0; }
+    .reveal ul li { font-size: 1.05em; padding: 0.35em 0 0.35em 1.6em; position: relative; line-height: 1.4; }
+    .reveal ul li::before { content: "→"; color: var(--accent); position: absolute; left: 0; font-weight: 700; }
+    .reveal section { padding: 50px 70px; text-align: left; }
+    .accent { color: var(--accent) !important; }
+    .danger { color: var(--danger) !important; }
+    .warning { color: var(--warning) !important; }
+    .secondary { color: var(--secondary) !important; }
+    .centrado { text-align: center !important; }
+    .frase-grande { font-size: 2.2em; font-weight: 700; line-height: 1.2; }
+    .fuente { font-size: 0.48em; color: var(--secondary); margin-top: 1.2em; display: block; font-weight: 300; }
+    .divider { width: 60px; height: 4px; background: var(--accent); margin: 0.5em 0 1em 0; border-radius: 2px; }
+    .dos-columnas { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5em; align-items: start; }
+    .card { background: rgba(255,255,255,0.05); border-radius: 14px; padding: 1.4em 1.6em; border-left: 4px solid var(--accent); }
+    .card-danger { background: rgba(239,68,68,0.08); border-radius: 14px; padding: 1.4em 1.6em; border-left: 4px solid var(--danger); }
+    .card-warning { background: rgba(251,146,60,0.08); border-radius: 14px; padding: 1.4em 1.6em; border-left: 4px solid var(--warning); }
+    .card h3 { margin-top: 0; }
+    .card-danger h3 { margin-top: 0; color: var(--danger); }
+    .card-warning h3 { margin-top: 0; color: var(--warning); }
+    .card ul li { font-size: 0.88em; }
+    .tag { display: inline-block; background: var(--accent); color: var(--bg); font-size: 0.6em; font-weight: 700; padding: 0.2em 0.7em; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.05em; vertical-align: middle; margin-left: 0.5em; }
+    .tag-danger { display: inline-block; background: var(--danger); color: #fff; font-size: 0.6em; font-weight: 700; padding: 0.2em 0.7em; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.05em; vertical-align: middle; }
+    .tabla-limpia { width: 100%; border-collapse: collapse; font-size: 0.8em; }
+    .tabla-limpia th { text-align: left; color: var(--accent); font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.6em 0.8em; border-bottom: 2px solid rgba(255,255,255,0.15); }
+    .tabla-limpia td { padding: 0.5em 0.8em; border-bottom: 1px solid rgba(255,255,255,0.06); vertical-align: top; }
+    .tabla-limpia tr:last-child td { border-bottom: none; }
+    .caso { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 1.2em 1.6em; font-size: 0.9em; line-height: 1.5; }
+    .caso p { font-size: 0.9em; margin: 0.3em 0; }
+    .timeline-item { display: flex; gap: 1em; align-items: flex-start; margin: 0.5em 0; }
+    .timeline-icon { font-size: 1.3em; min-width: 1.5em; text-align: center; }
+    .timeline-text { font-size: 1.05em; line-height: 1.4; }
+    .contacto-chip { display: inline-flex; align-items: center; gap: 0.6em; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 50px; padding: 0.6em 1.4em; font-size: 0.95em; margin: 0.3em 0.4em; }
+    .contacto-chip .chip-icon { font-size: 1.3em; }
+    .reto-row { display: flex; align-items: center; gap: 1em; margin: 0.35em 0; padding: 0.4em 0.8em; border-radius: 8px; background: rgba(255,255,255,0.03); }
+    .reto-dia { font-weight: 900; color: var(--accent); font-size: 1.1em; min-width: 3em; }
+    .reto-tarea { font-size: 0.95em; }
+    .paper-img { border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); max-width: 100%; }
+    .paper-img-sm { border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.4); }
+    .paper-img-tc { border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.4); }
+    /* ===== TEMARIO ===== */
+    .temario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; margin-top: 1.5em; }
+    .temario-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 1.2em 1.4em; transition: all 0.3s; }
+    .temario-card .temario-num { font-size: 2.2em; font-weight: 900; color: var(--secondary); line-height: 1; opacity: 0.5; }
+    .temario-card .temario-titulo { font-size: 1.1em; font-weight: 700; color: var(--secondary); margin-top: 0.3em; }
+    .temario-card .temario-sub { font-size: 0.78em; color: var(--secondary); opacity: 0.6; margin-top: 0.2em; }
+    /* Activo */
+    .temario-card.activo { border-color: var(--accent); border-width: 2px; background: rgba(0,201,167,0.08); }
+    .temario-card.activo .temario-num { color: var(--accent); opacity: 1; }
+    .temario-card.activo .temario-titulo { color: var(--text); }
+    .temario-card.activo .temario-sub { color: var(--accent); opacity: 1; }
+    /* Completado */
+    .temario-card.done { opacity: 0.45; }
+    .temario-card.done .temario-num { color: var(--accent); }
+    .temario-card.done .temario-titulo { text-decoration: line-through; text-decoration-color: var(--accent); }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ===================== SLIDE 0 — PANTALLA DE ESPERA ===================== -->
+    <section class="centrado">
+      <h3>Escuela de Medicina Interna · Abril 2026</h3>
+      <div class="divider" style="margin: 0 auto 0.6em;"></div>
+      <h1>Cómo escribir y publicar<br>tu primer caso clínico</h1>
+      <p class="secondary" style="margin-top:2em; font-size:0.7em;">Cesar Copaja-Corzo · R3 Infectología y Med. Tropical</p>
+      <aside class="notes">Slide estática mientras la gente llega.</aside>
+    </section>
+
+    <!-- ===================== SLIDE 1 — PREGUNTA AL PÚBLICO ===================== -->
+    <section class="centrado">
+      <h3>Antes de empezar...</h3>
+      <h1 style="font-size:2em;">¿A quién le ha pasado que está en el pase de visita, presentan un caso, y su asistente dice:</h1>
+      <p class="fragment accent frase-grande" style="margin-top:0.5em;">"este caso se podría publicar"?</p>
+      <p class="fragment secondary" style="margin-top:1.2em; font-size:1.2em;">¿Y cuántos realmente lo hicieron?</p>
+      <aside class="notes">
+        Levantar MI mano primero. Esperar manos del público.
+        Plan B si nadie levanta: "Exactamente. Ese silencio es el problema que vamos a resolver hoy."
+        Si alguien levanta: "Perfecto, quédate con esa experiencia — te va a ser útil al final."
+        ⏱️ 2 min
+      </aside>
+    </section>
+
+    <!-- ===================== SLIDE 2 — CONEXIÓN ===================== -->
+    <section class="centrado">
+      <p class="frase-grande">Nadie nace sabiendo publicar.</p>
+      <p class="fragment frase-grande accent" style="margin-top:0.3em;">Ni siquiera tu asesor.</p>
+      <p class="fragment secondary" style="margin-top:1.5em; font-size:1.1em;">Yo lo viví antes de ser residente, pero la dinámica es exactamente la misma.</p>
+      <aside class="notes">
+        Pausa entre las dos líneas. Transición: "Les cuento cómo fue mi primer caso..."
+        ⏱️ 1 min
+      </aside>
+    </section>
+
+    <!-- ===================== SLIDE 3 — SEPARADOR: MI PRIMER PAPER ===================== -->
+    <section class="centrado">
+      <div class="divider" style="margin: 0 auto 1em;"></div>
+      <h1 class="accent">Cómo nació mi primer paper</h1>
+      <aside class="notes">Transición rápida. ⏱️ 15 seg</aside>
+    </section>
+
+    <!-- ===================== SLIDE 4 — HISTORIA PERSONAL ===================== -->
+    <section>
+      <h3>Tacna · ~2019</h3>
+      <h2>Mi primer caso</h2>
+      <div style="margin-top:1em;">
+        <div class="timeline-item fragment">
+          <span class="timeline-icon">🏥</span>
+          <span class="timeline-text">Estudiante de medicina, rotando con el Dr. Hueda en infectología</span>
+        </div>
+        <div class="timeline-item fragment">
+          <span class="timeline-icon">👁️</span>
+          <span class="timeline-text">Vemos un caso de <strong class="accent">ceguera cortical post-arteriografía</strong> con iopamidol</span>
+        </div>
+        <div class="timeline-item fragment">
+          <span class="timeline-icon">🔍</span>
+          <span class="timeline-text">Busco en la literatura: <strong>nadie lo había reportado por vía periférica</strong></span>
+        </div>
+        <div class="timeline-item fragment">
+          <span class="timeline-icon">🎉</span>
+          <span class="timeline-text">"¡Doctor, hay que publicarlo!" → "Perfecto... ¿y eso cómo se hace?"</span>
+        </div>
+        <div class="timeline-item fragment">
+          <span class="timeline-icon">📅</span>
+          <span class="timeline-text">Ninguno sabía. <strong>Nos tomó casi 1 año.</strong></span>
+        </div>
+      </div>
+      <aside class="notes">
+        Contar como anécdota, no leer la slide. La risa sale de cómo lo cuentes.
+        Detalles orales: Dr. Hueda se inscribió al curso, César lo hizo, el Dr. se llevó el certificado.
+        ⏱️ 3 min
+      </aside>
+    </section>
+
+    <!-- ===================== SLIDE 5 — EL RESULTADO ===================== -->
+    <section class="centrado">
+      <h3>El resultado</h3>
+      <img src="img/portada_2020.png" class="paper-img fragment" style="max-height:380px; margin:0.5em auto;">
+      <p class="fragment accent frase-grande" style="margin-top:0.6em; font-size:1.6em;">Un estudiante + un asesor que aprendió en el camino<br>= paper publicado</p>
+      <aside class="notes">
+        Mostrar la portada real. Transición: "Lo que nos faltó fue saber qué hacer. Eso es lo que voy a darles ahora."
+        ⏱️ 1 min
+      </aside>
+    </section>
+
+    <!-- ===================== SLIDE 6 — TEMARIO COMPLETO ===================== -->
+    <section class="centrado">
+      <h3>Hoy veremos</h3>
+      <h2>La ruta para tu primer caso clínico</h2>
+      <div class="temario-grid">
+        <div class="temario-card">
+          <div class="temario-num">01</div>
+          <div class="temario-titulo">La guía CARE</div>
+          <div class="temario-sub">Tu GPS antes de escribir</div>
+        </div>
+        <div class="temario-card">
+          <div class="temario-num">02</div>
+          <div class="temario-titulo">Las pepas del caso clínico</div>
+          <div class="temario-sub">Lo que no puedes olvidar en cada sección</div>
+        </div>
+        <div class="temario-card">
+          <div class="temario-num">03</div>
+          <div class="temario-titulo">Los errores que matan tu paper</div>
+          <div class="temario-sub">Antes de que nazca</div>
+        </div>
+        <div class="temario-card">
+          <div class="temario-num">04</div>
+          <div class="temario-titulo">El reto</div>
+          <div class="temario-sub">Tu primer borrador en 7 días</div>
+        </div>
+      </div>
+      <aside class="notes">
+        "Esto es lo que veremos hoy. Cuatro bloques, 30 minutos. Vamos."
+        ⏱️ 15 seg
+      </aside>
+    </section>
+
+    <!-- ===================== TEMARIO → CARE ===================== -->
+    <section class="centrado">
+      <h3>Ruta</h3>
+      <div class="temario-grid">
+        <div class="temario-card activo">
+          <div class="temario-num">01</div>
+          <div class="temario-titulo">La guía CARE</div>
+          <div class="temario-sub">Tu GPS antes de escribir</div>
+        </div>
+        <div class="temario-card">
+          <div class="temario-num">02</div>
+          <div class="temario-titulo">Las pepas del caso clínico</div>
+          <div class="temario-sub">Lo que no puedes olvidar en cada sección</div>
+        </div>
+        <div class="temario-card">
+          <div class="temario-num">03</div>
+          <div class="temario-titulo">Los errores que matan tu paper</div>
+          <div class="temario-sub">Antes de que nazca</div>
+        </div>
+        <div class="temario-card">
+          <div class="temario-num">04</div>
+          <div class="temario-titulo">El reto</div>
+          <div class="temario-sub">Tu primer borrador en 7 días</div>
+        </div>
+      </div>
+      <aside class="notes">Transición rápida. ⏱️ 5 seg</aside>
+    </section>
+
+    <!-- ===================== SLIDE 7 — CARE: TU GPS ===================== -->
+    <section>
+      <div class="dos-columnas">
+        <div>
+          <h3>01 · La guía CARE</h3>
+          <h2>CARE = tu GPS</h2>
+          <p><strong>CA</strong>se <strong>RE</strong>port guidelines</p>
+          <p class="secondary">13 ítems. Hoy vemos los 6 más críticos.</p>
+          <p class="fragment accent" style="margin-top:1em; font-size:0.9em;">Muchas revistas lo exigen al enviar tu manuscrito.</p>
+        </div>
+        <div>
+          <table class="tabla-limpia">
+            <thead>
+              <tr><th>📋 Sección</th><th>✅ CARE te pide</th></tr>
+            </thead>
+            <tbody>
+              <tr class="fragment"><td><strong>Título</strong></td><td>Diagnóstico + intervención + "reporte de caso"</td></tr>
+              <tr class="fragment"><td><strong>Resumen</strong></td><td>Estructurado: contexto, caso, conclusión</td></tr>
+              <tr class="fragment"><td><strong>Introducción</strong></td><td>Justificación + referencias</td></tr>
+              <tr class="fragment"><td><strong>Caso</strong></td><td>Datos sociodemográficos, síntomas, hallazgos, tiempo de enfermedad, intervención, desenlace</td></tr>
+              <tr class="fragment"><td><strong>Discusión</strong></td><td>Fortalezas, limitaciones, literatura</td></tr>
+              <tr class="fragment"><td><strong>Consentimiento</strong></td><td>Documentado</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <aside class="notes">
+        No explicar fila por fila — pasar rápido.
+        "CARE es tu GPS. No necesitas saber el camino de memoria — solo seguir el mapa."
+        ⏱️ 2.5 min
+      </aside>
+    </section>
+
+    <!-- ===================== TEMARIO → PEPAS ===================== -->
+    <section class="centrado">
+      <h3>Ruta</h3>
+      <div class="temario-grid">
+        <div class="temario-card done">
+          <div class="temario-num">✅</div>
+          <div class="temario-titulo">La guía CARE</div>
+          <div class="temario-sub">Tu GPS antes de escribir</div>
+        </div>
+        <div class="temario-card activo">
+          <div class="temario-num">02</div>
+          <div class="temario-titulo">Las pepas del caso clínico</div>
+          <div class="temario-sub">Lo que no puedes olvidar en cada sección</div>
+        </div>
+        <div class="temario-card">
+          <div class="temario-num">03</div>
+          <div class="temario-titulo">Los errores que matan tu paper</div>
+          <div class="temario-sub">Antes de que nazca</div>
+        </div>
+        <div class="temario-card">
+          <div class="temario-num">04</div>
+          <div class="temario-titulo">El reto</div>
+          <div class="temario-sub">Tu primer borrador en 7 días</div>
+        </div>
+      </div>
+      <aside class="notes">Transición rápida. ⏱️ 5 seg</aside>
+    </section>
+
+    <!-- ===================== SLIDE 8 — PEPA 1: RELEVANCIA ===================== -->
+    <section>
+      <h3>Pepa 1</h3>
+      <h2>¿Por qué tu caso merece publicarse?</h2>
+      <p class="secondary">Antes de escribir una sola palabra:</p>
+      <div style="margin:0.6em 0;">
+        <ul>
+          <li class="fragment">🔴 Caso sumamente raro</li>
+          <li class="fragment">🔄 Presentación atípica de enfermedad conocida</li>
+          <li class="fragment">🤝 Asociación inesperada</li>
+          <li class="fragment">⚠️ Evento adverso no conocido</li>
+          <li class="fragment">💊 Fármaco o técnica nueva en evaluación</li>
+        </ul>
+      </div>
+      <div class="dos-columnas fragment" style="margin-top:0.5em;">
+        <div class="card" style="padding:1em;">
+          <p><span class="tag">⚠️ Evento adverso</span></p>
+          <img src="img/portada_2020.png" class="paper-img-sm" style="max-height:160px; margin:0.5em 0; width:100%; object-fit:cover; object-position:top;">
+          <p style="font-size:0.8em; margin:0.3em 0;">Ceguera cortical por arteriografía <strong>periférica</strong> — nunca reportado por esa vía</p>
+        </div>
+        <div class="card" style="padding:1em;">
+          <p><span class="tag">🤝 Asociación inesperada</span></p>
+          <img src="img/portada_2026.png" class="paper-img-sm" style="max-height:160px; margin:0.5em 0; width:100%; object-fit:cover; object-position:top;">
+          <p style="font-size:0.8em; margin:0.3em 0;">CZA+ATM en <em>S. maltophilia</em> post-TPH — contexto no descrito</p>
+        </div>
+      </div>
+      <p class="fragment accent" style="margin-top:0.6em; font-size:1em; font-weight:600;">Si no puedes decir en una oración por qué tu caso es relevante, todavía no estás listo para escribir.</p>
+      <aside class="notes">
+        Revelar criterios uno por uno. Para el paper 2026: "No importa que no conozcan la bacteria — lo que importa es ver cómo se clasifica."
+        ⏱️ 3 min
+      </aside>
+    </section>
+
+    <!-- ===================== SLIDE 9 — PEPA 2: INTRODUCCIÓN ===================== -->
+    <section>
+      <h3>Pepa 2</h3>
+      <h2>La introducción es un embudo</h2>
+      <div class="dos-columnas" style="margin-top:0.8em; align-items:center;">
+        <div>
+          <div class="fragment card" style="border-left-color: var(--accent); padding:0.7em 1em; width:100%;">
+            <p style="margin:0; font-size:0.95em;"><strong>🌍 Contexto</strong> — ¿Qué se sabe?</p>
+            <p style="margin:0.2em 0 0; font-size:0.75em; color:var(--secondary);">Los medios de contraste iodados tienen efectos adversos conocidos</p>
+          </div>
+          <div class="fragment card-warning" style="margin-top:0.3em; width:90%; padding:0.7em 1em;">
+            <p style="margin:0; font-size:0.95em;"><strong>🕳️ El vacío</strong> — ¿Qué NO se sabe?</p>
+            <p style="margin:0.2em 0 0; font-size:0.75em; color:var(--secondary);">Ceguera cortical descrita en angiografía cerebral y coronaria, pero nunca en periférica</p>
+          </div>
+          <div class="fragment card-danger" style="margin-top:0.3em; width:80%; padding:0.7em 1em;">
+            <p style="margin:0; font-size:0.95em;"><strong>🎯 Tu caso</strong> — llena ese vacío</p>
+            <p style="margin:0.2em 0 0; font-size:0.75em; color:var(--secondary);">Reportamos un caso de ceguera cortical + amnesia global tras arteriografía de miembro superior</p>
+          </div>
+        </div>
+        <div class="fragment" style="text-align:center;">
+          <p class="secondary" style="font-size:0.75em; margin-bottom:0.4em;">Así se ve en la vida real →</p>
+          <img src="img/intro_2020.png" class="paper-img" style="max-height:320px; background:#fff; padding:6px;">
+          <span class="fuente">Copaja-Corzo et al. · Acta Med Peru · 2020</span>
+        </div>
+      </div>
+      <p class="fragment accent" style="margin-top:0.5em; font-size:1em; font-weight:600;">Si el lector no entiende por qué importa en el primer párrafo, no llega al segundo.</p>
+      <aside class="notes">
+        Revelar embudo, luego la intro real: "Miren — contexto, vacío, caso. Es exactamente el embudo."
+        ⏱️ 2.5 min
+      </aside>
+    </section>
+
+    <!-- ===================== SLIDE 10 — PEPA 3: CASO CLÍNICO ===================== -->
+    <section>
+      <h3>Pepa 3</h3>
+      <h2>Escribir el caso</h2>
+      <div class="dos-columnas">
+        <div>
+          <ul>
+            <li class="fragment">👤 Presentación del paciente <span class="secondary" style="font-size:0.8em;">(solo antecedentes relevantes)</span></li>
+            <li class="fragment">📅 Tiempo de enfermedad claro <span class="secondary" style="font-size:0.8em;">(qué pasó y cuándo)</span></li>
+            <li class="fragment">🔬 Datos que sostienen el diagnóstico</li>
+            <li class="fragment">💊 Qué se hizo y por qué</li>
+            <li class="fragment">📈 Desenlace</li>
+          </ul>
+          <div class="fragment" style="margin-top:0.8em;">
+            <p class="secondary" style="font-size:0.75em; margin-bottom:0.3em;">TC cerebral — hiperdensidades occipitales (flechas)</p>
+            <img src="img/tc_cerebral_2020.png" class="paper-img-tc" style="max-height:150px; border-radius:8px;">
+            <span class="fuente" style="margin-top:0.3em;">Figura 1 · Copaja-Corzo et al. · Acta Med Peru · 2020</span>
+          </div>
+        </div>
+        <div class="fragment" style="text-align:center;">
+          <p class="secondary" style="font-size:0.75em; margin-bottom:0.3em;">Línea de tiempo publicada</p>
+          <img src="img/timeline_2020.png" class="paper-img" style="max-height:380px; background:#fff; padding:6px;">
+          <span class="fuente">Figura 3 · Evolución clínica del paciente</span>
+        </div>
+      </div>
+      <p class="fragment accent" style="margin-top:0.5em; font-size:1em; font-weight:600;">No es una epicrisis. Cada dato debe responder: ¿esto ayuda a entender por qué el caso es relevante?</p>
+      <aside class="notes">
+        MICROACTIVIDAD: "¿Qué dato sacarían?" — esperar 2-3 respuestas.
+        Si dicen HTA: "¿Es relevante? Podría argumentarse que sí por riesgo vascular."
+        ⏱️ 3 min
+      </aside>
+    </section>
+
+    <!-- ===================== SLIDE 11 — PEPA 4: DISCUSIÓN ===================== -->
+    <section>
+      <h3>Pepa 4</h3>
+      <h2>La discusión</h2>
+      <ul>
+        <li class="fragment">🔑 Hallazgo principal <span class="secondary" style="font-size:0.8em;">(una oración directa)</span></li>
+        <li class="fragment">📚 Comparación con la literatura <span class="secondary" style="font-size:0.8em;">(casos similares, en qué se parecen/difieren)</span></li>
+        <li class="fragment">🧠 Mecanismo o explicación <span class="secondary" style="font-size:0.8em;">(si se puede)</span></li>
+        <li class="fragment">⚠️ Limitaciones <span class="secondary" style="font-size:0.8em;">(honestidad: es un solo caso)</span></li>
+        <li class="fragment">💡 Mensaje final <span class="secondary" style="font-size:0.8em;">(qué aporta al conocimiento)</span></li>
+      </ul>
+      <div class="card fragment" style="margin-top:1em;">
+        <h3>Ejemplo — Paper 2020</h3>
+        <p style="font-size:0.9em;">Ceguera cortical reportada en angiografía cerebral y coronaria → <strong>nunca en periférica</strong> → mecanismo propuesto: disrupción de BHE → limitación: caso único, no generalizable</p>
+      </div>
+      <p class="fragment accent" style="margin-top:0.8em; font-size:1.05em; font-weight:600;">La discusión no es repetir tus resultados. Es responder: ¿qué significa mi caso en el contexto de lo que ya se sabe?</p>
+      <aside class="notes">
+        Cierre del bloque de contenido.
+        Transición: "Esas son las 4 pepas. Ahora los errores que más veo."
+        ⏱️ 2 min
+      </aside>
+    </section>
+
+    <!-- ===================== TEMARIO → ERRORES ===================== -->
+    <section class="centrado">
+      <h3>Ruta</h3>
+      <div class="temario-grid">
+        <div class="temario-card done">
+          <div class="temario-num">✅</div>
+          <div class="temario-titulo">La guía CARE</div>
+          <div class="temario-sub">Tu GPS antes de escribir</div>
+        </div>
+        <div class="temario-card done">
+          <div class="temario-num">✅</div>
+          <div class="temario-titulo">Las pepas del caso clínico</div>
+          <div class="temario-sub">Lo que no puedes olvidar en cada sección</div>
+        </div>
+        <div class="temario-card activo">
+          <div class="temario-num">03</div>
+          <div class="temario-titulo">Los errores que matan tu paper</div>
+          <div class="temario-sub">Antes de que nazca</div>
+        </div>
+        <div class="temario-card">
+          <div class="temario-num">04</div>
+          <div class="temario-titulo">El reto</div>
+          <div class="temario-sub">Tu primer borrador en 7 días</div>
+        </div>
+      </div>
+      <aside class="notes">Transición rápida. ⏱️ 5 seg</aside>
+    </section>
+
+    <!-- ===================== SLIDE 12 — ERROR 1: CONSENTIMIENTO ===================== -->
+    <section class="centrado">
+      <p><span class="tag-danger">ERROR 1</span></p>
+      <h1 class="danger" style="margin-top:0.3em;">No tener el consentimiento informado</h1>
+      <p class="fragment frase-grande" style="margin-top:0.6em;">Sin consentimiento firmado, tu caso no existe.</p>
+      <div class="card-danger fragment" style="max-width:650px; margin:1em auto; text-align:left;">
+        <p style="font-size:0.95em; margin:0;">Escribes todo. Buscas la revista. Mandas el manuscrito.</p>
+        <p style="font-size:0.95em; margin:0.3em 0;">Te piden el consentimiento firmado.</p>
+        <p style="font-size:0.95em; margin:0.3em 0;">El paciente ya se fue de alta hace dos meses.</p>
+        <p style="font-size:0.95em; margin:0.3em 0;">No lo puedes ubicar.</p>
+        <p style="font-size:0.95em; margin:0.3em 0;"><strong class="danger">Todo tu trabajo se perdió.</strong></p>
+      </div>
+      <p class="fragment accent" style="font-size:1.1em; font-weight:600;">Esto es lo PRIMERO que haces. Antes de escribir una sola palabra.</p>
+      <aside class="notes">
+        Tono serio. "El Dr. Hueda se encargó de esto desde el inicio — por eso funcionó."
+        ⏱️ 1.5 min
+      </aside>
+    </section>
+
+    <!-- ===================== SLIDE 13 — ERROR 2: NO VALIDAR ===================== -->
+    <section class="centrado">
+      <p><span class="tag-danger">ERROR 2</span></p>
+      <h1 class="danger" style="margin-top:0.3em;">Invertir semanas sin validar la relevancia</h1>
+      <p class="fragment secondary" style="margin-top:0.8em; font-size:1.1em;">El error no es pensar que está interesante.</p>
+      <p class="fragment frase-grande" style="margin-top:0.3em;">Es invertir semanas sin saber si es publicable.</p>
+      <div class="card fragment" style="max-width:600px; margin:1em auto; text-align:left;">
+        <p style="font-size:0.95em; margin:0;">La revista pregunta: <strong>¿cuál es el aporte?</strong></p>
+        <p style="font-size:0.95em; margin:0.3em 0;">No sabes qué responder.</p>
+        <p class="accent" style="font-size:0.95em; margin:0.5em 0 0;">Vuelve a los 5 criterios de la Pepa 1. Si no cabe en ninguno, quizás no es publicable. Y eso está bien.</p>
+      </div>
+      <aside class="notes">
+        No repetir la Pepa 1. Enmarcarlo como consecuencia de saltársela.
+        ⏱️ 1.5 min
+      </aside>
+    </section>
+
+    <!-- ===================== SLIDE 14 — ERROR 3: NUNCA EMPEZAR ===================== -->
+    <section class="centrado">
+      <p><span class="tag-danger">ERROR 3</span></p>
+      <h1 class="danger" style="margin-top:0.3em;">Nunca empezar</h1>
+      <p class="fragment frase-grande" style="margin-top:0.6em;">El error más común no es escribir mal.</p>
+      <p class="fragment frase-grande accent">Es no escribir nunca.</p>
+      <div style="margin-top:1em; text-align:left; max-width:700px; margin-left:auto; margin-right:auto;">
+        <p class="fragment secondary" style="font-size:1em;">"Doctor tengo un caso, ¿qué hago?" → les doy pautas... y nunca empiezan.</p>
+        <p class="fragment secondary" style="font-size:1em;">"Tenía un caso hace tres meses pero ya perdí los datos."</p>
+        <p class="fragment secondary" style="font-size:1em;">"Necesito hacer cinco cursos antes de poder empezar."</p>
+      </div>
+      <p class="fragment accent" style="margin-top:1em; font-size:1.1em; font-weight:600;">Uno aprende escribiendo. Te sientas, escribes mal, corriges, y así sale.</p>
+      <aside class="notes">
+        Este es el error que más veo. Conectar emocionalmente.
+        ⏱️ 1.5 min
+      </aside>
+    </section>
+
+    <!-- ===================== SLIDE 15 — ERROR 4: NO BUSCAR MENTOR ===================== -->
+    <section class="centrado">
+      <p><span class="tag-danger">ERROR 4</span></p>
+      <h1 class="danger" style="margin-top:0.3em;">No buscar un mentor</h1>
+      <p class="fragment frase-grande" style="margin-top:0.6em;">Solo es la receta para abandonar.</p>
+      <div class="card fragment" style="max-width:650px; margin:1em auto; text-align:left;">
+        <p style="font-size:0.95em; margin:0;">A mí me tomó casi <strong>1 año</strong> publicar mi primer caso.</p>
+        <p style="font-size:0.95em; margin:0.3em 0;">¿Por qué? Porque ni yo ni mi asesor teníamos experiencia.</p>
+        <p class="accent" style="font-size:0.95em; margin:0.5em 0 0;">Con alguien que ya lo hizo, eso podría haber sido <strong>semanas</strong>.</p>
+      </div>
+      <div class="fragment" style="margin-top:0.8em;">
+        <p class="secondary" style="font-size:1em;">No necesitan a alguien que les escriba el paper.</p>
+        <p style="font-size:1.05em; font-weight:600;">Necesitan a alguien que les diga: <span class="accent">esto va por acá, esto no, y ánimo que ya falta poco.</span></p>
+      </div>
+      <aside class="notes">
+        Prepara el terreno para el cierre (slide final = ofrecimiento de mentoría).
+        ⏱️ 1.5 min
+      </aside>
+    </section>
+
+    <!-- ===================== TEMARIO → EL RETO ===================== -->
+    <section class="centrado">
+      <h3>Ruta</h3>
+      <div class="temario-grid">
+        <div class="temario-card done">
+          <div class="temario-num">✅</div>
+          <div class="temario-titulo">La guía CARE</div>
+          <div class="temario-sub">Tu GPS antes de escribir</div>
+        </div>
+        <div class="temario-card done">
+          <div class="temario-num">✅</div>
+          <div class="temario-titulo">Las pepas del caso clínico</div>
+          <div class="temario-sub">Lo que no puedes olvidar en cada sección</div>
+        </div>
+        <div class="temario-card done">
+          <div class="temario-num">✅</div>
+          <div class="temario-titulo">Los errores que matan tu paper</div>
+          <div class="temario-sub">Antes de que nazca</div>
+        </div>
+        <div class="temario-card activo">
+          <div class="temario-num">04</div>
+          <div class="temario-titulo">El reto</div>
+          <div class="temario-sub">Tu primer borrador en 7 días</div>
+        </div>
+      </div>
+      <aside class="notes">Transición rápida. ⏱️ 5 seg</aside>
+    </section>
+
+    <!-- ===================== SLIDE 16 — ¿QUÉ TE HACE DIFERENTE? ===================== -->
+    <section class="centrado">
+      <h2>¿Qué te hace diferente?</h2>
+      <p class="secondary">Todos ustedes son residentes. Todos médicos. Todos estudiando.</p>
+      <div class="dos-columnas" style="margin-top:1.2em; text-align:left;">
+        <div class="card fragment">
+          <p style="font-size:1.8em; margin:0;">🎤</p>
+          <p style="font-weight:700; margin:0.3em 0;">Congresos</p>
+          <p class="secondary" style="font-size:0.85em; margin:0;">Tu primer congreso podría ser llevando un caso clínico</p>
+        </div>
+        <div class="card fragment">
+          <p style="font-size:1.8em; margin:0;">✈️</p>
+          <p style="font-weight:700; margin:0.3em 0;">Rotaciones internacionales</p>
+          <p class="secondary" style="font-size:0.85em; margin:0;">Los papers te pueden ayudar con una rotación internacional</p>
+        </div>
+        <div class="card fragment">
+          <p style="font-size:1.8em; margin:0;">📄</p>
+          <p style="font-weight:700; margin:0.3em 0;">CV</p>
+          <p class="secondary" style="font-size:0.85em; margin:0;">Un caso clínico publicado ya te diferencia del 90% de tus colegas</p>
+        </div>
+        <div class="card fragment">
+          <p style="font-size:1.8em; margin:0;">🧠</p>
+          <p style="font-weight:700; margin:0.3em 0;">Pensamiento crítico</p>
+          <p class="secondary" style="font-size:0.85em; margin:0;">Publicar te hace mejor clínico</p>
+        </div>
+      </div>
+      <aside class="notes">
+        Tono: "esto es lo que a mí me funcionó."
+        "Todo empezó con un caso que ni yo ni mi asesor sabíamos cómo escribir."
+        ⏱️ 1.5 min
+      </aside>
+    </section>
+
+    <!-- ===================== SLIDE 17 — RETO: 7 DÍAS ===================== -->
+    <section>
+      <h3>El reto</h3>
+      <h2>Tu primer caso en 7 días</h2>
+      <div style="margin-top:1em;">
+        <div class="reto-row fragment"><span class="reto-dia">Día 1</span><span class="reto-tarea">🔍 Identifica tu caso</span></div>
+        <div class="reto-row fragment"><span class="reto-dia">Día 2</span><span class="reto-tarea">✍️ Saca el consentimiento informado</span></div>
+        <div class="reto-row fragment"><span class="reto-dia">Día 3</span><span class="reto-tarea">📚 Búsqueda bibliográfica</span></div>
+        <div class="reto-row fragment"><span class="reto-dia">Día 4</span><span class="reto-tarea">🏥 Escribe el caso clínico</span></div>
+        <div class="reto-row fragment"><span class="reto-dia">Día 5</span><span class="reto-tarea">🌍 Escribe la introducción</span></div>
+        <div class="reto-row fragment"><span class="reto-dia">Día 6</span><span class="reto-tarea">💬 Escribe la discusión</span></div>
+        <div class="reto-row fragment"><span class="reto-dia">Día 7</span><span class="reto-tarea">📩 Mándalo a revisar</span></div>
+      </div>
+      <p class="fragment secondary" style="margin-top:0.8em; font-size:0.85em;">7 días hábiles o 2-3 semanas reales — el punto es no parar.</p>
+      <p class="fragment accent frase-grande" style="margin-top:0.5em; font-size:1.4em;">No les pido que publiquen en 7 días.<br>Les pido un primer borrador. Malo, incompleto, imperfecto. Pero escrito.</p>
+      <aside class="notes">
+        Revelar día por día rápidamente.
+        "Y si no tienen a quién mandárselo el día 7... pueden escribirme."
+        ⏱️ 1.5 min
+      </aside>
+    </section>
+
+    <!-- ===================== SLIDE 18 — CIERRE ===================== -->
+    <section class="centrado">
+      <div class="divider" style="margin: 0 auto 1.5em;"></div>
+      <h1 style="font-size:2.4em;">Gracias por su atención</h1>
+      <p class="secondary" style="margin-top:2em; font-size:0.95em;">Cesar Copaja-Corzo · R3 Infectología y Med. Tropical</p>
+      <div style="margin-top:1em; display:flex; justify-content:center; flex-wrap:wrap; gap:0.8em;">
+        <span class="contacto-chip" style="font-size:0.85em;"><span class="chip-icon">📧</span> cesarcopaja@gmail.com</span>
+        <span class="contacto-chip" style="font-size:0.85em;"><span class="chip-icon">📱</span> 984 529 292</span>
+      </div>
+      <aside class="notes">
+        El cierre es oral. Decir: "No sé si yo sería el asesor que están buscando. Pero si necesitan a alguien que los ayude a empezar, pueden escribirme."
+        Dejar la slide puesta para Q&A.
+        ⏱️ 1 min
+      </aside>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    showSlideNumber: 'speaker',
+    controls: true,
+    progress: true,
+    center: false,
+    transition: 'fade',
+    transitionSpeed: 'fast',
+    plugins: [ RevealNotes ],
+    width: 1280,
+    height: 720
+  });
+</script>
+</body>
+</html>
