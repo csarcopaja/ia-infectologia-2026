@@ -1,0 +1,1005 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IFI en el paciente post-TPH alogénico</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafafa;
+    --text: #111111;
+    --accent: #008070;
+    --accent-soft: #00a88f;
+    --secondary: #6b7280;
+    --surface: #ffffff;
+    --border: #e5e7eb;
+    --danger: #b91c1c;
+    --warn: #b45309;
+  }
+  .reveal-viewport { background: var(--bg); }
+  .reveal { font-family: 'Inter', system-ui, sans-serif; color: var(--text); }
+  .reveal h1 { font-size: 3.2em; font-weight: 900; line-height: 1.05; color: var(--text); letter-spacing: -0.02em; text-transform: none; }
+  .reveal h2 { font-size: 2.3em; font-weight: 700; color: var(--text); text-transform: none; line-height: 1.15; }
+  .reveal h3 { font-size: 1.25em; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6em; }
+  .reveal p { font-size: 1.35em; font-weight: 400; line-height: 1.45; margin: 0.4em 0; }
+  .reveal ul { list-style: none; padding: 0; margin: 0.6em 0; }
+  .reveal ul li { font-size: 1.3em; padding: 0.3em 0 0.3em 1.5em; position: relative; line-height: 1.4; }
+  .reveal ul li::before { content: "→"; color: var(--accent); position: absolute; left: 0; font-weight: 700; }
+  .reveal section { padding: 40px 60px; text-align: left; }
+  .reveal em { color: var(--accent); font-style: normal; font-weight: 600; }
+  .reveal strong { font-weight: 700; }
+
+  .accent { color: var(--accent) !important; }
+  .secondary { color: var(--secondary) !important; }
+  .centrado { text-align: center !important; }
+  .numero-grande { font-size: 5.8em; font-weight: 900; color: var(--accent); line-height: 1; display: block; letter-spacing: -0.03em; }
+  .frase-grande { font-size: 2.6em; font-weight: 700; line-height: 1.2; }
+  .fuente { font-size: 0.7em; color: var(--secondary); margin-top: 1em; display: block; font-weight: 400; }
+  .chip-ref { display: inline-block; background: rgba(0,128,112,0.1); color: var(--accent); font-size: 0.5em; font-weight: 600; padding: 0.15em 0.5em; border-radius: 4px; margin-left: 0.4em; vertical-align: middle; }
+  .divider { width: 80px; height: 4px; background: var(--accent); margin: 0.4em 0 0.8em 0; border-radius: 2px; }
+
+  .dos-columnas { display: grid; grid-template-columns: 1fr 1fr; gap: 2em; align-items: start; }
+  .tres-columnas { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.2em; }
+
+  .card { background: var(--surface); border-radius: 12px; padding: 1.1em 1.3em; border-left: 5px solid var(--accent); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .card h3 { margin-top: 0; }
+  .card ul li { font-size: 0.95em; }
+
+  .stat-card { background: var(--surface); border-radius: 14px; padding: 1.5em; border: 2px solid var(--border); text-align: center; }
+
+  /* Tracker Grid 2x2 */
+  .tracker-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8em; margin-top: 1em; }
+  .tracker-cell { padding: 0.9em 1.1em; border-radius: 10px; border: 2px solid var(--border); font-size: 1.1em; background: var(--surface); }
+  .tracker-cell.completado { opacity: 0.45; text-decoration: line-through; }
+  .tracker-cell.activo { border-color: var(--accent); background: rgba(0,128,112,0.08); font-weight: 700; color: var(--text); }
+  .tracker-cell.pendiente { color: var(--secondary); }
+
+  /* Tablas */
+  table { width: 100%; border-collapse: collapse; font-size: 0.85em; margin: 0.6em 0; }
+  table th { background: var(--accent); color: #fff; padding: 0.6em 0.8em; text-align: left; font-weight: 700; }
+  table td { padding: 0.55em 0.8em; border-bottom: 1px solid var(--border); vertical-align: top; }
+  table tr:nth-child(even) td { background: rgba(0,128,112,0.03); }
+  table .highlight { background: rgba(0,128,112,0.15) !important; font-weight: 700; }
+
+  /* Separador de sección (fondo acento) */
+  .separador { background: var(--accent); }
+  .separador h1 { color: #fff !important; font-size: 3.8em; font-weight: 900; }
+  .separador h3 { color: rgba(255,255,255,0.8) !important; }
+
+  /* Imagen paper */
+  .paper-img { background: #f3f4f6; padding: 10px; border-radius: 8px; box-shadow: 0 4px 14px rgba(0,0,0,0.08); max-width: 100%; }
+
+  /* Gráficos SVG */
+  .chart-wrap { background: var(--surface); border-radius: 12px; padding: 1em; margin: 0.5em 0; border: 1px solid var(--border); }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- SLIDE 1 — Título -->
+<section class="centrado">
+  <div class="divider" style="margin: 0.5em auto 1em;"></div>
+  <h1>IFI en el paciente post-TPH alogénico</h1>
+  <p style="margin-top: 2.5em; font-size: 1.1em; font-weight: 600;">César Copaja-Corzo MD. MsC.</p>
+  <p class="secondary" style="margin-top: 0.2em; font-size: 1.0em;">R3 Infectología y Med. Tropical | HNERM</p>
+  <aside class="notes">
+    Saludo breve. Presentarme en 20 seg. Anunciar: "30 minutos, 7 bloques, discutimos al final".
+    ⏱️ 30 seg
+  </aside>
+</section>
+
+<!-- SLIDE 2 — Caso clínico gancho -->
+<section>
+  <h3>Empecemos con un caso</h3>
+  <div class="divider"></div>
+  <div class="dos-columnas">
+    <div>
+      <p><strong>Varón 42 años</strong></p>
+      <ul style="font-size: 0.92em;">
+        <li>LMA en 2ª remisión</li>
+        <li>TPH alogénico <em>haploidéntico</em> hace 18 días (ciclofosfamida post-TPH)</li>
+        <li>Neutropenia profunda aún no recuperada</li>
+        <li>Día +18: fiebre persistente &gt;72h con antibióticos de amplio espectro</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🤔 ¿Qué hacemos?</h3>
+      <ul style="font-size: 0.95em;">
+        <li>¿Escalamos antibiótico?</li>
+        <li>¿Pedimos galactomanano?</li>
+        <li>¿TC tórax?</li>
+        <li>¿Empírico antifúngico?</li>
+      </ul>
+    </div>
+  </div>
+  <p class="secondary" style="margin-top: 1em; font-size: 1.1em;">Volveremos al caso al final.</p>
+  <aside class="notes">
+    No dar respuesta todavía. Es gancho narrativo. Mencionar: "seguro han visto este escenario".
+    ⏱️ 1 min
+  </aside>
+</section>
+
+<!-- SLIDE 3 — Tracker inicial -->
+<section>
+  <h3>Qué vamos a recorrer</h3>
+  <div class="divider"></div>
+  <div class="tracker-grid">
+    <div class="tracker-cell activo">1. Epidemiología ←</div>
+    <div class="tracker-cell pendiente">2. Fases de riesgo</div>
+    <div class="tracker-cell pendiente">3. Diagnóstico</div>
+    <div class="tracker-cell pendiente">4. Profilaxis</div>
+    <div class="tracker-cell pendiente">5. Tratamiento</div>
+    <div class="tracker-cell pendiente">6. Brechas en Perú + cierre</div>
+  </div>
+  <p class="secondary" style="font-size: 0.95em; margin-top: 1.2em;">📌 <strong>Alcance:</strong> mohos y levaduras invasivos. <em>Pneumocystis jirovecii</em> (profilaxis TMP-SMX estándar paralelo) y virus quedan fuera del recorrido de hoy.</p>
+  <aside class="notes">
+    Transición rápida: "Hoy vamos a recorrer estos 6 puntos. En cada sección les recordaré dónde estamos. Alcance explícito: mohos y levaduras — PJP y virus los dejamos para otra charla, pero recuerden TMP-SMX como profilaxis paralela estándar."
+    ⏱️ 20 seg
+  </aside>
+</section>
+
+<!-- SLIDE 4 — Separador EPIDEMIOLOGÍA -->
+<section class="separador centrado">
+  <h3>Bloque 1</h3>
+  <h1>EPIDEMIOLOGÍA</h1>
+  <p style="color: rgba(255,255,255,0.85); font-size: 1.3em; margin-top: 0.8em;">Por qué el TPH allo es terreno fértil</p>
+  <aside class="notes">Pausa natural. Beber agua. ⏱️ 10 seg</aside>
+</section>
+
+<!-- SLIDE 5 — Stat 44% -->
+<section class="centrado">
+  <h3>La magnitud del problema</h3>
+  <div class="divider" style="margin: 0.5em auto 0.8em;"></div>
+  <span class="numero-grande">44%</span>
+  <p class="accent" style="font-size: 1.6em; font-weight: 700;">Mortalidad atribuible a IFI post-HSCT</p>
+  <div class="stat-card" style="max-width: 720px; margin: 1.2em auto 0;">
+    <p style="font-size: 1.05em; margin: 0.2em 0;">Mortalidad por toda causa con IFI: <strong>57% a 90 días · 68% al año</strong> <span class="secondary">(supervivencia 32%)</span></p>
+    <p style="font-size: 1.0em; margin: 0.4em 0 0; color: var(--secondary);">Incidencia acumulada de IFI en TPH allo: <strong>7–10%</strong> (TRANSNET · cohortes EU)</p>
+  </div>
+  <span class="fuente">Quattrone M et al. Systematic Review &amp; Meta-Analysis IFI in HSCT. 2025 · Kontoyiannis DP et al. TRANSNET 2010</span>
+  <aside class="notes">
+    Pausa 3 seg tras el 44%. Contextualizar: "casi 1 de cada 2 pacientes que hace IFI post-TPH se muere — mortalidad atribuible 44%."
+    Aclarar la jerarquía: 7-10% hacen IFI; de esos, casi la mitad muere por la infección. Por eso importa tanto prevenir y detectar temprano.
+    Transición: "Y en Perú tenemos un problema adicional..."
+    ⏱️ 45 seg
+  </aside>
+</section>
+
+<!-- SLIDE 6 — Gráfico barras Perú vs LATAM vs EU -->
+<section>
+  <h3>Perú en el contexto mundial</h3>
+  <h2>TPH por 10 millones de habitantes</h2>
+  <div class="chart-wrap">
+    <svg viewBox="0 0 720 340" style="width:100%; max-width:720px; display:block; margin:auto;">
+      <!-- Eje Y -->
+      <line x1="80" y1="30" x2="80" y2="270" stroke="#6b7280" stroke-width="1.5"/>
+      <!-- Eje X -->
+      <line x1="80" y1="270" x2="680" y2="270" stroke="#6b7280" stroke-width="1.5"/>
+      <!-- Labels Y -->
+      <text x="70" y="275" text-anchor="end" fill="#6b7280" font-size="14">0</text>
+      <text x="70" y="215" text-anchor="end" fill="#6b7280" font-size="14">100</text>
+      <text x="70" y="155" text-anchor="end" fill="#6b7280" font-size="14">200</text>
+      <text x="70" y="95" text-anchor="end" fill="#6b7280" font-size="14">300</text>
+      <text x="70" y="35" text-anchor="end" fill="#6b7280" font-size="14">400</text>
+      <!-- Barra Perú -->
+      <rect x="150" y="227" width="120" height="43" fill="#008070" rx="4"/>
+      <text x="210" y="220" text-anchor="middle" fill="#111" font-size="22" font-weight="700">72</text>
+      <text x="210" y="295" text-anchor="middle" fill="#111" font-size="17" font-weight="600">PERÚ</text>
+      <!-- Barra LATAM -->
+      <rect x="320" y="208" width="120" height="62" fill="#94a3b8" rx="4"/>
+      <text x="380" y="200" text-anchor="middle" fill="#111" font-size="22" font-weight="700">103</text>
+      <text x="380" y="295" text-anchor="middle" fill="#6b7280" font-size="17" font-weight="600">LATAM</text>
+      <!-- Barra EU -->
+      <rect x="490" y="30" width="120" height="240" fill="#94a3b8" rx="4"/>
+      <text x="550" y="22" text-anchor="middle" fill="#111" font-size="22" font-weight="700">400+</text>
+      <text x="550" y="295" text-anchor="middle" fill="#6b7280" font-size="17" font-weight="600">EUROPA</text>
+      <!-- Título eje Y -->
+      <text x="25" y="155" text-anchor="middle" fill="#6b7280" font-size="13" transform="rotate(-90, 25, 155)">TPH / 10M hab</text>
+    </svg>
+  </div>
+  <p style="margin-top: 0.6em; font-size: 1.15em;"><em>Somos menos de 1/5 de lo que hace Europa.</em> HNERM es uno de los centros de referencia en LATAM.</p>
+  <span class="fuente">Copaja-Corzo C et al. RPMESP 2025 · n=744 TPH totales HNERM 2017–2022 (alogénicos + autólogos)</span>
+  <aside class="notes">
+    Destacar: pocos centros, pero HNERM concentra la experiencia. Nuestra epidemiología no tiene por qué replicar la europea. 72/400 ≈ 18%, "menos de 1/5".
+    ⏱️ 1 min
+  </aside>
+</section>
+
+<!-- SLIDE 7 — 3 eras temporales -->
+<section>
+  <h3>La epidemiología está cambiando</h3>
+  <h2>Tres eras de IFI en TPH</h2>
+  <div class="tres-columnas" style="margin-top: 1em;">
+    <div class="card">
+      <h3>Pre-2000</h3>
+      <p style="font-size: 1.05em;"><strong>Candida albicans</strong> dominaba.</p>
+      <p class="secondary" style="font-size: 0.95em;">Profilaxis con fluconazol cambió la ecuación.</p>
+    </div>
+    <div class="card">
+      <h3>2000–2010</h3>
+      <p style="font-size: 1.05em;">Desplazamiento hacia <strong>Aspergillus</strong>.</p>
+      <p class="secondary" style="font-size: 0.95em;">Más inmunosupresión, más EICH, más mohos.</p>
+    </div>
+    <div class="card">
+      <h3>Post-2010</h3>
+      <p style="font-size: 1.05em;"><strong>Candida no-albicans</strong> + mohos emergentes (Mucor, Fusarium).</p>
+      <p class="secondary" style="font-size: 0.95em;">Era de la profilaxis con actividad sobre mohos.</p>
+    </div>
+  </div>
+  <span class="fuente">Puerta-Alcalde P, Garcia-Vidal C. Changing epidemiology IFD in allo-HSCT. 2021</span>
+  <aside class="notes">
+    Mensaje: "La profilaxis no solo previene, también selecciona. Cada vez que cambiamos el fármaco, cambiamos el ecosistema."
+    ⏱️ 1.5 min
+  </aside>
+</section>
+
+<!-- SLIDE 8 — Tracker 2/6 -->
+<section>
+  <h3>Dónde estamos</h3>
+  <div class="divider"></div>
+  <div class="tracker-grid">
+    <div class="tracker-cell completado">1. Epidemiología</div>
+    <div class="tracker-cell activo">2. Fases de riesgo ←</div>
+    <div class="tracker-cell pendiente">3. Diagnóstico</div>
+    <div class="tracker-cell pendiente">4. Profilaxis</div>
+    <div class="tracker-cell pendiente">5. Tratamiento</div>
+    <div class="tracker-cell pendiente">6. Brechas en Perú + cierre</div>
+  </div>
+  <aside class="notes">Transición rápida: "Pasamos al riesgo a lo largo del tiempo." ⏱️ 10 seg</aside>
+</section>
+
+<!-- SLIDE 9 — Timeline de riesgo visual -->
+<section>
+  <h3>Tres fases, tres perfiles</h3>
+  <h2>Riesgo a lo largo del tiempo post-TPH</h2>
+  <div class="chart-wrap">
+    <svg viewBox="0 0 760 340" style="width:100%; display:block; margin:auto;">
+      <!-- Línea base -->
+      <line x1="60" y1="280" x2="720" y2="280" stroke="#6b7280" stroke-width="2"/>
+      <!-- Marcadores de fase -->
+      <line x1="260" y1="275" x2="260" y2="290" stroke="#6b7280" stroke-width="1.5"/>
+      <line x1="490" y1="275" x2="490" y2="290" stroke="#6b7280" stroke-width="1.5"/>
+      <text x="60" y="310" fill="#111" font-size="14" font-weight="600">Día 0</text>
+      <text x="260" y="310" fill="#111" font-size="14" font-weight="600">Día +30</text>
+      <text x="490" y="310" fill="#111" font-size="14" font-weight="600">Día +100</text>
+      <text x="720" y="310" text-anchor="end" fill="#111" font-size="14" font-weight="600">&gt;100</text>
+
+      <!-- Fase 1 -->
+      <rect x="60" y="40" width="200" height="240" fill="rgba(0,128,112,0.08)" rx="4"/>
+      <text x="160" y="30" text-anchor="middle" fill="#008070" font-size="13" font-weight="700">FASE TEMPRANA</text>
+      <text x="160" y="65" text-anchor="middle" fill="#111" font-size="13" font-weight="600">Neutropenia + mucositis</text>
+      <text x="160" y="82" text-anchor="middle" fill="#6b7280" font-size="11">(antes del prendimiento)</text>
+      <!-- Candida alta -->
+      <rect x="75" y="95" width="170" height="28" fill="#008070" rx="3"/>
+      <text x="160" y="114" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Candida ↑↑</text>
+      <!-- Aspergillus medio -->
+      <rect x="75" y="135" width="90" height="28" fill="#94a3b8" rx="3"/>
+      <text x="120" y="154" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">Aspergillus ↑</text>
+      <!-- Mucor bajo -->
+      <rect x="75" y="175" width="40" height="28" fill="#cbd5e1" rx="3"/>
+      <text x="95" y="194" text-anchor="middle" fill="#111" font-size="12">Mucor</text>
+
+      <!-- Fase 2 -->
+      <rect x="270" y="40" width="210" height="240" fill="rgba(180,83,9,0.06)" rx="4"/>
+      <text x="375" y="30" text-anchor="middle" fill="#b45309" font-size="14" font-weight="700">POST-TEMPRANO</text>
+      <text x="375" y="65" text-anchor="middle" fill="#111" font-size="13" font-weight="600">EICH aguda + CMV</text>
+      <!-- Aspergillus alta -->
+      <rect x="285" y="95" width="180" height="28" fill="#008070" rx="3"/>
+      <text x="375" y="114" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Aspergillus ↑↑</text>
+      <!-- Candida medio -->
+      <rect x="285" y="135" width="100" height="28" fill="#94a3b8" rx="3"/>
+      <text x="335" y="154" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">Candida</text>
+      <!-- Mucor medio -->
+      <rect x="285" y="175" width="90" height="28" fill="#94a3b8" rx="3"/>
+      <text x="330" y="194" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">Mucor ↑</text>
+
+      <!-- Fase 3 -->
+      <rect x="490" y="40" width="230" height="240" fill="rgba(185,28,28,0.06)" rx="4"/>
+      <text x="605" y="30" text-anchor="middle" fill="#b91c1c" font-size="14" font-weight="700">POST-TARDÍO</text>
+      <text x="605" y="65" text-anchor="middle" fill="#111" font-size="13" font-weight="600">EICH crónica</text>
+      <!-- Aspergillus alta -->
+      <rect x="505" y="95" width="200" height="28" fill="#008070" rx="3"/>
+      <text x="605" y="114" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Aspergillus ↑↑</text>
+      <!-- Mucor alto -->
+      <rect x="505" y="135" width="150" height="28" fill="#008070" rx="3"/>
+      <text x="580" y="154" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Mucor ↑↑</text>
+      <!-- Candida bajo -->
+      <rect x="505" y="175" width="50" height="28" fill="#cbd5e1" rx="3"/>
+      <text x="530" y="194" text-anchor="middle" fill="#111" font-size="12">Candida</text>
+    </svg>
+  </div>
+  <span class="fuente">Adaptado de Puerta-Alcalde 2021 · Gras 2025 · Quattrone 2025</span>
+  <aside class="notes">
+    Explicar cada fase en ~30-40 seg. Énfasis: en post-temprano domina Aspergillus por EICH aguda + CMV. En post-tardío, EICH crónica prolonga la inmunosupresión — Aspergillus persiste y Mucor sube (razón por la que posaconazol es A-I en EICH).
+    ⏱️ 1.5-2 min
+  </aside>
+</section>
+
+<!-- SLIDE 10 — EICH multiplicador -->
+<section>
+  <h3>Volviendo a las fases de riesgo: ¿por qué EICH las potencia?</h3>
+  <div class="divider"></div>
+  <div class="dos-columnas">
+    <div class="stat-card">
+      <span class="numero-grande" style="font-size: 4.5em;">34.3%</span>
+      <p style="margin: 0.3em 0; font-size: 1.15em;"><strong>EICH aguda en HNERM</strong></p>
+      <p class="secondary" style="font-size: 0.95em;">n=342 TPH alogénicos · 2017–2022</p>
+    </div>
+    <div>
+      <p style="font-size: 1.2em;"><strong>¿Por qué dispara el riesgo de IFI?</strong></p>
+      <ul style="font-size: 1.1em;">
+        <li>Inmunosupresión adicional (corticoides, inhibidores de calcineurina)</li>
+        <li>Daño de barrera intestinal</li>
+        <li>Reconstitución inmune retrasada</li>
+      </ul>
+      <p class="secondary" style="font-size: 1em; margin-top: 0.8em;">Rango internacional EICH aguda: 30–50% (Gras 2025) · HNERM comparable</p>
+    </div>
+  </div>
+  <span class="fuente">Copaja-Corzo C et al. RPMESP 2025 · Gras J et al. MA factores de riesgo IFI post-HSCT 2025</span>
+  <aside class="notes">
+    Nota transparente: nuestra cohorte no desagregó por grado de EICH. Ese es un hallazgo importante para futuros trabajos.
+    ⏱️ 1.5 min
+  </aside>
+</section>
+
+<!-- SLIDE 11 — Tracker 3/6 -->
+<section>
+  <h3>Dónde estamos</h3>
+  <div class="divider"></div>
+  <div class="tracker-grid">
+    <div class="tracker-cell completado">1. Epidemiología</div>
+    <div class="tracker-cell completado">2. Fases de riesgo</div>
+    <div class="tracker-cell activo">3. Diagnóstico ←</div>
+    <div class="tracker-cell pendiente">4. Profilaxis</div>
+    <div class="tracker-cell pendiente">5. Tratamiento</div>
+    <div class="tracker-cell pendiente">6. Brechas en Perú + cierre</div>
+  </div>
+  <aside class="notes">Transición: "Ya vimos el terreno y las fases de riesgo — ¿cómo detectamos la infección cuando aparece?" ⏱️ 10 seg</aside>
+</section>
+
+<!-- SLIDE 12 — Gráfico GM vs BDG -->
+<section>
+  <h3>Biomarcadores en hematológicos: ¿cuál pedir?</h3>
+  <h2>Galactomanano · β-D-glucano · PCR Aspergillus</h2>
+  <div class="chart-wrap">
+    <svg viewBox="0 0 760 280" style="width:100%; display:block; margin:auto;">
+      <!-- Eje Y -->
+      <line x1="80" y1="30" x2="80" y2="220" stroke="#6b7280" stroke-width="1.5"/>
+      <line x1="80" y1="220" x2="720" y2="220" stroke="#6b7280" stroke-width="1.5"/>
+      <!-- Labels Y -->
+      <text x="70" y="225" text-anchor="end" fill="#6b7280" font-size="13">0%</text>
+      <text x="70" y="175" text-anchor="end" fill="#6b7280" font-size="13">25%</text>
+      <text x="70" y="130" text-anchor="end" fill="#6b7280" font-size="13">50%</text>
+      <text x="70" y="80" text-anchor="end" fill="#6b7280" font-size="13">75%</text>
+      <text x="70" y="35" text-anchor="end" fill="#6b7280" font-size="13">100%</text>
+
+      <!-- GM hematológicos (Bukkems 2023) — DATO PRINCIPAL -->
+      <rect x="120" y="74" width="50" height="146" fill="#94a3b8" rx="3"/>
+      <text x="145" y="67" text-anchor="middle" fill="#111" font-size="15" font-weight="700">S 76%</text>
+      <rect x="175" y="46" width="50" height="174" fill="#94a3b8" rx="3" opacity="0.6"/>
+      <text x="200" y="39" text-anchor="middle" fill="#111" font-size="15" font-weight="700">E 92%</text>
+      <text x="172" y="250" text-anchor="middle" fill="#111" font-size="14" font-weight="700">GM</text>
+      <text x="172" y="268" text-anchor="middle" fill="#6b7280" font-size="11">(hematológicos)</text>
+
+      <!-- BDG -->
+      <rect x="270" y="90" width="50" height="130" fill="#94a3b8" rx="3"/>
+      <text x="295" y="83" text-anchor="middle" fill="#111" font-size="15" font-weight="700">S 72%</text>
+      <rect x="325" y="76" width="50" height="144" fill="#94a3b8" rx="3" opacity="0.6"/>
+      <text x="350" y="69" text-anchor="middle" fill="#111" font-size="15" font-weight="700">E 82%</text>
+      <text x="322" y="250" text-anchor="middle" fill="#111" font-size="14" font-weight="600">BDG</text>
+      <text x="322" y="268" text-anchor="middle" fill="#6b7280" font-size="11">(Huang 2024)</text>
+
+      <!-- PCR Aspergillus -->
+      <rect x="420" y="69" width="50" height="151" fill="#94a3b8" rx="3"/>
+      <text x="445" y="62" text-anchor="middle" fill="#111" font-size="15" font-weight="700">S ~80%</text>
+      <rect x="475" y="69" width="50" height="151" fill="#94a3b8" rx="3" opacity="0.6"/>
+      <text x="500" y="62" text-anchor="middle" fill="#111" font-size="15" font-weight="700">E ~80%</text>
+      <text x="472" y="250" text-anchor="middle" fill="#111" font-size="14" font-weight="600">PCR Asp</text>
+      <text x="472" y="268" text-anchor="middle" fill="#6b7280" font-size="11">(2+ consec · EORTC 2020)</text>
+
+      <!-- Combinado GM + BDG -->
+      <rect x="570" y="69" width="50" height="151" fill="#008070" rx="3"/>
+      <text x="595" y="62" text-anchor="middle" fill="#008070" font-size="15" font-weight="700">S 84%</text>
+      <rect x="625" y="85" width="50" height="135" fill="#008070" rx="3" opacity="0.6"/>
+      <text x="650" y="78" text-anchor="middle" fill="#008070" font-size="15" font-weight="700">E 76%</text>
+      <text x="622" y="250" text-anchor="middle" fill="#008070" font-size="14" font-weight="700">COMBINADO</text>
+      <text x="622" y="268" text-anchor="middle" fill="#6b7280" font-size="11">(GM + BDG)</text>
+
+      <!-- Leyenda -->
+      <rect x="85" y="35" width="14" height="14" fill="#94a3b8" rx="2"/>
+      <text x="105" y="46" fill="#6b7280" font-size="12">Sensibilidad</text>
+      <rect x="85" y="55" width="14" height="14" fill="#94a3b8" rx="2" opacity="0.6"/>
+      <text x="105" y="66" fill="#6b7280" font-size="12">Especificidad</text>
+    </svg>
+  </div>
+  <p style="font-size: 1.0em; margin-top: 0.4em; color: var(--secondary);">📍 En población general (Huang 2024), el galactomanano baja a S 53% / E 94% — por eso <strong>en TPH usamos las cifras de hematológicos</strong>.</p>
+  <span class="fuente">Bukkems LH et al. 2023 (GM hematológicos) · Huang X et al. Medicine 2024 · Donnelly JP CID 2020 (PCR criterio)</span>
+  <aside class="notes">
+    Punto clave: beta-D-glucano e isavuconazol no están disponibles en HNERM; PCR de Aspergillus en centros de referencia. Tenemos que sacarle el máximo al galactomanano. La barra grande es la cifra relevante para nuestro paciente TPH — no la de población general.
+    ⏱️ 1.5 min
+  </aside>
+</section>
+
+<!-- SLIDE 13 — GM Bayes -->
+<section>
+  <h3>Cómo usar el galactomanano bien</h3>
+  <h2>Teorema de Bayes en práctica</h2>
+  <p style="font-size: 1.2em;"><strong>Umbral positivo:</strong> ODI (índice densidad óptica) ≥ 0.5 en suero · ≥ 1.0 en LBA (lavado broncoalveolar)</p>
+  <table>
+    <thead>
+      <tr><th>Escenario</th><th>VPP</th><th>Interpretación</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Tamizaje asintomático<br>con profilaxis activa sobre mohos</td>
+        <td class="accent" style="font-size: 1.3em;"><strong>~12%</strong></td>
+        <td>Pre-test bajo → mayoría son <em>falsos +</em></td>
+      </tr>
+      <tr class="highlight">
+        <td>Sintomático con<br>sospecha clínica</td>
+        <td class="accent" style="font-size: 1.3em;"><strong>~90%</strong></td>
+        <td>Pre-test alto → confirmar y tratar</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="dos-columnas" style="margin-top: 1em;">
+    <div>
+      <p style="font-size: 1.05em;"><strong style="color: var(--warn);">⚠️ Falsos +:</strong></p>
+      <ul style="font-size: 0.95em;">
+        <li>Piperacilina-tazobactam</li>
+        <li>Mucositis (traslocación de galactomanano alimentario)</li>
+      </ul>
+    </div>
+    <div>
+      <p style="font-size: 1.05em;"><strong style="color: var(--danger);">⚠️ Falsos −:</strong></p>
+      <ul style="font-size: 0.95em;">
+        <li>Profilaxis con actividad sobre mohos</li>
+        <li>Aspergilosis no-angioinvasiva</li>
+      </ul>
+    </div>
+  </div>
+  <span class="fuente">Estimación Bayesiana · Marr KA 2005 · Maertens JA 2016</span>
+  <aside class="notes">
+    Mensaje central: galactomanano dirigido por clínica. El tamizaje ciego es "ruido".
+    ⏱️ 2 min
+  </aside>
+</section>
+
+<!-- SLIDE 14 — TC tórax signos (fusionado con íconos visuales) -->
+<section>
+  <h3>TC tórax en aspergilosis invasiva</h3>
+  <h2>Tres signos, tres momentos</h2>
+  <table>
+    <thead>
+      <tr><th>Pista visual</th><th>Signo</th><th>Sens</th><th>Esp</th><th>Cuándo aparece</th></tr>
+    </thead>
+    <tbody>
+      <tr class="highlight">
+        <td style="font-size: 2em; text-align: center; color: var(--accent);">◉</td>
+        <td><strong>Halo sign</strong><br><span class="secondary" style="font-size: 0.85em;">Nódulo + vidrio deslustrado (hemorragia perilesional)</span></td>
+        <td>60%</td>
+        <td>95%</td>
+        <td>Primeros <strong>5 días</strong> de neutropenia febril</td>
+      </tr>
+      <tr>
+        <td style="font-size: 2em; text-align: center; color: var(--accent);">☾</td>
+        <td>Aire creciente<br><span class="secondary" style="font-size: 0.85em;">Cavitación en media luna al recuperar neutrófilos</span></td>
+        <td>bajo</td>
+        <td>alto</td>
+        <td>Día 10–20 (tardío, recuperación)</td>
+      </tr>
+      <tr>
+        <td style="font-size: 2em; text-align: center; color: var(--danger);">⊙</td>
+        <td>Reverse halo<br><span class="secondary" style="font-size: 0.85em;">Centro hipodenso, borde denso — <strong>piensa Mucor</strong></span></td>
+        <td>bajo</td>
+        <td>muy alto</td>
+        <td><em>Mucormicosis</em> (NO Aspergilosis)</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="margin-top: 0.6em; font-size: 1.15em;">🔑 <strong>El halo se pierde después del día 5</strong> → TC temprano es clave.</p>
+  <span class="fuente">Criterios EORTC/MSGERC 2020 · Donnelly JP et al. CID 2020;71:1367–76</span>
+  <aside class="notes">
+    El halo sign es un hallazgo transitorio. Si piden TC tarde, puede desaparecer. Los íconos (◉ ☾ ⊙) son apoyo mnemotécnico.
+    ⏱️ 1.5 min
+  </aside>
+</section>
+
+<!-- SLIDE 16 — EORTC/MSGERC -->
+<section>
+  <h3>Criterios EORTC/MSGERC 2020</h3>
+  <h2>Simplificado para el día a día</h2>
+  <div class="tres-columnas">
+    <div class="card">
+      <h3>Probada</h3>
+      <p style="font-size: 1.05em;">Histopatología + cultivo de sitio estéril.</p>
+      <p class="secondary" style="font-size: 0.9em;">"Ves el hongo en el tejido"</p>
+    </div>
+    <div class="card">
+      <h3>Probable</h3>
+      <p style="font-size: 1.05em;">Huésped + Clínica/Imagen + Micológico.</p>
+      <p class="secondary" style="font-size: 0.9em;">Micológico = cultivo · galactomanano · <strong>PCR de Aspergillus (2 resultados positivos consecutivos)</strong> · histopatología</p>
+    </div>
+    <div class="card">
+      <h3>Posible</h3>
+      <p style="font-size: 1.05em;">Huésped + Clínica/Imagen (sin micológico).</p>
+      <p class="secondary" style="font-size: 0.9em;">La mayoría inicia tratamiento aquí.</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top: 1em; border-left-color: var(--warn);">
+    <h3 style="color: var(--warn);">Factores de huésped que siempre deben considerar</h3>
+    <ul style="font-size: 1em;">
+      <li>Neutropenia &lt; 500 por &gt; 10 días</li>
+      <li>TPH alogénico · EICH moderada-severa con corticoides</li>
+      <li>Inmunosupresores T (ciclosporina, tacrolimus)</li>
+    </ul>
+  </div>
+  <span class="fuente">Donnelly JP et al. Clin Infect Dis 2020;71:1367–76</span>
+  <aside class="notes">
+    Nota pedagógica: "posible" es suficiente para iniciar tratamiento empírico en un TPH con fiebre persistente.
+    ⏱️ 1.5 min
+  </aside>
+</section>
+
+<!-- SLIDE 17 — Tracker 4/6 -->
+<section>
+  <h3>Dónde estamos</h3>
+  <div class="divider"></div>
+  <div class="tracker-grid">
+    <div class="tracker-cell completado">1. Epidemiología</div>
+    <div class="tracker-cell completado">2. Fases de riesgo</div>
+    <div class="tracker-cell completado">3. Diagnóstico</div>
+    <div class="tracker-cell activo">4. Profilaxis ←</div>
+    <div class="tracker-cell pendiente">5. Tratamiento</div>
+    <div class="tracker-cell pendiente">6. Brechas en Perú + cierre</div>
+  </div>
+  <aside class="notes">Transición: "Pasamos a profilaxis — aquí se define el riesgo antes de que aparezca la infección." ⏱️ 10 seg</aside>
+</section>
+
+<!-- SLIDE 18 — ECIL-10 antes del prendimiento del injerto -->
+<section>
+  <h3>ECIL-10 · antes del prendimiento del injerto</h3>
+  <h2>Por nivel de riesgo</h2>
+  <table>
+    <thead>
+      <tr><th>Riesgo</th><th>Definición ECIL-10</th><th>Profilaxis</th><th>Evidencia</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong style="color: var(--accent);">BAJO</strong></td>
+        <td>Hermano HLA-idéntico · algunos donantes emparentados compatibles</td>
+        <td>Fluconazol 400 mg c/24h <strong>+ vigilancia activa</strong></td>
+        <td><strong>A-I condicional</strong></td>
+      </tr>
+      <tr class="highlight">
+        <td><strong style="color: var(--warn);">ALTO</strong></td>
+        <td>Leucemia activa · Trasplante de sangre de cordón umbilical · Donante no relacionado · <strong>Haploidéntico</strong> (también con ciclofosfamida post-trasplante)</td>
+        <td>Posaconazol 300 mg c/24h<br>(carga 300 mg c/12h día 1)</td>
+        <td><strong>B-II</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="card" style="margin-top: 0.6em; border-left-color: var(--danger);">
+    <p style="margin: 0; font-size: 1.05em;">⚠️ <strong>Fluconazol sin vigilancia no es profilaxis para mohos.</strong> La recomendación de bajo riesgo aplica solo si hay vigilancia activa (galactomanano semanal + TC ante sospecha) o terapia empírica disponible. Si no hay vigilancia, usar azol con actividad sobre mohos.</p>
+  </div>
+  <div class="card" style="margin-top: 0.6em; border-left-color: var(--accent);">
+    <p style="margin: 0; font-size: 1.05em;">💊 <strong>Espectro de azoles:</strong> Fluconazol (Candida) · Voriconazol (Aspergillus + Candida) · Posaconazol/Isavuconazol (Aspergillus + Candida + Mucorales)</p>
+  </div>
+  <span class="fuente">Pagano L et al. ECIL-10. Leukemia 2025;39:1547–57</span>
+  <aside class="notes">
+    Matiz importante: aunque ECIL-10 menciona que la ciclofosfamida post-trasplante reduce el riesgo temprano de mohos, la mayoría de guías y la práctica clínica clasifican a todo trasplante haploidéntico como alto riesgo, por la reconstitución inmune tardía y la frecuencia de EICH. Por prudencia, profilaxis con actividad sobre mohos es lo defendible en haplo. Sin vigilancia activa (galactomanano seriado + TC ante sospecha), fluconazol solo cubre Candida.
+    ⏱️ 2 min
+  </aside>
+</section>
+
+<!-- SLIDE 19 — ECIL-10 después del prendimiento del injerto -->
+<section>
+  <h3>ECIL-10 · después del prendimiento del injerto</h3>
+  <h2>Con EICH tratada con corticoides</h2>
+  <table>
+    <thead>
+      <tr><th>Escenario</th><th>Profilaxis</th><th>Evidencia</th></tr>
+    </thead>
+    <tbody>
+      <tr class="highlight">
+        <td>EICH aguda tratada con corticoides</td>
+        <td>Posaconazol tableta 300 mg c/24h<br>+ monitoreo de niveles séricos objetivo ≥ 1 µg/mL</td>
+        <td><strong>A-I</strong></td>
+      </tr>
+      <tr>
+        <td>Alternativa oral (solución)</td>
+        <td>Posaconazol suspensión 200 mg c/8h (sin carga)</td>
+        <td>B-I</td>
+      </tr>
+      <tr>
+        <td>Intolerancia a posa/vori<br>o QT prolongado</td>
+        <td><strong>Isavuconazol</strong> 200 mg c/24h (segunda línea, novedad 2025)</td>
+        <td><strong>B-II</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="card" style="margin-top: 1em; border-left-color: var(--accent);">
+    <p style="margin: 0; font-size: 1.15em;">🔑 <strong>Lo no negociable:</strong> en EICH tratada con corticoides, posaconazol tiene la única recomendación A-I de todo el capítulo.</p>
+  </div>
+  <span class="fuente">Pagano L et al. ECIL-10. Leukemia 2025;39:1547–57</span>
+  <aside class="notes">
+    Aquí se decide la vida del paciente. Si hay acceso intermitente a posaconazol, planificar alternativa con voriconazol + monitoreo de niveles séricos. Novedad 2025: isavuconazol ingresa como segunda línea.
+    ⏱️ 1.5 min
+  </aside>
+</section>
+
+<!-- SLIDE 20 — Isavuconazol novedad -->
+<section>
+  <h3>La novedad 2025</h3>
+  <h2>Isavuconazol entra como profilaxis</h2>
+  <div class="dos-columnas">
+    <div>
+      <p style="font-size: 1.15em;"><strong>¿Por qué entra a ECIL-10 como B-II?</strong></p>
+      <ul style="font-size: 1.05em;">
+        <li>Espectro amplio: Aspergillus + Mucor + Candida</li>
+        <li><strong>NO prolonga QT</strong> (a diferencia de vori/posa)</li>
+        <li>Farmacocinética predecible → menos necesidad de monitoreo de niveles</li>
+        <li>Biodisponibilidad oral ~98%</li>
+      </ul>
+      <p class="secondary" style="font-size: 1em;">✗ Costo elevado, acceso limitado en LATAM</p>
+    </div>
+    <div class="card">
+      <h3>Dosificación</h3>
+      <p style="font-size: 1.1em; margin: 0.3em 0;"><strong>Carga:</strong><br>200 mg c/8h × 6 dosis (días 1–2)</p>
+      <p style="font-size: 1.1em; margin: 0.3em 0;"><strong>Mantenimiento:</strong><br>200 mg c/24h</p>
+      <p class="secondary" style="font-size: 0.9em; margin-top: 0.6em;">📌 A diferencia de posaconazol, isavuconazol usa la <strong>misma dosis</strong> en profilaxis y tratamiento.</p>
+      <p class="secondary" style="font-size: 0.9em;">Indicación clave: segunda línea cuando hay intolerancia a posa/vori o QT prolongado.</p>
+    </div>
+  </div>
+  <span class="fuente">Pagano L et al. Leukemia 2025;39:1547–57</span>
+  <aside class="notes">
+    Insistir: NO es primera línea. Es la alternativa cuando QT / interacciones / intolerancia.
+    ⏱️ 1.5 min
+  </aside>
+</section>
+
+<!-- SLIDE 21 — Realidad HNERM -->
+<section>
+  <h3>🇵🇪 ECIL-10 en HNERM</h3>
+  <h2>Encaja mejor de lo que parece</h2>
+  <table>
+    <thead>
+      <tr><th>Perfil del paciente</th><th>Riesgo ECIL-10</th><th>Conducta posible hoy</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Haploidéntico con ciclofosfamida post-trasplante (47% de los alogénicos HNERM)</td>
+        <td><strong style="color: var(--warn);">ALTO</strong> (consenso clínico)</td>
+        <td>Posaconazol preferido · Alternativa: voriconazol con monitoreo de niveles</td>
+      </tr>
+      <tr>
+        <td>Hermano HLA-idéntico sin comorbilidades</td>
+        <td><strong style="color: var(--accent);">BAJO</strong> (condicional a vigilancia)</td>
+        <td>✓ Fluconazol + vigilancia activa (galactomanano + TC ante sospecha)</td>
+      </tr>
+      <tr class="highlight">
+        <td>después del prendimiento del injerto + EICH aguda tratada con corticoides (34.3% de nuestros casos desarrollan EICH aguda)</td>
+        <td>—</td>
+        <td><strong>Posaconazol A-I</strong> (no negociable) · Alternativa: voriconazol + monitoreo de niveles</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="card" style="margin-top: 0.6em; border-left-color: var(--accent);">
+    <p style="margin: 0; font-size: 1.05em;">🔑 <strong>Sobre el haplo con ciclofosfamida post-trasplante:</strong> aunque ECIL-10 2025 lo menciona en bajo riesgo cuando hay vigilancia robusta, la mayor parte de guías y la práctica clínica real mantienen profilaxis con actividad sobre mohos — la reconstitución inmune tardía y la frecuencia de EICH pesan más.</p>
+  </div>
+  <p class="secondary" style="font-size: 0.95em; margin-top: 0.5em;">📌 Profilaxis paralela estándar (no antifúngica de mohos): <strong>trimetoprim-sulfametoxazol 160/800 mg 3 veces por semana</strong> contra Pneumocystis jirovecii — no reemplaza ni se reemplaza por la antifúngica.</p>
+  <span class="fuente">Copaja-Corzo C et al. RPMESP 2025 (n=342 alogénicos) · Pagano 2025</span>
+  <aside class="notes">
+    Mensaje clave: incluso con ECIL-10, nuestra realidad (alta proporción de haplos, EICH frecuente, acceso variable a vigilancia) hace que la profilaxis con actividad sobre mohos sea lo prudente en casi todos los alogénicos. Cuando falta posaconazol, voriconazol con monitoreo es el plan de respaldo. Recordar trimetoprim-sulfametoxazol para Pneumocystis siempre.
+    ⏱️ 1.5 min
+  </aside>
+</section>
+
+<!-- SLIDE 22 — Tracker 5/6 -->
+<section>
+  <h3>Dónde estamos</h3>
+  <div class="divider"></div>
+  <div class="tracker-grid">
+    <div class="tracker-cell completado">1. Epidemiología</div>
+    <div class="tracker-cell completado">2. Fases de riesgo</div>
+    <div class="tracker-cell completado">3. Diagnóstico</div>
+    <div class="tracker-cell completado">4. Profilaxis</div>
+    <div class="tracker-cell activo">5. Tratamiento ←</div>
+    <div class="tracker-cell pendiente">6. Brechas en Perú + cierre</div>
+  </div>
+  <aside class="notes">Transición: "Profilaxis no bastó — ahora tratamos." ⏱️ 10 seg</aside>
+</section>
+
+<!-- SLIDE 23 — Tratamiento Aspergillus + Mucormicosis -->
+<section>
+  <h3>Tratamiento · Mohos</h3>
+  <h2>Aspergillus y Mucormicosis</h2>
+  <table>
+    <thead>
+      <tr><th>Patógeno</th><th>Primera línea</th><th>Alternativa</th></tr>
+    </thead>
+    <tbody>
+      <tr class="highlight">
+        <td><strong>Aspergillus</strong><br>invasiva<br><span class="secondary" style="font-size: 0.85em;">IDSA 2016</span></td>
+        <td>Voriconazol<br>6 mg/kg IV c/12h × 2<br>→ 4 mg/kg c/12h<br>+ monitoreo niveles séricos <strong>1–5.5 µg/mL</strong><br>Duración: 6–12 sem</td>
+        <td>Isavuconazol<br>200 mg c/8h × 6 dosis<br>(días 1–2) → 200 mg c/24h</td>
+      </tr>
+      <tr>
+        <td><strong>Mucormicosis</strong><br><span class="secondary" style="font-size: 0.85em;">ECMM 2019</span></td>
+        <td>Anfotericina B<br>LIPOSOMAL<br><strong>5 mg/kg/día</strong><br>(10 si SNC)<br>+ <strong>cirugía</strong><br>+ reversión inmuno</td>
+        <td>Isavuconazol (B-II)<br>Posaconazol 300 mg c/12h día 1<br>→ 300 mg c/24h (C-II)</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="card" style="margin-top: 0.6em; border-left-color: var(--danger);">
+    <p style="margin: 0; font-size: 1.05em;">⏱ <strong>Mucormicosis: retraso ≥ 6 días duplica la mortalidad.</strong> 83% vs 49% a 12 semanas (Chamilos 2008).</p>
+  </div>
+  <div class="card" style="margin-top: 0.5em; border-left-color: var(--accent);">
+    <p style="margin: 0; font-size: 1.0em;">💡 <strong>Combinación voriconazol + equinocandina:</strong> solo en Aspergillus invasiva severa (galactomanano alto + enfermedad extensa), 1–2 sem (Marr 2015). No es estándar.</p>
+  </div>
+  <span class="fuente">Patterson TF et al. CID 2016 · Cornely OA et al. Lancet ID 2019 · Chamilos G et al. CID 2008;47:503–9 · Marr KA et al. 2015</span>
+  <aside class="notes">
+    Chamilos 2008 es la cita clásica. Aún se usa en revisiones recientes.
+    ⏱️ 2 min
+  </aside>
+</section>
+
+<!-- SLIDE 24 — Tratamiento Candidemia + Fusariosis -->
+<section>
+  <h3>Tratamiento · Candidemia y Fusariosis</h3>
+  <table>
+    <thead>
+      <tr><th>Patógeno</th><th>Primera línea</th><th>Alternativa / Desescalamiento</th></tr>
+    </thead>
+    <tbody>
+      <tr class="highlight">
+        <td><strong>Candidemia</strong><br><span class="secondary" style="font-size: 0.85em;">IDSA 2016</span></td>
+        <td>Equinocandina:<br>• Caspofungina: carga 70 mg IV → 50 mg/día<br>• Micafungina 100 mg/día<br>• Anidulafungina: carga 200 mg → 100 mg/día</td>
+        <td>Paso a <strong>Fluconazol 400 mg/día</strong> si 3 criterios:<br>✓ clínicamente estable<br>✓ cepa sensible<br>✓ hemocultivos repetidos negativos<br><br>Retirar catéter</td>
+      </tr>
+      <tr>
+        <td><strong>Fusariosis</strong><br><strong>Scedosporium</strong><br><span class="secondary" style="font-size: 0.85em;">LATAM reporta más Fusarium</span></td>
+        <td>Voriconazol<br>± AnfoB liposomal altas dosis<br><span class="secondary" style="font-size: 0.85em;">Antifungigrama obligatorio</span></td>
+        <td>Cirugía si focal<br>Reversión inmunosupresión<br><span class="secondary" style="font-size: 0.85em;">Hemocultivos (+) posibles</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="card" style="margin-top: 0.8em; border-left-color: var(--accent);">
+    <p style="margin: 0; font-size: 1.1em;">⏳ <strong>Duración candidemia:</strong> 14 días tras <em>aclaramiento documentado</em> + <em>resolución de síntomas</em>.</p>
+  </div>
+  <span class="fuente">Pappas PG et al. IDSA Candidiasis. CID 2016;62:e1–e50</span>
+  <aside class="notes">
+    14 días no son desde el primer hemocultivo negativo. Son tras aclaramiento + síntomas resueltos.
+    ⏱️ 1.5 min
+  </aside>
+</section>
+
+<!-- SLIDE 25 — Principios prácticos -->
+<section>
+  <h3>Lo que define el desenlace</h3>
+  <h2>Principios prácticos + perfil de seguridad</h2>
+  <div class="dos-columnas">
+    <ul style="font-size: 1.0em;">
+      <li><strong>Tiempo es tejido</strong> — empírico ante sospecha alta</li>
+      <li><strong>Monitoreo de niveles séricos de voriconazol:</strong> valle día 5–7 (1–5.5 µg/mL)<br><span class="secondary" style="font-size: 0.9em;">&lt;1: +50% dosis · &gt;5.5: −50% · repetir 5–7d</span></li>
+      <li><strong>Revertir inmunosupresión</strong> — bajar corticoides, factor estimulante de colonias granulocíticas si aplica</li>
+      <li><strong>Profilaxis secundaria:</strong> tras IFI previo, continuar antifúngico activo durante toda la inmunosupresión</li>
+    </ul>
+    <ul style="font-size: 1.0em;">
+      <li><strong>Cirugía temprana</strong> en mucormicosis (no "esperar a ver")</li>
+      <li><strong>Duración mínima</strong> — Asp 6–12 sem · Candidemia 14d post aclaramiento</li>
+      <li><strong>Interacciones azol↔calcineurínico</strong></li>
+      <li><strong>Conocer tu azol:</strong> vori = neurotox/QT · posa = hepatotox/QT · isavu = <em>NO</em> prolonga QT · AnfoB = nefrotox/hipoK</li>
+    </ul>
+  </div>
+  <div class="card" style="margin-top: 0.6em; border-left-color: var(--warn);">
+    <h3 style="color: var(--warn);">Reducir calcineurínico al iniciar azol</h3>
+    <p style="margin: 0.2em 0; font-size: 1.0em;">Vori/Posa: <strong>~50–66%</strong> · Isavuconazol: ~20% · Fluconazol: ~25%</p>
+    <p class="secondary" style="font-size: 0.9em;">Medir niveles a las 48–72h de cualquier cambio</p>
+  </div>
+  <span class="fuente">Groll AH et al. Transpl Infect Dis 2017 · Patterson 2016</span>
+  <aside class="notes">
+    Punto subestimado: bajar la inmunosupresión es parte del tratamiento. Discutir con hematología siempre. Perfil de seguridad define elección: isavu único azol sin QT.
+    ⏱️ 90 seg
+  </aside>
+</section>
+
+<!-- SLIDE 26 — Tracker 6/6 -->
+<section>
+  <h3>Dónde estamos</h3>
+  <div class="divider"></div>
+  <div class="tracker-grid">
+    <div class="tracker-cell completado">1. Epidemiología</div>
+    <div class="tracker-cell completado">2. Fases de riesgo</div>
+    <div class="tracker-cell completado">3. Diagnóstico</div>
+    <div class="tracker-cell completado">4. Profilaxis</div>
+    <div class="tracker-cell completado">5. Tratamiento</div>
+    <div class="tracker-cell activo">6. Brechas en Perú + cierre ←</div>
+  </div>
+  <aside class="notes">Transición al bloque final: "Cerramos con lo que NO sabemos — las oportunidades." ⏱️ 10 seg</aside>
+</section>
+
+<!-- SLIDE 27 — Brechas -->
+<section>
+  <h3>Lo que NO sabemos en Perú</h3>
+  <h2>5 brechas que son oportunidades</h2>
+  <table>
+    <thead>
+      <tr><th>Brecha</th><th>Por qué importa</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1. Incidencia real de IFI post-TPH</strong><br>No reportada en paper HNERM</td>
+        <td>¿Seguimos el 7–10% internacional (Kontoyiannis TRANSNET 2010) o es mayor?</td>
+      </tr>
+      <tr>
+        <td><strong>2. Distribución local de especies</strong></td>
+        <td>LATAM reporta más Fusarium — ¿Perú también?</td>
+      </tr>
+      <tr>
+        <td><strong>3. Profilaxis efectiva en contexto real</strong></td>
+        <td>Paper HNERM solo reporta aciclovir; ¿antifúngica?</td>
+      </tr>
+      <tr>
+        <td><strong>4. Acceso consistente a posaconazol, BDG e isavuconazol</strong></td>
+        <td>Sin beta-D-glucano dependemos solo del galactomanano · isavuconazol (novedad 2025) aún limitado</td>
+      </tr>
+      <tr class="highlight">
+        <td><strong>5. Mortalidad atribuible a IFI</strong></td>
+        <td>Mortalidad global (todas las causas) a 2 años: <strong>30.4%</strong> · desconocemos cuánto corresponde a IFI</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="fuente">Copaja-Corzo C et al. RPMESP 2025 · n=342 TPH alogénicos HNERM</span>
+  <aside class="notes">
+    Cada brecha es una pregunta de investigación. Invitar a la audiencia: "Si alguien está buscando tema de tesis..."
+    ⏱️ 1.5 min
+  </aside>
+</section>
+
+<!-- SLIDE 27.5 — Volvamos al caso (cierre narrativo) -->
+<section>
+  <h3>Volvamos al caso</h3>
+  <h2>Varón 42 años, trasplante haploidéntico día +18, fiebre persistente &gt;72h con antibióticos</h2>
+  <div class="dos-columnas">
+    <div class="card" style="border-left-color: var(--accent);">
+      <h3>🎯 Lo que hacemos AHORA</h3>
+      <ul style="font-size: 0.95em;">
+        <li><strong>Galactomanano sérico + TC tórax inmediato</strong> — todavía estamos dentro de los primeros 5 días de fiebre (signo del halo visible)</li>
+        <li><strong>Tratamiento empírico con actividad sobre mohos</strong> (voriconazol o isavuconazol) — cumple factor de huésped EORTC</li>
+        <li><strong>Reducir calcineurínico</strong> si iniciamos azol (−50/66% vori/posa)</li>
+        <li><strong>Buscar foco</strong> — senos paranasales si sospecha Mucor</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left-color: var(--warn);">
+      <h3>⚠️ En paralelo — NO asumir solo IFI</h3>
+      <ul style="font-size: 0.95em;">
+        <li><strong>CMV / HHV-6 PCR</strong> (ventana clásica día +18)</li>
+        <li><strong>Hemocultivos diferenciales</strong> catéter vs periférica</li>
+        <li><strong>Evaluar EICH</strong> aguda hiperaguda</li>
+        <li><strong>Revisar medicamentos</strong> (fiebre medicamentosa)</li>
+      </ul>
+    </div>
+  </div>
+  <p class="centrado" style="margin-top: 1em; font-size: 1.15em; font-weight: 700; color: var(--accent);">Categoría EORTC: <em>posible IFI</em> — imagen + micología + empírico en paralelo, no en secuencia.</p>
+  <aside class="notes">
+    Resolver las 4 preguntas del slide 2: (1) ¿escalamos antibiótico? — sí, pero no basta. (2) ¿galactomanano? — sí, dirigido. (3) ¿TC? — sí, inmediato. (4) ¿empírico antifúngico? — sí, con actividad sobre mohos, sin esperar cultivo.
+    ⏱️ 1 min
+  </aside>
+</section>
+
+<!-- SLIDE 28 — Hero quote -->
+<section class="centrado">
+  <div class="divider" style="margin: 0 auto 1.5em;"></div>
+  <p class="frase-grande" style="max-width: 900px; margin: 0 auto;">"En TPH, la evidencia dice <span class="accent">QUÉ dar</span> —</p>
+  <p class="frase-grande fragment" style="max-width: 900px; margin: 1em auto 0;">los <span class="accent">días de demora</span> deciden si llega a tiempo."</p>
+  <aside class="notes">
+    Leer primera línea, pausa larga (5 seg), revelar segunda. Silencio en la sala. El mensaje es conjunción: ambos importan.
+    ⏱️ 45 seg
+  </aside>
+</section>
+
+<!-- SLIDE 29 — Cierre tripartito -->
+<section>
+  <h3>Para cerrar</h3>
+  <div class="divider"></div>
+  <div class="tres-columnas">
+    <div class="card">
+      <h3>✅ Lo que aprendiste</h3>
+      <ul style="font-size: 0.9em;">
+        <li class="fragment">El riesgo cambia con el tiempo, no es estático</li>
+        <li class="fragment">Galactomanano dirigido + TC temprano (primeros 5 días)</li>
+        <li class="fragment">EICH con corticoides = posaconazol no negociable</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🚀 Lo que puedes hacer mañana</h3>
+      <ul style="font-size: 0.9em;">
+        <li class="fragment">Pedir galactomanano al <strong>3er día</strong> de fiebre persistente, no al 5º</li>
+        <li class="fragment">Consultar farmacia por interacciones <strong>ANTES</strong> de iniciar azol</li>
+        <li class="fragment">Documentar <strong>valle de vori día 5–7</strong> siempre</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🔍 Lo que aún no sabemos</h3>
+      <ul style="font-size: 0.9em;">
+        <li class="fragment">Incidencia IFI en Perú post-TPH</li>
+        <li class="fragment">Especies locales · mortalidad atribuible</li>
+        <li class="fragment"><strong>💡 Tesis posible:</strong> Incidencia + mortalidad atribuible IFI HNERM 2023–2026 — hablemos.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="centrado accent" style="margin-top: 1.0em; font-size: 1.6em; font-weight: 700;">¿Preguntas? 🙋</p>
+  <aside class="notes">
+    Revelar columna por columna. Pausar 5 seg entre cada una. En la tercera invitar al residente interesado en tesis.
+    ⏱️ 2 min + discusión
+  </aside>
+</section>
+
+<!-- SLIDE 30 — Referencias + cierre -->
+<section>
+  <h3>Referencias principales</h3>
+  <div class="divider"></div>
+  <div class="dos-columnas">
+    <div>
+      <p style="font-size: 0.95em; font-weight: 700; color: var(--accent);">Epidemiología y Diagnóstico</p>
+      <ul style="font-size: 0.78em;">
+        <li>Copaja-Corzo C et al. TPH HNERM 2017–2022. RPMESP 2025</li>
+        <li>Quattrone M et al. IFI in HSCT. 2025</li>
+        <li>Gras J et al. Risk factors IFI post-HSCT MA. 2025</li>
+        <li>Puerta-Alcalde P. Changing epidemiology IFD. 2021</li>
+        <li>Donnelly JP et al. EORTC/MSGERC. CID 2020;71:1367–76</li>
+        <li>Huang X et al. GM vs BDG. Medicine 2024</li>
+        <li>Bukkems LH et al. GM hematológicos. 2023</li>
+      </ul>
+    </div>
+    <div>
+      <p style="font-size: 0.95em; font-weight: 700; color: var(--accent);">Profilaxis y Tratamiento</p>
+      <ul style="font-size: 0.78em;">
+        <li>Pagano L et al. ECIL-10. Leukemia 2025;39:1547–57</li>
+        <li>Patterson TF et al. IDSA aspergillosis. CID 2016</li>
+        <li>Cornely OA et al. ECMM mucormicosis. Lancet ID 2019</li>
+        <li>Pappas PG et al. IDSA candidiasis. CID 2016;62:e1–e50</li>
+        <li>Chamilos G et al. Retraso AnfoB mucormicosis. CID 2008;47:503–9</li>
+        <li>Groll AH et al. Interacciones azol-calcineurínico. Transpl Infect Dis 2017</li>
+        <li>Marr KA 2005 · Maertens JA 2016 (estimación GM Bayesiana)</li>
+      </ul>
+    </div>
+  </div>
+  <p class="centrado" style="margin-top: 1.5em; font-size: 1.15em; font-weight: 700;">Gracias 🙌</p>
+  <aside class="notes">
+    Dejar esta slide mientras hay preguntas.
+  </aside>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    transition: 'fade',
+    transitionSpeed: 'slow',
+    backgroundTransition: 'fade',
+    progress: true,
+    controls: true,
+    controlsLayout: 'bottom-right',
+    center: false,
+    slideNumber: 'c/t',
+    plugins: [ RevealNotes ]
+  });
+</script>
+
+<!-- 📖 MODO PRESENTADOR: Presiona "S" para abrir vista de presentador
+     (notas privadas + slide siguiente + cronómetro)
+
+     🖨️ EXPORTAR A PDF: Agrega ?print-pdf a la URL, luego Ctrl+P
+     → Márgenes: Ninguno | Gráficos de fondo: Activado | Guardar como PDF -->
+</body>
+</html>
