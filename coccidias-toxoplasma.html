@@ -1,0 +1,1475 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coccidias intestinales y Toxoplasma gondii</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --text: #ffffff;
+      --secondary: #9ca3af;
+      --accent: #00c9a7;
+      --card-bg: rgba(255,255,255,0.05);
+    }
+    .reveal-viewport { background: var(--bg); }
+    .reveal { font-family: 'Inter', system-ui, sans-serif; color: var(--text); }
+    .reveal h1 { font-size: 3.2em; font-weight: 900; line-height: 1.05; color: var(--text); text-transform: none; letter-spacing: -0.02em; margin: 0.2em 0; }
+    .reveal h2 { font-size: 2.3em; font-weight: 700; color: var(--text); text-transform: none; margin: 0.3em 0; }
+    .reveal h3 { font-size: 1.25em; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.6em; }
+    .reveal p { font-size: 1.35em; font-weight: 400; line-height: 1.5; margin: 0.4em 0; }
+    .reveal ul { list-style: none; padding: 0; margin: 0.6em 0; }
+    .reveal ul li { font-size: 1.25em; padding: 0.3em 0 0.3em 1.4em; position: relative; line-height: 1.4; }
+    .reveal ul li::before { content: "→"; color: var(--accent); position: absolute; left: 0; font-weight: 700; }
+    .reveal section { padding: 30px 50px; text-align: left; }
+
+    .accent { color: var(--accent) !important; }
+    .secondary { color: var(--secondary) !important; }
+    .centrado { text-align: center !important; }
+    .numero-grande { font-size: 6em; font-weight: 900; color: var(--accent); line-height: 1; display: block; letter-spacing: -0.03em; }
+    .numero-mediano { font-size: 3.5em; font-weight: 900; color: var(--accent); line-height: 1; display: block; }
+    .frase-grande { font-size: 2.8em; font-weight: 700; line-height: 1.2; }
+    .fuente { font-size: 0.75em; color: var(--secondary); margin-top: 1em; display: block; font-weight: 300; }
+    .fuente-inline { font-size: 0.85em; color: var(--secondary); font-weight: 300; }
+    .divider { width: 60px; height: 4px; background: var(--accent); margin: 0.5em 0 1em 0; border-radius: 2px; }
+    .divider-center { margin: 0.8em auto; }
+
+    .dos-columnas { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8em; align-items: start; }
+    .tres-columnas { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1em; }
+
+    .card { background: var(--card-bg); border-radius: 12px; padding: 0.9em 1.1em; border-left: 4px solid var(--accent); }
+    .card h3 { margin-top: 0; font-size: 1em; }
+    .card ul li { font-size: 1em; padding: 0.2em 0 0.2em 1.2em; line-height: 1.35; }
+    .card p { font-size: 1em; line-height: 1.35; }
+    .card-full { background: var(--card-bg); border-radius: 12px; padding: 0.9em 1.3em; border-left: 4px solid var(--accent); margin: 0.6em 0; }
+    .card-full p { font-size: 1.1em; line-height: 1.4; }
+
+    .tracker-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6em; margin: 0.6em 0; max-width: 900px; }
+    .tracker-cell { padding: 0.9em 1.2em; border-radius: 10px; border: 2px solid transparent; background: rgba(255,255,255,0.03); color: var(--secondary); }
+    .tracker-cell.completado { opacity: 0.45; text-decoration: line-through; }
+    .tracker-cell.activo { border-color: var(--accent); background: rgba(0,201,167,0.12); font-weight: 700; color: var(--text); }
+    .tracker-cell h4 { color: var(--accent); font-size: 1.1em; margin: 0 0 0.3em 0; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+    .tracker-cell p { font-size: 1em; margin: 0; line-height: 1.35; }
+    .tracker-cell.activo h4 { color: var(--accent); }
+    .tracker-cell.completado h4 { color: var(--secondary); }
+
+    .mini-mapa { margin-top: 0.8em; }
+    .mini-mapa p { font-size: 1.1em; }
+    .mini-mapa li { font-size: 1.1em; padding: 0.2em 0 0.2em 1.4em; }
+
+    /* Tablas */
+    table { width: 100%; border-collapse: collapse; font-size: 0.85em; margin: 0.5em 0; }
+    th { background: rgba(0,201,167,0.15); color: var(--accent); text-align: left; padding: 0.55em 0.7em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.95em; border-bottom: 2px solid var(--accent); }
+    td { padding: 0.55em 0.7em; vertical-align: top; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.4; }
+    tr:hover td { background: rgba(255,255,255,0.03); }
+    .tabla-compacta td { padding: 0.45em 0.6em; }
+    .tabla-compacta { font-size: 0.8em; }
+    .grupo-header td { background: rgba(0,201,167,0.08); color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.95em; letter-spacing: 0.05em; padding-top: 0.7em; }
+
+    /* Tabla muy densa (slide 26) */
+    .tabla-densa { font-size: 0.7em; }
+    .tabla-densa td { padding: 0.4em 0.55em; line-height: 1.3; }
+
+    /* Gráfico barras horizontal */
+    .barra-row { display: grid; grid-template-columns: 180px 1fr 75px; gap: 0.8em; align-items: center; margin: 0.5em 0; font-size: 1.05em; }
+    .barra-label { color: var(--text); font-weight: 600; }
+    .barra-track { height: 24px; background: rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; }
+    .barra-fill { height: 100%; background: var(--secondary); border-radius: 12px; }
+    .barra-fill.acento { background: var(--accent); }
+    .barra-valor { color: var(--text); font-weight: 700; text-align: right; }
+
+    /* Highlight */
+    .highlight-box { background: rgba(0,201,167,0.08); border: 1px solid rgba(0,201,167,0.3); border-radius: 12px; padding: 0.9em 1.2em; margin: 0.6em 0; }
+    .highlight-box p { font-size: 1.1em; line-height: 1.4; }
+    .highlight-box ul li { font-size: 1em; }
+    .warning-box { background: rgba(251,146,60,0.08); border: 1px solid rgba(251,146,60,0.3); border-radius: 12px; padding: 0.9em 1.2em; margin: 0.6em 0; }
+    .warning-box p { font-size: 1.1em; line-height: 1.4; }
+
+    /* Imagen */
+    .img-wrap { display: flex; flex-direction: column; align-items: center; margin: 0.5em 0; }
+    .img-wrap img { max-width: 90%; max-height: 380px; background: #fff; padding: 6px; border-radius: 8px; }
+
+    /* SVG misil */
+    .misil-container { display: flex; justify-content: center; align-items: center; }
+
+    /* Caso clinico */
+    .caso-card { background: var(--card-bg); border-radius: 12px; padding: 1em 1.3em; border-left: 4px solid var(--accent); }
+    .caso-card.azul { border-left-color: #38bdf8; }
+    .caso-card h3 { color: var(--accent); font-size: 1.1em; margin-bottom: 0.5em; }
+    .caso-card.azul h3 { color: #38bdf8; }
+    .caso-card strong { color: var(--text); }
+    .caso-card p { margin: 0.3em 0; font-size: 1.05em; line-height: 1.4; }
+
+    /* Slide 30 final */
+    .gracias-final { font-size: 5em; font-weight: 900; color: var(--accent); letter-spacing: -0.02em; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ==================== SLIDE 1: TÍTULO ==================== -->
+    <section class="centrado">
+      <h1>Coccidias intestinales<br>y Toxoplasma gondii</h1>
+      <div class="divider divider-center"></div>
+      <p style="font-size: 1.1em; margin-top: 2em;"><strong>César Copaja Corzo, MD. MsC.</strong></p>
+      <p class="secondary" style="font-size: 0.9em;">Residente en Infectología y Medicina Tropical</p>
+      <aside class="notes">
+        Presentación breve. Tono directo: no vamos por ciclo básico, vamos a repasar fisiopatología, brechas de tratamiento y novedades.
+        Mencionar los dos casos al final verbalmente como gancho.
+        ⏱️ 25 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 2: CASOS CLÍNICOS ==================== -->
+    <section>
+      <h3>Dos casos para hoy</h3>
+      <div class="divider"></div>
+      <div class="dos-columnas">
+        <div class="caso-card">
+          <h3>🟢 Caso A</h3>
+          <p><strong>Varón 52 años</strong></p>
+          <p>Trasplante alogénico haploidéntico día +40 por leucemia mieloide aguda</p>
+          <p>Profilaxis con trimetoprim-sulfametoxazol 3 veces/semana</p>
+          <p><strong>3 semanas de diarrea acuosa</strong>, 8-10 deposiciones/día, −4 kg, sin fiebre</p>
+          <p>Coprocultivo bacteriano negativo</p>
+        </div>
+        <div class="caso-card azul">
+          <h3>🔵 Caso B</h3>
+          <p><strong>Mujer 34 años</strong></p>
+          <p>VIH, sin terapia antirretroviral × 2 años</p>
+          <p>Cefalea progresiva 2 semanas + hemiparesia derecha + fiebre 38.5 °C</p>
+          <p><strong>CD4: 65 células/μL</strong></p>
+          <p>Tomografía cerebral: múltiples lesiones con realce en anillo en ganglios basales</p>
+        </div>
+      </div>
+      <p class="centrado secondary" style="margin-top: 1em; font-size: 0.9em;">¿Qué piensan? · Lo resolvemos al final</p>
+      <aside class="notes">
+        Esperar 5-10 segundos. Si gritan respuesta: "perfecto, lo discutimos al final".
+        No resolver aquí. Transición: "Antes de entrar, el mapa de lo que vamos a ver..."
+        ⏱️ 65 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 3: HISTORIA — CAYETANO HEREDIA ==================== -->
+    <section>
+      <h3>Pero antes vayamos con un poco de historia</h3>
+      <div class="divider"></div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8em; margin: 0.4em 0;">
+        <div class="card">
+          <div style="font-size: 1.9em; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 0.35em; letter-spacing: -0.02em;">1979</div>
+          <p style="font-size: 0.92em; line-height: 1.35; margin: 0;">Ashford reporta en Papúa Nueva Guinea coccidios desconocidos. La literatura los llamará <em>"cuerpos parecidos a cianobacterias"</em> — un nombre de descarte.</p>
+        </div>
+        <div class="card">
+          <div style="font-size: 1.9em; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 0.35em; letter-spacing: -0.02em;">1984</div>
+          <p style="font-size: 0.92em; line-height: 1.35; margin: 0;"><strong>Robert Gilman</strong> (Johns Hopkins) llega a Lima y se instala en <strong>Cayetano Heredia</strong>. No vino a un proyecto: vino a quedarse.</p>
+        </div>
+        <div class="card">
+          <div style="font-size: 1.9em; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 0.35em; letter-spacing: -0.02em;">1993</div>
+          <p style="font-size: 0.92em; line-height: 1.35; margin: 0;"><strong>NEJM</strong> · Ortega, Sterling, Gilman, Cama, Díaz identifican un género nuevo: <em>Cyclospora</em>.</p>
+        </div>
+        <div class="card">
+          <div style="font-size: 1.9em; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 0.35em; letter-spacing: -0.02em;">1994</div>
+          <p style="font-size: 0.92em; line-height: 1.35; margin: 0;">Descripción formal de la especie: <em><strong>Cyclospora cayetanensis</strong></em>. Apellido en homenaje a esta universidad.</p>
+        </div>
+      </div>
+
+      <div class="highlight-box" style="margin-top: 0.9em;">
+        <p style="margin: 0;"><strong>La Familia Gilman</strong> · Cuatro décadas formando investigadores peruanos: maestrías y doctorados en Hopkins, regreso a Perú. Más de <strong>100 científicos</strong> entrenados. En 1993 UPCH lo nombró <em>Investigator Professor</em> — el primero en su historia. De esa escuela salieron Héctor García, Vitaliano Cama, Carlos Seas — y <strong>Ynes Ortega</strong>, la peruana que descubrió y nombró el parásito.</p>
+      </div>
+
+      <p class="centrado secondary" style="margin-top: 0.7em; font-size: 0.85em;">
+        Hoy estamos parados, literalmente, en el lugar de los hechos.
+      </p>
+
+      <aside class="notes">
+        Pausa narrativa. Bajar la velocidad. Tono de cuento.
+        "Antes de entrar al mapa, una historia que pasó a 5 cuadras de aquí."
+
+        1979: Ashford en Papúa Nueva Guinea describe unos coccidios raros. No supo qué eran. En los 80, casos similares aparecen en todo el mundo (incluido VIH). Como nadie podía clasificarlos, la literatura los llamaba "cyanobacterium-like bodies" — CLB, un nombre de descarte.
+
+        1984: Gilman llega a Lima queriendo estudiar Giardia. Se instala en Cayetano. Lo que monta no es un proyecto, es una escuela. La revista de Hopkins le dedicó un perfil titulado "La Familia Gilman".
+
+        1993: NEJM. Ortega lidera el paper. Es peruana, formada en UPCH, mentoreada por Gilman, MPH en Hopkins, doctorado en Arizona con Sterling. Vuelve a Lima a estudiar a los niños con diarrea desde 1985; las cohortes 1988-1991 dan los datos. Identifican un género nuevo, todavía sin nombre de especie.
+
+        1994: descripción morfológica formal. Le ponen el apellido cayetanensis en honor a la universidad donde se formó la investigación. Hoy Ortega es PI en University of Georgia y sigue trabajando en Cyclospora.
+
+        Cierre: "Esta charla no es solo sobre coccidios. Es también un homenaje al lugar donde estamos. Ahora sí, vamos al mapa."
+
+        ⏱️ 90 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 4: MAPA DE COCCIDIAS ==================== -->
+    <section>
+      <h3>El mapa de las coccidias en humanos</h3>
+      <div class="divider"></div>
+      <div class="dos-columnas">
+        <div class="card-full">
+          <h3>Intestinales · hospedero único</h3>
+          <ul>
+            <li><em>Cryptosporidium</em> spp.</li>
+            <li><em>Cyclospora cayetanensis</em></li>
+            <li><em>Cystoisospora belli</em></li>
+          </ul>
+        </div>
+        <div class="card-full">
+          <h3>Tisulares · hospedero doble</h3>
+          <ul>
+            <li><em>Toxoplasma gondii</em></li>
+            <li><em>Sarcocystis</em> spp.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="centrado secondary" style="margin-top: 1.5em; font-size: 0.85em;">
+        Sin vectores · Reservorios: humanos ± animales · Transmisión: fecal-oral
+      </p>
+      <aside class="notes">
+        Enfatizar "sin vectores" y "fecal-oral" como anclajes.
+        Decir verbalmente: hoy vemos las 3 intestinales + Toxoplasma; Sarcocystis fuera de alcance.
+        Responder mentalmente si alguien piensa que Plasmodium es coccidia: no, es Apicomplexa pero hemosporidio.
+        ⏱️ 50 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 4: TEMARIO ==================== -->
+    <section>
+      <h3>Qué vamos a recorrer</h3>
+      <div class="divider"></div>
+      <div class="tracker-grid">
+        <div class="tracker-cell">
+          <h4>1. Intestinales</h4>
+          <p>Fisiopatología · Epidemiología · Clínica · Dx · Rx</p>
+        </div>
+        <div class="tracker-cell">
+          <h4>2. Toxoplasma</h4>
+          <p>Fisiopatología · Epidemiología · VIH · Trasplantes · Congénita · Dx · Rx</p>
+        </div>
+        <div class="tracker-cell">
+          <h4>3. Novedades</h4>
+          <p>Vacunas · Nuevos fármacos · Cambios en guías</p>
+        </div>
+        <div class="tracker-cell">
+          <h4>4. Casos</h4>
+          <p>Resolución de los dos casos del inicio</p>
+        </div>
+      </div>
+      <aside class="notes">
+        Leer rápido los 4 bloques. 10 seg silencio.
+        Transición al tracker de Parte 1.
+        ⏱️ 20 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 5: TRACKER INTESTINALES + MINI-MAPA ==================== -->
+    <section>
+      <h3>Intestinales</h3>
+      <div class="divider"></div>
+      <div class="tracker-grid">
+        <div class="tracker-cell activo">
+          <h4>1. Intestinales ←</h4>
+        </div>
+        <div class="tracker-cell">
+          <h4>2. Toxoplasma</h4>
+        </div>
+        <div class="tracker-cell">
+          <h4>3. Novedades</h4>
+        </div>
+        <div class="tracker-cell">
+          <h4>4. Casos</h4>
+        </div>
+      </div>
+      <div class="mini-mapa">
+        <p class="secondary" style="font-size: 0.85em; margin-top: 1em;">Qué vamos a ver aquí:</p>
+        <ul>
+          <li>Fisiopatología apicomplexa — cómo invaden y persisten</li>
+          <li>Características clave — <em>Cryptosporidium</em> · <em>Cyclospora</em> · <em>Cystoisospora</em></li>
+          <li>Impacto global y epidemiología en Perú</li>
+          <li>Clínica — del autolimitado al crónico severo</li>
+          <li>Diagnóstico — limitaciones del laboratorio</li>
+          <li>Tratamiento, respuesta y falla</li>
+        </ul>
+      </div>
+      <aside class="notes">
+        Leer los 6 bullets rápido — 3 seg cada uno.
+        Énfasis en "limitaciones del laboratorio".
+        ⏱️ 20 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 6: MISIL APICOMPLEXA ==================== -->
+    <section>
+      <h3>El complejo apical: un misil con compartimientos</h3>
+      <div class="divider"></div>
+      <div class="dos-columnas">
+        <div class="misil-container">
+          <svg viewBox="0 0 200 420" style="width: 220px; height: auto;">
+            <!-- Conoide (punta) -->
+            <polygon points="100,10 80,60 120,60" fill="#00c9a7" stroke="#fff" stroke-width="1"/>
+            <text x="140" y="35" fill="#9ca3af" font-size="11">Conoide</text>
+            <!-- Cuerpo -->
+            <rect x="75" y="60" width="50" height="320" fill="none" stroke="#fff" stroke-width="1.5" rx="4"/>
+            <!-- Anillos polares -->
+            <line x1="75" y1="70" x2="125" y2="70" stroke="#fff" stroke-width="1"/>
+            <line x1="75" y1="78" x2="125" y2="78" stroke="#fff" stroke-width="1"/>
+            <text x="140" y="76" fill="#9ca3af" font-size="10">Anillos polares</text>
+            <!-- Micronemas (circulos pequeños) -->
+            <circle cx="90" cy="100" r="3" fill="#fbbf24"/>
+            <circle cx="100" cy="108" r="3" fill="#fbbf24"/>
+            <circle cx="110" cy="100" r="3" fill="#fbbf24"/>
+            <circle cx="92" cy="118" r="3" fill="#fbbf24"/>
+            <circle cx="108" cy="120" r="3" fill="#fbbf24"/>
+            <text x="140" y="112" fill="#fbbf24" font-size="11" font-weight="600">Micronemas</text>
+            <!-- Roptrías (peras) -->
+            <ellipse cx="90" cy="180" rx="10" ry="30" fill="#f97316" opacity="0.85"/>
+            <ellipse cx="110" cy="180" rx="10" ry="30" fill="#f97316" opacity="0.85"/>
+            <text x="140" y="180" fill="#f97316" font-size="11" font-weight="600">Roptrías</text>
+            <!-- Gránulos densos -->
+            <circle cx="85" cy="250" r="2.5" fill="#818cf8"/>
+            <circle cx="95" cy="260" r="2.5" fill="#818cf8"/>
+            <circle cx="105" cy="255" r="2.5" fill="#818cf8"/>
+            <circle cx="115" cy="265" r="2.5" fill="#818cf8"/>
+            <circle cx="88" cy="275" r="2.5" fill="#818cf8"/>
+            <circle cx="108" cy="280" r="2.5" fill="#818cf8"/>
+            <text x="140" y="265" fill="#818cf8" font-size="11" font-weight="600">Gránulos densos</text>
+            <!-- IMC (base) -->
+            <rect x="75" y="360" width="50" height="20" fill="rgba(255,255,255,0.1)" stroke="#9ca3af" stroke-dasharray="2,2"/>
+            <text x="140" y="375" fill="#9ca3af" font-size="10">IMC / glideosoma</text>
+          </svg>
+        </div>
+        <div>
+          <p style="font-size: 0.88em;"><strong class="accent">🎯 Conoide · "La punta del cohete"</strong><br>
+          Primer contacto. Ancla y abre paso.</p>
+          <p style="font-size: 0.88em;"><strong style="color: #fbbf24;">🎣 Micronemas · "Los garfios"</strong><br>
+          Proteínas adhesivas que se pegan al receptor del enterocito. Orientan al misil.</p>
+          <p style="font-size: 0.88em;"><strong style="color: #f97316;">💥 Roptrías · "La carga útil"</strong><br>
+          Proteínas que arman la vacuola parasitófora — el búnker del parásito.</p>
+          <p style="font-size: 0.88em;"><strong style="color: #818cf8;">📦 Gránulos densos · "Kit de supervivencia"</strong><br>
+          Proteínas liberadas después de entrar. Modifican el ambiente intracelular.</p>
+        </div>
+      </div>
+      <aside class="notes">
+        Señalar cada parte del misil mientras hablas.
+        Orden: primera — segunda — tercera secreción.
+        Transición: "Con esa maquinaria armada, veamos cómo entra..."
+        ⏱️ 45 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 7: SECUENCIA DE INVASIÓN ==================== -->
+    <section>
+      <h3>Secuencia de invasión · por qué Cryptosporidium es distinto</h3>
+      <div class="divider"></div>
+
+      <!-- Secuencia 4 pasos -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0.8em; font-size: 0.72em; margin-bottom: 1em;">
+        <div class="card" style="border-left-color: #00c9a7;">
+          <h3 style="font-size: 0.85em;">1. Contacto</h3>
+          <p>Proteínas adhesivas de micronemas se pegan al receptor del enterocito</p>
+        </div>
+        <div class="card" style="border-left-color: #00c9a7;">
+          <h3 style="font-size: 0.85em;">2. Anclaje</h3>
+          <p>Proteínas de roptrías forman unión móvil</p>
+        </div>
+        <div class="card" style="border-left-color: #00c9a7;">
+          <h3 style="font-size: 0.85em;">3. Entrada</h3>
+          <p>Motor actina-miosina empuja + roptrías arman vacuola parasitófora</p>
+        </div>
+        <div class="card" style="border-left-color: #00c9a7;">
+          <h3 style="font-size: 0.85em;">4. Adaptación</h3>
+          <p>Proteínas GRA modifican el ambiente vacuolar (sobrevivencia)</p>
+        </div>
+      </div>
+
+      <div class="dos-columnas" style="margin-top: 0.5em;">
+        <div class="card-full">
+          <p style="font-size: 0.78em; margin: 0;"><strong><em>Cyclospora</em> · <em>Cystoisospora</em></strong></p>
+          <p style="font-size: 0.75em; margin: 0.3em 0;">Parásito en el <strong>citosol</strong> del enterocito</p>
+          <p style="font-size: 0.72em; color: var(--accent); margin: 0;">→ Alcanzable por fármacos citoplasmáticos</p>
+        </div>
+        <div class="card-full" style="border-left-color: #f97316;">
+          <p style="font-size: 0.78em; margin: 0;"><strong><em>Cryptosporidium</em></strong></p>
+          <p style="font-size: 0.75em; margin: 0.3em 0;">Parásito <strong>debajo de la membrana</strong> (extracitoplásmico)</p>
+          <p style="font-size: 0.72em; color: #f97316; margin: 0;">→ Protegido de la mayoría de antiparasitarios</p>
+        </div>
+      </div>
+
+      <div class="highlight-box" style="margin-top: 0.8em;">
+        <p style="font-size: 0.78em; margin: 0;"><strong>La nitazoxanida</strong> bloquea una enzima metabólica del parásito, pero el aclaramiento definitivo <strong>requiere interferón gamma</strong> del hospedero.</p>
+        <p style="font-size: 0.75em; margin: 0.3em 0 0 0;" class="secondary">→ En VIH avanzado, trasplante hematopoyético, desnutrición severa: <strong class="accent">falla</strong></p>
+        <span class="fuente-inline">Chavez &amp; White, Expert Rev Anti Infect Ther 2023</span>
+      </div>
+      <aside class="notes">
+        Señalar cada paso 1→2→3→4.
+        Pausa en "Cryptosporidium hace un giro único".
+        Frase de cierre: "la piedra angular en inmunosupresión no es el antiparasitario — es recuperar la inmunidad".
+        ⏱️ 75 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 8: TABLA COMPARATIVA ==================== -->
+    <section>
+      <h3>Tres bichos, tres perfiles</h3>
+      <div class="divider"></div>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th><em>Cryptosporidium</em> spp.</th>
+            <th><em>Cyclospora cayetanensis</em></th>
+            <th><em>Cystoisospora belli</em></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ooquiste</strong></td>
+            <td>4–6 μm</td>
+            <td>8–10 μm</td>
+            <td>22–33 μm (el más grande)</td>
+          </tr>
+          <tr>
+            <td><strong>Esporulación al eliminar</strong></td>
+            <td>Ya esporulado → <span class="accent">infectante inmediato</span></td>
+            <td>Requiere 7–14 días a 22–30 °C</td>
+            <td>Esporula en 24–72 horas</td>
+          </tr>
+          <tr>
+            <td><strong>Reservorio</strong></td>
+            <td>Humano + ganado bovino</td>
+            <td>Humano (único)</td>
+            <td>Humano (único)</td>
+          </tr>
+          <tr>
+            <td><strong>Transmisión usual</strong></td>
+            <td>Agua contaminada (piscinas, pozos)</td>
+            <td>Alimentos frescos (hierbas, bayas, ensaladas)</td>
+            <td>Agua, alimentos, transmisión sexual en hombres que tienen sexo con hombres</td>
+          </tr>
+          <tr>
+            <td><strong>Incubación</strong></td>
+            <td>2–10 días (media 7)</td>
+            <td>1–14 días (media 7)</td>
+            <td>~7 días</td>
+          </tr>
+          <tr>
+            <td><strong>Resistencia a cloro</strong></td>
+            <td><span class="accent">Alta</span> · requiere UV, ozono, filtro &lt;1 μm, hervir</td>
+            <td>Alta</td>
+            <td>Moderada</td>
+          </tr>
+          <tr>
+            <td><strong>Brote icónico</strong></td>
+            <td>Milwaukee 1993: 403,000 casos</td>
+            <td>EE.UU. 2019–2023: 2,000–2,400 casos/año</td>
+            <td>Re-emergente en VIH en Latinoamérica</td>
+          </tr>
+        </tbody>
+      </table>
+      <aside class="notes">
+        Recorrer contrastes clave, no leer toda la tabla.
+        Énfasis en "Cryptosporidium ya esporulado = infectante inmediato".
+        Anécdota Milwaukee 1993 como cierre memorable.
+        ⏱️ 80 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 9: NÚMERO GRANDE 48,000 ==================== -->
+    <section class="centrado">
+      <h3>El peso global</h3>
+      <div class="divider divider-center"></div>
+      <span class="numero-grande">48,000</span>
+      <p style="font-size: 1.1em; margin-top: 0.2em;"><strong>muertes al año</strong></p>
+      <p class="accent" style="font-size: 1em;"><em>Cryptosporidium</em> en niños &lt; 5 años</p>
+      <p class="secondary" style="font-size: 0.95em; margin-top: 0.3em;">2.ª causa global de diarrea infantil (después de rotavirus)</p>
+
+      <div style="margin-top: 1.5em; text-align: left; max-width: 700px; margin-left: auto; margin-right: auto;">
+        <ul style="font-size: 0.85em;">
+          <li><strong>12 millones de DALYs</strong> — incluye retraso de crecimiento a largo plazo</li>
+          <li><strong>7.6 %</strong> prevalencia global en población general (México 69.6 %, Bangladesh 42.5 %)</li>
+          <li><strong>11.2 %</strong> prevalencia en personas con VIH (51,000 pacientes meta-analizados)</li>
+        </ul>
+      </div>
+      <span class="fuente">Khalil, Lancet Glob Health 2018 · Dong, Acta Parasitol 2020 · Ahmadpour, Parasite 2020</span>
+      <aside class="notes">
+        Mostrar 48,000 y pausar 3 seg.
+        "Empequeñece a los niños que sobreviven" — frase final.
+        ⏱️ 55 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 10: LO QUE VEMOS EN PERÚ ==================== -->
+    <section>
+      <h3>Lo que vemos en Perú</h3>
+      <div class="divider"></div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8em;">
+        <div class="card">
+          <h3>🏥 Lima periurbana — Pampas de San Juan</h3>
+          <p>533 niños seguidos</p>
+          <p><strong class="accent"><em>Cryptosporidium hominis</em> 70 %</strong></p>
+          <p><em>Cryptosporidium parvum</em> 13 %</p>
+          <p><em>Cryptosporidium meleagridis</em> 8 %</p>
+          <p>Enfermedad clínica en 36 %</p>
+          <span class="fuente-inline">Cama et al., EID 2008</span>
+        </div>
+        <div class="card">
+          <h3>🪖 Brote Base Naval Ancón · Marzo 2005</h3>
+          <p>85 reclutas expuestos</p>
+          <p><strong class="accent">Attack rate: 53 %</strong> (45 casos)</p>
+          <p>PCR detectó 57 % vs microscopía 19 %</p>
+          <span class="fuente-inline">Mundaca et al., TRSTMH 2008</span>
+        </div>
+        <div class="card">
+          <h3>🏥 Niños hospitalizados Lima · 2014-2015</h3>
+          <p>325 niños</p>
+          <p><strong class="accent">Coccidiosis intestinal 5.5 %</strong></p>
+          <p><em>Cryptosporidium</em> 3.7 %</p>
+          <p><em>Cyclospora cayetanensis</em> 1.8 %</p>
+          <span class="fuente-inline">RPMESP 2018</span>
+        </div>
+        <div class="card">
+          <h3>🧬 VIH en terapia antirretroviral</h3>
+          <p>Serie de 6 casos VIH con <em>Cystoisospora belli</em> refractaria a pesar de terapia antirretroviral</p>
+          <p>Instituto Nacional de Salud, Lima</p>
+          <p class="secondary" style="font-size: 0.9em;"><strong>La era TARGA no elimina al bicho.</strong></p>
+          <span class="fuente-inline">Montalvo et al., RPMESP 2013</span>
+        </div>
+      </div>
+      <p class="secondary centrado" style="font-size: 0.78em; margin-top: 0.8em;">
+        ⚠ Perú no tiene vigilancia nacional sistemática · datos dispersos por iniciativas académicas
+      </p>
+      <aside class="notes">
+        Recorrer horario. Énfasis en transmisión humano-humano (Cryptosporidium hominis 70 %) y en PCR triplica sensibilidad.
+        Cerrar con brecha de vigilancia.
+        ⏱️ 70 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 11: CLÍNICA POR INMUNIDAD ==================== -->
+    <section>
+      <h3>La inmunidad lo es todo</h3>
+      <div class="divider"></div>
+
+      <div class="card-full">
+        <h3 style="color: var(--accent);"><em>Cryptosporidium</em></h3>
+        <div class="dos-columnas" style="font-size: 0.82em;">
+          <div>
+            <p class="secondary"><strong>Inmunocompetente</strong></p>
+            <p>Diarrea acuosa autolimitada, 7–14 días</p>
+          </div>
+          <div>
+            <p class="accent"><strong>Inmunocomprometido (CD4 &lt; 100)</strong></p>
+            <p>Diarrea crónica, alto volumen, &gt; 30 días · síndrome de malabsorción · deshidratación</p>
+            <p><strong>En VIH avanzado:</strong> colangitis esclerosante, colecistitis alitiásica</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-full">
+        <h3 style="color: var(--accent);"><em>Cyclospora cayetanensis</em></h3>
+        <div class="dos-columnas" style="font-size: 0.82em;">
+          <div>
+            <p class="secondary"><strong>Inmunocompetente</strong></p>
+            <p>Diarrea <strong>ondulante</strong>, fatiga intensa, anorexia</p>
+            <p>Duración: <strong class="accent">57 días</strong> (sin tratamiento)</p>
+          </div>
+          <div>
+            <p class="accent"><strong>Inmunocomprometido (VIH)</strong></p>
+            <p>Diarrea prolongada, mayor compromiso sistémico</p>
+            <p>Duración: <strong class="accent">199 días</strong> (sin tratamiento)</p>
+          </div>
+        </div>
+        <span class="fuente-inline">Almeria, Microorganisms 2019</span>
+      </div>
+
+      <div class="card-full">
+        <h3 style="color: var(--accent);"><em>Cystoisospora belli</em></h3>
+        <div class="dos-columnas" style="font-size: 0.82em;">
+          <div>
+            <p class="secondary"><strong>Inmunocompetente</strong></p>
+            <p>Raro sintomática</p>
+          </div>
+          <div>
+            <p class="accent"><strong>Inmunocomprometido (VIH, trasplante hematopoyético)</strong></p>
+            <p>Diarrea crónica recurrente · <strong>eosinofilia periférica</strong> (única de las tres)</p>
+            <p><strong>DISEMINACIÓN EXTRAINTESTINAL</strong> en inmunosupresión severa: ganglios, hígado, bazo, páncreas</p>
+          </div>
+        </div>
+        <span class="fuente-inline">Dubey &amp; Almeria, AJTMH 2023</span>
+      </div>
+
+      <p class="centrado secondary" style="font-size: 0.8em; margin-top: 0.5em;">
+        Ninguna de las tres da enfermedad latente (contrasta con <em>Toxoplasma</em>, que veremos después)
+      </p>
+      <aside class="notes">
+        Tres datos memorables:
+        1) Colangitis alitiásica de Cryptosporidium en VIH avanzado
+        2) 57 vs 199 días de Cyclospora
+        3) Eosinofilia + diseminación de Cystoisospora
+        ⏱️ 80 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 12: DIAGNÓSTICO ==================== -->
+    <section>
+      <h3>Diagnóstico · lo que tu laboratorio puede fallar</h3>
+      <div class="divider"></div>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th><em>Cryptosporidium</em></th>
+            <th><em>Cyclospora cayetanensis</em></th>
+            <th><em>Cystoisospora belli</em></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ziehl-Neelsen modificado</strong></td>
+            <td>~83 % sensibilidad · buena opción</td>
+            <td style="background: rgba(251,146,60,0.15);">~50 % sensibilidad · <strong>tinción variable</strong> · muchos falsos negativos</td>
+            <td>Moderada · subóptima</td>
+          </tr>
+          <tr>
+            <td><strong>Autofluorescencia UV</strong></td>
+            <td>No aplica</td>
+            <td>85–95 % sensibilidad · azul-verde</td>
+            <td style="background: rgba(0,201,167,0.1);"><strong class="accent">95.7 %</strong> vs 48.4 % con yodo</td>
+          </tr>
+          <tr>
+            <td><strong>PCR multiplex gastrointestinal</strong></td>
+            <td>~100 % sensibilidad</td>
+            <td>~95 % sensibilidad</td>
+            <td>Variable · no todos los paneles</td>
+          </tr>
+          <tr>
+            <td><strong>PCR específica</strong></td>
+            <td>&gt; 95 % sensibilidad</td>
+            <td>&gt; 95 % sensibilidad</td>
+            <td>&gt; 95 % sensibilidad (solicitud dirigida)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="highlight-box">
+        <p style="font-size: 0.82em; margin: 0;"><strong>Brote Base Naval Ancón 2005:</strong> PCR detectó 57 % vs microscopía 19 % → <strong class="accent">triplicó la sensibilidad</strong></p>
+        <span class="fuente-inline">Mundaca, TRSTMH 2008</span>
+      </div>
+
+      <div style="font-size: 0.8em; margin-top: 0.6em;">
+        <p><strong>Implicancias prácticas:</strong></p>
+        <ul>
+          <li>Microscopía única con Ziehl-Neelsen <strong>puede perder la mitad</strong> de los <em>Cyclospora</em></li>
+          <li>Solicitar <strong>autofluorescencia UV</strong> cuando sospechas <em>Cyclospora</em> o <em>Cystoisospora</em></li>
+          <li>Enviar <strong>mínimo 3 muestras</strong> en días distintos — la excreción es intermitente</li>
+        </ul>
+      </div>
+      <aside class="notes">
+        Mensaje fuerte: "estás perdiendo la mitad de los Cyclospora con Ziehl-Neelsen solo".
+        Repetir las 3 implicancias prácticas.
+        ⏱️ 80 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 13: TRATAMIENTO INTESTINALES ==================== -->
+    <section>
+      <h3>Tratamiento · verificado CDC Yellow Book · NIH · Medical Letter</h3>
+      <div class="divider"></div>
+      <table class="tabla-compacta">
+        <thead>
+          <tr>
+            <th>Escenario</th>
+            <th>Primera línea</th>
+            <th>Duración</th>
+            <th>Mantenimiento / Prof. secundaria</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><em>Cryptosporidium</em><br>inmunocompetente</td>
+            <td>Nitazoxanida 500 mg VO cada 12 h</td>
+            <td>3 días</td>
+            <td>No requiere</td>
+          </tr>
+          <tr>
+            <td><em>Cryptosporidium</em><br>en VIH / trasplante</td>
+            <td><strong class="accent">Terapia antirretroviral</strong> (piedra angular, CD4 &gt; 100) ± nitazoxanida 500–1000 mg cada 12 h (eficacia limitada)</td>
+            <td>14 días nitazoxanida · TAR indefinido</td>
+            <td>Control clínico hasta CD4 &gt; 100 sostenido</td>
+          </tr>
+          <tr>
+            <td><em>Cyclospora cayetanensis</em><br>inmunocompetente</td>
+            <td>Trimetoprim-sulfametoxazol 160/800 mg VO cada 12 h</td>
+            <td>7–10 días</td>
+            <td>No requiere</td>
+          </tr>
+          <tr>
+            <td><em>Cyclospora cayetanensis</em><br>en VIH</td>
+            <td>Trimetoprim-sulfametoxazol 160/800 mg VO cada 12 h</td>
+            <td>10–14 días</td>
+            <td>Trimetoprim-sulfa DS 3×/sem si CD4 &lt; 200</td>
+          </tr>
+          <tr>
+            <td><em>Cystoisospora belli</em><br>en VIH agudo</td>
+            <td>Trimetoprim-sulfametoxazol 160/800 mg VO <strong>cada 6 h</strong></td>
+            <td>10 días</td>
+            <td>Trimetoprim-sulfa DS 3×/sem (o SS diario) si CD4 &lt; 200</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="font-size: 0.72em; margin: 0.5em 0;" class="secondary">Alternativas <em>Cystoisospora</em>: pirimetamina 50–75 mg/d + leucovorina · ciprofloxacino 500 mg cada 12 h (menos eficaz: 83 % vs 97 %)</p>
+
+      <div class="highlight-box" style="margin-top: 0.5em;">
+        <p style="font-size: 0.85em; margin: 0;"><strong>La profilaxis con trimetoprim-sulfametoxazol cubre <em>Cyclospora</em> y <em>Cystoisospora</em> — pero NO cubre <em>Cryptosporidium</em>.</strong></p>
+        <p style="font-size: 0.8em; margin: 0.3em 0 0 0;" class="secondary">Por eso un trasplantado hematopoyético con profilaxis vigente que presenta diarrea crónica → piensa <em>Cryptosporidium</em> primero. (Caso A)</p>
+      </div>
+      <aside class="notes">
+        Recorrer por patógeno.
+        Pausa fuerte en "no cubre Cryptosporidium" → puente al Caso A.
+        ⏱️ 90 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 14: TRACKER TOXOPLASMA ==================== -->
+    <section>
+      <h3>Toxoplasma gondii</h3>
+      <div class="divider"></div>
+      <div class="tracker-grid">
+        <div class="tracker-cell completado">
+          <h4>1. Intestinales ✓</h4>
+        </div>
+        <div class="tracker-cell activo">
+          <h4>2. Toxoplasma ←</h4>
+        </div>
+        <div class="tracker-cell">
+          <h4>3. Novedades</h4>
+        </div>
+        <div class="tracker-cell">
+          <h4>4. Casos</h4>
+        </div>
+      </div>
+      <div class="mini-mapa">
+        <p class="secondary" style="font-size: 0.85em; margin-top: 1em;">Qué vamos a ver aquí:</p>
+        <ul>
+          <li>Fisiopatología — taquizoíto ↔ bradizoíto (latencia y reactivación)</li>
+          <li>Características clave y epidemiología global</li>
+          <li>Clínica en el inmunocompetente</li>
+          <li>Encefalitis en VIH</li>
+          <li>Reactivación en trasplante hematopoyético y de órgano sólido</li>
+          <li>Toxoplasmosis congénita — la línea de la semana 18</li>
+          <li>Diagnóstico y tratamiento</li>
+        </ul>
+      </div>
+      <aside class="notes">
+        Pivote natural desde intestinales.
+        Énfasis en "reactivación en trasplante" como bloque que más ha cambiado.
+        ⏱️ 20 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 15: TAQUIZOÍTO ↔ BRADIZOÍTO ==================== -->
+    <section>
+      <h3>Taquizoíto ↔ Bradizoíto · por qué existe la latencia</h3>
+      <div class="divider"></div>
+      <div class="dos-columnas">
+        <div>
+          <div class="card-full" style="margin-bottom: 0.6em;">
+            <p style="font-size: 0.82em; margin: 0;"><strong class="accent">🏃 Taquizoíto · "el guerrero"</strong></p>
+            <p style="font-size: 0.78em;">Fase aguda. Se replica cada 6–8 h. Invade cualquier célula nucleada. Diseminación hematógena.</p>
+          </div>
+          <div class="card-full" style="margin-bottom: 0.6em;">
+            <p style="font-size: 0.82em; margin: 0;"><strong class="accent">🛌 Bradizoíto · "el durmiente"</strong></p>
+            <p style="font-size: 0.78em;">Dentro de quistes tisulares. Metabolismo lento. Invisible para el sistema inmune. <strong>Persiste toda la vida.</strong> Tropismo: cerebro, retina, músculo, corazón.</p>
+          </div>
+        </div>
+        <div>
+          <div class="card-full" style="margin-bottom: 0.6em;">
+            <p style="font-size: 0.82em; margin: 0;"><strong class="accent">🔄 El switch · BFD1</strong></p>
+            <p style="font-size: 0.78em;">Factor de transcripción maestro de la conversión taquizoíto → bradizoíto. Blanco terapéutico emergente.</p>
+            <span class="fuente-inline">Waldman, Cell 2020</span>
+          </div>
+          <div class="warning-box">
+            <p style="font-size: 0.82em; margin: 0;"><strong>⚠ La reactivación</strong></p>
+            <p style="font-size: 0.78em;">Pérdida de interferón gamma → bradizoítos vuelven a taquizoítos → enfermedad clínica.</p>
+            <p style="font-size: 0.78em; margin: 0.3em 0 0 0;"><strong>Tropismo de reactivación:</strong> cerebro, retina, pulmón, corazón.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="centrado secondary" style="font-size: 0.8em; margin-top: 0.8em;">
+        Una serología IgG positiva en un paciente que va a ser inmunosuprimido <strong class="accent">no es solo un dato histórico</strong> — es un factor de riesgo accionable.
+      </p>
+      <aside class="notes">
+        Empezar con las dos formas + analogía.
+        Pausa: "persiste toda la vida del hospedero".
+        Cerrar con "una serología positiva no es solo un dato histórico".
+        ⏱️ 80 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 16: 4 VÍAS DE TRANSMISIÓN ==================== -->
+    <section>
+      <h3>Cuatro puertas de entrada</h3>
+      <div class="divider"></div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6em;">
+        <div class="card">
+          <h3>🐱 Ooquistes (del gato)</h3>
+          <p>Gato = único hospedero definitivo. Elimina ooquistes ~2 semanas tras primoinfección.</p>
+          <p>Agua o verduras contaminadas · limpieza de caja de arena</p>
+          <p><strong>Ooquistes esporulan en 1–5 días y resisten hasta 18 meses</strong> en agua/suelo.</p>
+        </div>
+        <div class="card">
+          <h3>🥩 Quistes tisulares (carne cruda)</h3>
+          <p>Cerdo, cordero, venado, res poco cocida.</p>
+          <p>Brote reciente EE.UU. por carne de venado.</p>
+          <p><strong>Inactivación:</strong> cocción &gt; 66 °C · congelación −12 °C × 3 días</p>
+          <span class="fuente-inline">Beltrame, Curr Opin Infect Dis 2025</span>
+        </div>
+        <div class="card">
+          <h3>🤰 Transplacentaria (vertical)</h3>
+          <p>Solo si infección materna <strong>primaria</strong> durante el embarazo.</p>
+          <p>Riesgo ↑ con trimestre:</p>
+          <p>T1 ~10–15 % · T2 ~25–30 % · T3 ~60–90 %</p>
+          <p><strong>Severidad inversa</strong> — más grave si T1</p>
+        </div>
+        <div class="card">
+          <h3>🏥 Trasplante / transfusión</h3>
+          <p>Órgano sólido — quistes tisulares del donante (corazón, pulmón, hígado).</p>
+          <p>Trasplante hematopoyético alogénico con donante IgG+ y receptor IgG−.</p>
+          <p>Transfusión — rara, documentada en hemoderivados celulares.</p>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <p style="font-size: 0.8em; margin: 0;"><strong>Ficha técnica:</strong></p>
+        <ul style="font-size: 0.78em;">
+          <li>Periodo de incubación: <strong>5–23 días</strong> (media 7–10)</li>
+          <li>Ooquistes resisten cloro estándar · inactivación con calor &gt; 60 °C</li>
+          <li><strong>No hay transmisión directa persona-persona</strong></li>
+        </ul>
+        <span class="fuente-inline">CDC Yellow Book 2024</span>
+      </div>
+      <aside class="notes">
+        Recorrer las 4 vías en orden horario.
+        Datos memorables: gato adulto inmune NO elimina ooquistes · brote carne de venado 2025 · severidad inversa T1-T3.
+        Cerrar: "acariciar un gato no da toxoplasmosis".
+        ⏱️ 80 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 17: MIL MILLONES ==================== -->
+    <section class="centrado">
+      <h3>El peso global</h3>
+      <div class="divider divider-center"></div>
+      <p style="font-size: 2.2em; font-weight: 900; color: var(--accent); line-height: 1.1; margin: 0.3em 0;">Más de 1,000,000,000</p>
+      <p style="font-size: 0.95em;">personas infectadas con <em>Toxoplasma gondii</em></p>
+      <p class="secondary" style="font-size: 0.9em;">~ 1 de cada 3 humanos en el planeta</p>
+
+      <p style="font-size: 0.9em; margin-top: 1em;"><strong>Seroprevalencia global: <span class="accent">31 %</span></strong> <span class="secondary">(IC 28–34 · 320 estudios · 658,172 personas)</span></p>
+
+      <div style="text-align: left; max-width: 700px; margin: 1.2em auto 0.5em auto; font-size: 0.78em;">
+        <p class="secondary" style="margin-bottom: 0.4em;">Seroprevalencia por continente (meta-análisis 2025):</p>
+        <div class="barra-row"><span class="barra-label">Oceanía/Australia</span><div class="barra-track"><div class="barra-fill" style="width: 90%;"></div></div><span class="barra-valor">54 %</span></div>
+        <div class="barra-row"><span class="barra-label">Sudamérica</span><div class="barra-track"><div class="barra-fill acento" style="width: 75%;"></div></div><span class="barra-valor accent">45 %</span></div>
+        <div class="barra-row"><span class="barra-label">África</span><div class="barra-track"><div class="barra-fill" style="width: 70%;"></div></div><span class="barra-valor">42 %</span></div>
+        <div class="barra-row"><span class="barra-label">Asia</span><div class="barra-track"><div class="barra-fill" style="width: 42%;"></div></div><span class="barra-valor">25 %</span></div>
+        <div class="barra-row"><span class="barra-label">Europa</span><div class="barra-track"><div class="barra-fill" style="width: 40%;"></div></div><span class="barra-valor">24 %</span></div>
+        <div class="barra-row"><span class="barra-label">Norteamérica</span><div class="barra-track"><div class="barra-fill" style="width: 33%;"></div></div><span class="barra-valor">20 %</span></div>
+      </div>
+      <p class="secondary" style="font-size: 0.75em;">Extremos: Brasil y Ghana 68 % · Vietnam 5 % · Tendencia 2011-2020: 34 % (ascendente)</p>
+      <span class="fuente">Massmann, J Pediatric Infect Dis Soc 2025 · Sengupta, Exp Parasitol 2025 · Salari, BMC Pregnancy 2025</span>
+      <aside class="notes">
+        Pausa después de "mil millones".
+        Énfasis en "Sudamérica 45 % · gestantes 52.8 %" — dato local.
+        Mencionar cepas atípicas.
+        ⏱️ 70 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 18: MAPA PERUANO ==================== -->
+    <section>
+      <h3>Del mundo a Perú</h3>
+      <div class="divider"></div>
+      <table class="tabla-compacta">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Seroprevalencia IgG</th>
+            <th>Población</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="grupo-header"><td colspan="3">🌴 Selva</td></tr>
+          <tr><td>Tarapoto (San Martín)</td><td><strong class="accent">77.2 %</strong></td><td>donantes de sangre</td></tr>
+          <tr><td>Tingo María (Huánuco)</td><td><strong class="accent">83.9 %</strong></td><td>donantes de sangre</td></tr>
+          <tr><td>Selva central (estudios históricos)</td><td>75–85 %</td><td>comunidades rurales</td></tr>
+          <tr class="grupo-header"><td colspan="3">🌊 Costa</td></tr>
+          <tr><td>Lambayeque</td><td>35.8 %</td><td>gestantes</td></tr>
+          <tr class="grupo-header"><td colspan="3">🏔 Sierra</td></tr>
+          <tr><td>Ayacucho (Huanta)</td><td>30.3 %</td><td>gestantes</td></tr>
+          <tr class="grupo-header"><td colspan="3">Benchmark regional</td></tr>
+          <tr><td>Américas · gestantes (Bigna, Sci Rep 2020)</td><td>45.2 %</td><td>meta-análisis</td></tr>
+          <tr><td>Sudamérica · gestantes (Salari, BMC Preg 2025)</td><td>52.8 %</td><td>meta-análisis</td></tr>
+        </tbody>
+      </table>
+
+      <div class="highlight-box">
+        <p style="font-size: 0.82em; margin: 0;"><strong>Gradiente geográfico:</strong> la selva <strong>duplica</strong> la seroprevalencia de la costa y la sierra (~80 % vs ~30–36 %).</p>
+        <p style="font-size: 0.78em; margin: 0.3em 0 0 0;" class="secondary">⚠ Perú no tiene estudios multicéntricos nacionales — oportunidad de investigación.</p>
+      </div>
+      <aside class="notes">
+        Enfatizar gradiente selva-costa-sierra.
+        Implicación clínica:
+        - Gestante selva: IgG+ probable, feto protegido
+        - Gestante costa/sierra IgG−: riesgo de primoinfección
+        ⏱️ 65 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 19: CLÍNICA INMUNOCOMPETENTE ==================== -->
+    <section>
+      <h3>Clínica en el inmunocompetente</h3>
+      <div class="divider"></div>
+      <div class="card-full">
+        <h3>🙅 Asintomática · 80–90 %</h3>
+        <p style="font-size: 0.82em;">La mayoría de primoinfecciones pasan inadvertidas. Se detectan solo por serología (IgM+/IgG+ o seroconversión).</p>
+      </div>
+      <div class="card-full">
+        <h3>🫘 Síndrome ganglionar · 10–20 %</h3>
+        <p style="font-size: 0.82em;"><strong>Adenopatía cervical posterior</strong> (lo más característico) · fiebre baja · fatiga prolongada · cefalea · mialgias.</p>
+        <p style="font-size: 0.8em;" class="secondary"><strong>Diagnóstico diferencial obligado:</strong> mononucleosis por Epstein-Barr · citomegalovirus · VIH primario · linfoma · rubéola.</p>
+        <p style="font-size: 0.8em;">Autolimitada en semanas-meses.</p>
+      </div>
+      <div class="card-full">
+        <h3>👁 Compromiso ocular · coriorretinitis</h3>
+        <p style="font-size: 0.82em;"><strong>Causa más frecuente de uveítis posterior infecciosa en el mundo.</strong></p>
+        <p style="font-size: 0.8em;">Lesión típica: foco coriorretiniano activo + cicatriz pigmentada satélite ("lesión satélite"). <strong>Recurrente toda la vida.</strong></p>
+      </div>
+      <div class="warning-box">
+        <p style="font-size: 0.82em; margin: 0;"><strong>⚠ Actualización 2025 · cepas atípicas</strong></p>
+        <p style="font-size: 0.78em; margin: 0.3em 0 0 0;">El inmunocompetente <strong>no siempre es benigno</strong>. Cepas atípicas sudamericanas causan enfermedad sistémica y ocular severa. Brote reciente EE.UU. por carne de venado con inmunocompetentes haciendo fiebre prolongada, hepatitis y coriorretinitis.</p>
+        <span class="fuente-inline">Beltrame, Curr Opin Infect Dis 2025</span>
+      </div>
+      <aside class="notes">
+        Distribución 80-10-10.
+        Pausa en "causa más frecuente de uveítis posterior infecciosa".
+        Actualización cepas atípicas.
+        ⏱️ 75 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 20: ENCEFALITIS VIH ==================== -->
+    <section>
+      <h3>Encefalitis toxoplásmica en VIH</h3>
+      <div class="divider"></div>
+      <div class="dos-columnas">
+        <div>
+          <div class="img-wrap">
+            <img src="https://cdn.ncbi.nlm.nih.gov/pmc/blobs/7418/5841062/f38c32021671/CRINM2018-9876514.001.jpg" alt="Signo target excéntrico - toxoplasmosis cerebral">
+            <span class="fuente">Adaptado de Stanford et al., Case Rep Neurol Med 2018 · CC-BY</span>
+          </div>
+        </div>
+        <div style="font-size: 0.82em;">
+          <p><strong class="accent">Reactivación</strong> de infección latente (no primoinfección)</p>
+          <p class="secondary" style="font-size: 0.82em;"><em>Dian, Pathog Glob Health 2023</em></p>
+          <p><strong>Umbral clásico:</strong> CD4 &lt; 100 con IgG positivo</p>
+          <p><strong>Presentación típica:</strong></p>
+          <ul>
+            <li>Cefalea progresiva (&gt; 50 %)</li>
+            <li>Déficit focal (hemiparesia)</li>
+            <li>Fiebre</li>
+            <li>Convulsiones (10-30 %)</li>
+            <li>Alteración del estado mental</li>
+          </ul>
+          <p class="secondary" style="font-size: 0.85em;"><strong>Diagnóstico diferencial:</strong> linfoma primario del SNC · criptococoma · tuberculoma · absceso bacteriano</p>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <p style="font-size: 0.78em; margin: 0;"><strong>Tratamiento empírico</strong> cuando hay alta sospecha:</p>
+        <p style="font-size: 0.78em; margin: 0.3em 0;">Pirimetamina 200 mg VO carga → 50 mg/d (≤60 kg) o 75 mg/d (&gt;60 kg) + sulfadiazina 1,000 mg (≤60 kg) o 1,500 mg (&gt;60 kg) cada 6 h + leucovorina 10–25 mg/d · ≥ 6 sem</p>
+        <p style="font-size: 0.78em; margin: 0.3em 0;"><strong>Alternativa práctica:</strong> trimetoprim-sulfametoxazol 5 mg/kg IV/VO cada 12 h (buena penetración SNC, mejor tolerancia)</p>
+        <p style="font-size: 0.78em; margin: 0.3em 0;"><strong>Respuesta esperada:</strong> mejoría clínica e imagenológica 10–14 días · si no mejora → biopsia cerebral</p>
+        <p style="font-size: 0.78em; margin: 0.3em 0;"><strong>Profilaxis primaria:</strong> trimetoprim-sulfa DS diario si CD4 &lt; 100 + IgG+ (cubre también Pneumocystis)</p>
+      </div>
+      <aside class="notes">
+        Abrir con "reactivación, no primoinfección".
+        Pausa en "el linfoma rara vez da fiebre".
+        Mencionar signo target excéntrico — conecta con la imagen.
+        Énfasis en "leucovorina nunca se omite".
+        Gesto al Caso B.
+        ⏱️ 90 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 21: TPH — CZECH 2025 ==================== -->
+    <section class="centrado">
+      <h3>Toxoplasma en trasplante hematopoyético alogénico</h3>
+      <div class="divider divider-center"></div>
+      <span class="numero-grande">2.5 %</span>
+      <p style="font-size: 0.95em; margin-top: 0.2em;"><strong>Incidencia en receptores de trasplante</strong></p>
+      <p class="secondary" style="font-size: 0.85em;">31 / 1,235 casos · 16 años · NIH</p>
+
+      <div class="dos-columnas" style="margin: 1em auto; max-width: 700px;">
+        <div>
+          <span class="numero-mediano">28 días</span>
+          <p style="font-size: 0.82em;">Mediana de aparición post-trasplante<br><span class="secondary">(IQR 20–69)</span></p>
+        </div>
+        <div>
+          <span class="numero-mediano">61 %</span>
+          <p style="font-size: 0.82em;">Mortalidad global<br><span class="secondary">(12.9 % atribuible)</span></p>
+        </div>
+      </div>
+
+      <div class="highlight-box" style="max-width: 720px; margin-left: auto; margin-right: auto;">
+        <p style="font-size: 1.1em; margin: 0;"><strong class="accent">90.3 %</strong> de los casos ocurrieron <strong>SIN profilaxis</strong></p>
+      </div>
+
+      <div style="text-align: left; font-size: 0.78em; margin-top: 0.8em; max-width: 720px; margin-left: auto; margin-right: auto;">
+        <p><strong>Clínica típica:</strong> fiebre (74 %) · neumonitis con hipoxemia · encefalitis · diseminación multiorgánica · fase de mayor riesgo: primeros 100 días post-trasplante</p>
+        <p><strong>Diagnóstico:</strong> PCR en sangre total · <strong class="accent">sensibilidad 93.3 %</strong></p>
+      </div>
+      <span class="fuente">Czech, Open Forum Infect Dis 2025</span>
+      <aside class="notes">
+        Pausas en 2.5 %, 28 días, 61 %, 90.3 %.
+        Contraste con VIH: "más sistémica y menos focal".
+        Cerrar apuntando a Slide 22.
+        ⏱️ 75 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 22: ECIL-9 ==================== -->
+    <section>
+      <h3>ECIL-9 (2022) · qPCR preemptive — el nuevo estándar</h3>
+      <div class="divider"></div>
+
+      <div class="card-full">
+        <p style="font-size: 0.82em; margin: 0;"><strong>PASO 1 · Pre-trasplante</strong></p>
+        <p style="font-size: 0.78em;">Serología IgG Toxoplasma en TODO candidato. Si IgG negativo → counseling preventivo. Si IgG positivo → continuar.</p>
+      </div>
+
+      <div class="card-full">
+        <p style="font-size: 0.82em; margin: 0;"><strong>PASO 2 · Post-trasplante (IgG+)</strong></p>
+        <p style="font-size: 0.78em;">Trimetoprim-sulfametoxazol profilaxis (dosis para Pneumocystis) <strong class="accent">+ qPCR en sangre SEMANAL</strong> · desde que tolere post-trasplante · duración ≥ 6 meses · extender si inmunosupresión intensificada.</p>
+      </div>
+
+      <div class="card-full">
+        <p style="font-size: 0.82em; margin: 0;"><strong>PASO 3 · Si qPCR positiva</strong></p>
+        <p style="font-size: 0.78em;"><strong>Tratamiento preemptive</strong> (antes de enfermedad clínica): trimetoprim-sulfa 5 mg/kg cada 12 h · o pirimetamina+sulfadiazina+leucovorina · o pirimetamina+clindamicina+leucovorina.</p>
+        <p style="font-size: 0.78em;"><strong>Duración:</strong> hasta ≥ 2 qPCR negativas consecutivas (infección) · ≥ 6 semanas (enfermedad clínica)</p>
+      </div>
+
+      <div class="highlight-box">
+        <p style="font-size: 0.82em; margin: 0;"><strong>Validación en la práctica (Aerts, Clin Infect Dis 2025):</strong></p>
+        <p style="font-size: 0.78em;">No negativización a día 10 = mortalidad D30 significativamente mayor (p = 0.023). → Si qPCR no baja en 10 días, <strong>cambiar o reforzar esquema</strong>.</p>
+      </div>
+
+      <p class="secondary centrado" style="font-size: 0.78em; margin-top: 0.5em;">
+        NO indicado preemptive en: seronegativos · trasplante autólogo · hematología no trasplantada
+      </p>
+      <aside class="notes">
+        Analogía con CMV (monitorizar y tratar preemptivo).
+        Énfasis en qPCR semanal y día 10 como punto de decisión.
+        Mencionar disponibilidad peruana.
+        ⏱️ 85 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 23: ÓRGANO SÓLIDO ==================== -->
+    <section>
+      <h3>Trasplante de órgano sólido · otra lógica</h3>
+      <div class="divider"></div>
+
+      <p style="font-size: 0.82em; margin-bottom: 0.3em;"><strong>Riesgo por órgano</strong> (densidad de quistes tisulares):</p>
+      <div style="font-size: 0.82em;">
+        <div class="barra-row"><span class="barra-label">Cardíaco</span><div class="barra-track"><div class="barra-fill acento" style="width: 100%;"></div></div><span class="barra-valor accent">el mayor</span></div>
+        <div class="barra-row"><span class="barra-label">Pulmonar</span><div class="barra-track"><div class="barra-fill" style="width: 80%;"></div></div><span class="barra-valor">alto</span></div>
+        <div class="barra-row"><span class="barra-label">Hepático</span><div class="barra-track"><div class="barra-fill" style="width: 50%;"></div></div><span class="barra-valor">moderado</span></div>
+        <div class="barra-row"><span class="barra-label">Renal</span><div class="barra-track"><div class="barra-fill" style="width: 20%;"></div></div><span class="barra-valor secondary">el menor</span></div>
+      </div>
+
+      <table class="tabla-compacta" style="margin-top: 0.5em;">
+        <thead>
+          <tr><th>Donante / Receptor</th><th>Mecanismo</th><th>Riesgo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>D+ / R−</strong></td><td>Primoinfección por quistes del donante</td><td style="background: rgba(251,146,60,0.15);"><strong>ALTO</strong> (sobre todo cardíaco/pulmonar)</td></tr>
+          <tr><td>D+ / R+ o D− / R+</td><td>Reactivación del receptor inmunosuprimido</td><td>Moderado</td></tr>
+          <tr><td>D− / R−</td><td>Primoinfección ambiental post-trasplante</td><td>Bajo (no nulo)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="highlight-box">
+        <p style="font-size: 0.82em; margin: 0;"><strong>Profilaxis estándar (AST guidelines):</strong></p>
+        <p style="font-size: 0.78em; margin: 0.3em 0;">Trimetoprim-sulfametoxazol DS diario o 3 × semana · 3–6 meses post-trasplante · extender en cardíaco D+, rechazo con corticoides altos, anti-linfocitos T.</p>
+        <p style="font-size: 0.78em; margin: 0.3em 0;">Alternativa sulfa: atovacuona 1,500 mg/día ± pirimetamina + leucovorina.</p>
+      </div>
+
+      <p class="secondary" style="font-size: 0.8em; margin-top: 0.5em;">
+        📍 <strong>En Perú/LATAM:</strong> en trasplante cardíaco coexisten <em>Toxoplasma</em> Y enfermedad de Chagas. Screening pre-trasplante para ambos es estándar regional.
+        <span class="fuente-inline">Tejo &amp; Campos, JHLT Open 2026</span>
+      </p>
+      <aside class="notes">
+        "Otra lógica" marca el contraste con TPH.
+        Cardíaco = mayor riesgo por densidad de quistes.
+        Pausa en "mismatch D+/R-".
+        Cerrar con "Toxoplasma y Chagas en cardíaco LATAM".
+        ⏱️ 80 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 24: CONGÉNITA ==================== -->
+    <section>
+      <h3>Toxoplasmosis congénita · la línea de la semana 18</h3>
+      <div class="divider"></div>
+
+      <p style="font-size: 0.82em; margin-bottom: 0.3em;"><strong>El principio inverso</strong> (por trimestre de infección materna primaria):</p>
+      <table class="tabla-compacta">
+        <thead>
+          <tr><th></th><th>T1 (≤ 12 sem)</th><th>T2 (13-27 sem)</th><th>T3 (≥ 28 sem)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Transmisión</strong></td><td>10–15 %</td><td>25–30 %</td><td>60–90 %</td></tr>
+          <tr><td><strong>Severidad</strong></td><td style="background: rgba(251,146,60,0.15);">Grave (aborto, SNC)</td><td>Moderada</td><td>Leve / asintomática al nacer</td></tr>
+        </tbody>
+      </table>
+
+      <div class="dos-columnas" style="margin-top: 0.8em;">
+        <div class="card-full">
+          <h3 style="color: var(--accent);">&lt; 18 semanas (o PCR fetal −)</h3>
+          <p style="font-size: 0.82em;"><strong>Espiramicina 1 g VO cada 8 h</strong></p>
+          <p style="font-size: 0.78em;">No cruza placenta → <strong>previene</strong> transmisión madre-feto.</p>
+          <p style="font-size: 0.78em;">Continuar hasta parto o diagnóstico fetal.</p>
+        </div>
+        <div class="card-full">
+          <h3 style="color: var(--accent);">≥ 18 semanas o PCR fetal +</h3>
+          <p style="font-size: 0.82em;"><strong>Pirimetamina + sulfadiazina + leucovorina</strong></p>
+          <p style="font-size: 0.78em;">Sí cruza placenta → <strong>trata</strong> al feto infectado.</p>
+          <p style="font-size: 0.78em;">Reduce severidad de secuelas.</p>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <p style="font-size: 0.8em; margin: 0;"><strong>Tétrada de Sabin</strong> (recién nacido sintomático):</p>
+        <p style="font-size: 0.78em; margin: 0.3em 0;">Hidrocefalia · calcificaciones intracraneales · coriorretinitis · convulsiones</p>
+        <p style="font-size: 0.78em; margin: 0.2em 0;" class="secondary">60–70 % son asintomáticos al nacer (especialmente infección T3)</p>
+      </div>
+
+      <p style="font-size: 0.78em; margin-top: 0.5em;"><strong>Al nacer:</strong> pirimetamina + sulfadiazina + leucovorina <strong>× 12 MESES</strong> (AAP Red Book 2024) · + prednisona si coriorretinitis activa o SNC severo.</p>
+      <p style="font-size: 0.75em;" class="secondary">Tratamiento prenatal → OR 0.25 manifestaciones al nacer · OR 0.17 complicaciones futuras (Guarch-Ibáñez, PLoS NTD 2024)</p>
+      <aside class="notes">
+        Abrir con "principio inverso".
+        Pausa larga antes de "semana 18".
+        Espiramicina vs pirim+sulfa+leucovorina como fármacos distintos con roles distintos.
+        Leucovorina obligatoria.
+        ⏱️ 90 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 25: DIAGNÓSTICO ==================== -->
+    <section>
+      <h3>Diagnóstico · serología + PCR + imagen</h3>
+      <div class="divider"></div>
+      <div class="tres-columnas">
+        <div class="card">
+          <h3>🧪 Serología</h3>
+          <p style="font-size: 0.78em;"><strong>IgG</strong> · infección pasada o presente</p>
+          <p style="font-size: 0.78em;"><strong>IgM</strong> · aparece en primoinfección, <strong>puede persistir meses-años</strong> → NO es marcador fiable de infección reciente</p>
+          <p style="font-size: 0.78em;"><strong class="accent">Avidez IgG · el discriminador</strong></p>
+          <p style="font-size: 0.75em;">· Baja avidez → &lt; 3-4 meses<br>· Alta avidez → &gt; 3-4 meses</p>
+          <p style="font-size: 0.78em;"><strong>IgA</strong> · útil en congénita</p>
+          <span class="fuente-inline">Tork, BMC Preg 2025</span>
+        </div>
+        <div class="card">
+          <h3>🧬 PCR</h3>
+          <p style="font-size: 0.78em;"><strong>Sangre total</strong></p>
+          <p style="font-size: 0.75em;">Sens 93 % en trasplante hematopoyético (Czech 2025)</p>
+          <p style="font-size: 0.78em;"><strong>Líquido cefalorraquídeo</strong></p>
+          <p style="font-size: 0.75em;">Alta especificidad · sens 50-80 %</p>
+          <p style="font-size: 0.78em;"><strong>Líquido amniótico</strong></p>
+          <p style="font-size: 0.75em;">Sens 70-80 % · Esp &gt; 95 % · desde semana 18</p>
+          <p style="font-size: 0.78em;"><strong>Humor acuoso</strong></p>
+          <p style="font-size: 0.75em;">Toxoplasmosis ocular</p>
+        </div>
+        <div class="card">
+          <h3>🧠 Imagen</h3>
+          <p style="font-size: 0.78em;"><strong>Resonancia magnética contrastada</strong></p>
+          <p style="font-size: 0.78em;">Múltiples lesiones con realce en anillo</p>
+          <p style="font-size: 0.78em;">Localización: ganglios basales · unión córtico-subcortical</p>
+          <p style="font-size: 0.78em;"><strong class="accent">Signo "target excéntrico"</strong> (patognomónico)</p>
+          <p style="font-size: 0.78em;" class="secondary">Diferencial: linfoma primario SNC · criptococoma · tuberculoma</p>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <p style="font-size: 0.8em; margin: 0;"><strong>Algoritmo por escenario:</strong></p>
+        <ul style="font-size: 0.75em;">
+          <li><strong>🤰 Gestante IgM+</strong> → avidez IgG → PCR líquido amniótico ≥ 18 sem</li>
+          <li><strong>🧠 VIH + lesiones en anillo</strong> → tratamiento empírico → control imagen 10-14 días → biopsia si no mejora</li>
+          <li><strong>🏥 Trasplante hematopoyético IgG+</strong> → qPCR sangre semanal → preemptive si +</li>
+          <li><strong>👶 Recién nacido con sospecha</strong> → IgM/IgA del RN + PCR + ecografía + fondo de ojo + seguimiento 12 m</li>
+        </ul>
+      </div>
+      <aside class="notes">
+        Énfasis en "IgM puede persistir meses-años" (trampa clásica).
+        "Avidez IgG es el discriminador real".
+        Tork 2025: solo 30 % con avidez baja en IgM+.
+        Los 4 escenarios al final.
+        ⏱️ 80 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 26: TRATAMIENTO TOXO ==================== -->
+    <section>
+      <h3>Tratamiento de Toxoplasma gondii</h3>
+      <div class="divider"></div>
+      <table class="tabla-densa">
+        <thead>
+          <tr><th>Escenario</th><th>Primera línea</th><th>Duración</th></tr>
+        </thead>
+        <tbody>
+          <tr class="grupo-header"><td colspan="3">AGUDO · INMUNOSUPRIMIDO</td></tr>
+          <tr>
+            <td>Encefalitis en VIH (agudo)</td>
+            <td>Pirimetamina 200 mg carga → 50 mg/d (≤60 kg) o 75 mg/d (&gt;60) + sulfadiazina 1,000 mg (≤60 kg) o 1,500 mg (&gt;60) cada 6 h + leucovorina 10–25 mg/d<br><em>Alternativa:</em> trimetoprim-sulfa 5 mg/kg IV/VO cada 12 h · pirimetamina + clindamicina 600 mg cada 6 h + leucovorina</td>
+            <td>≥ 6 semanas</td>
+          </tr>
+          <tr>
+            <td>Trasplante hematopoyético IgG+ (infección qPCR+)</td>
+            <td>Trimetoprim-sulfa 5 mg/kg IV/VO cada 12 h · o pirimetamina+sulfa+leucovorina · o pirimetamina+clindamicina+leucovorina</td>
+            <td>Hasta ≥ 2 qPCR negativas (infección) · ≥ 6 sem (enfermedad)</td>
+          </tr>
+          <tr>
+            <td>Coriorretinitis activa</td>
+            <td>Pirimetamina + sulfadiazina + leucovorina · + prednisona si mácula/inflamación severa</td>
+            <td>4–6 semanas</td>
+          </tr>
+          <tr class="grupo-header"><td colspan="3">MANTENIMIENTO · PROFILAXIS SECUNDARIA</td></tr>
+          <tr>
+            <td>VIH post-encefalitis</td>
+            <td>Pirimetamina 25–50 mg/d + sulfadiazina 2,000–4,000 mg/d + leucovorina 10–25 mg/d</td>
+            <td>Hasta CD4 &gt; 200 × ≥ 6 meses con TAR</td>
+          </tr>
+          <tr class="grupo-header"><td colspan="3">PROFILAXIS PRIMARIA</td></tr>
+          <tr>
+            <td>VIH · CD4 &lt; 100 + IgG+</td>
+            <td>Trimetoprim-sulfa DS diario (cubre Pneumocystis)<br><em>Alternativas:</em> dapsona 50 mg/d + pirimetamina 50 mg/sem + leucovorina · atovacuona 1,500 mg/d</td>
+            <td>Hasta CD4 &gt; 200 × ≥ 3 meses con TAR</td>
+          </tr>
+          <tr>
+            <td>Órgano sólido (AST)</td>
+            <td>Trimetoprim-sulfa DS diario o 3×/sem · alternativa atovacuona ± pirimetamina</td>
+            <td>3–6 meses · extender si cardíaco D+</td>
+          </tr>
+          <tr>
+            <td>Trasplante hematopoyético alogénico IgG+</td>
+            <td>Trimetoprim-sulfa profilaxis + qPCR SEMANAL preemptive (ECIL-9)</td>
+            <td>≥ 6 meses</td>
+          </tr>
+          <tr class="grupo-header"><td colspan="3">CONGÉNITA</td></tr>
+          <tr>
+            <td>Gestante &lt; 18 sem (PCR fetal −)</td>
+            <td>Espiramicina 1 g VO cada 8 h</td>
+            <td>Hasta parto o PCR fetal +</td>
+          </tr>
+          <tr>
+            <td>Gestante ≥ 18 sem o PCR fetal +</td>
+            <td>Pirimetamina 50 mg cada 12 h × 2 d → 50 mg/d + sulfadiazina 75 mg/kg/d en 2 tomas × 2 d → 50 mg/kg cada 12 h + leucovorina 10–20 mg/d</td>
+            <td>Hasta parto</td>
+          </tr>
+          <tr>
+            <td>Recién nacido con infección confirmada</td>
+            <td>Pirimetamina 2 mg/kg/d en 2 tomas × 2 d → 1 mg/kg/d × 2–6 meses → 1 mg/kg 3×/sem · sulfadiazina 100 mg/kg/d cada 12 h · leucovorina 10 mg 3×/sem · + prednisona si coriorretinitis activa o SNC severo</td>
+            <td>12 meses (AAP Red Book 2024)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="font-size: 0.7em; margin-top: 0.5em;" class="secondary">
+        <strong>Efectos adversos clave:</strong> pirimetamina → mielotoxicidad (leucovorina SIEMPRE) · sulfadiazina → rash, Stevens-Johnson, cristaluria · trimetoprim-sulfa → rash, hiperkalemia, cristaluria · clindamicina → colitis por <em>Clostridioides difficile</em> · atovacuona → absorción ↑ con alimentos grasos · espiramicina → bien tolerada, no teratogénica
+      </p>
+      <aside class="notes">
+        Recorrer por bloques.
+        Tres datos memorables:
+        1) Pirimetamina SIEMPRE con leucovorina
+        2) Trimetoprim-sulfa 5 mg/kg como alternativa práctica
+        3) Semana 18 como línea divisoria
+        ⏱️ 95 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 27: NOVEDADES ==================== -->
+    <section>
+      <h3>Novedades y pipeline</h3>
+      <div class="divider"></div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6em;">
+        <div class="card">
+          <h3>💊 Antiparasitarios en desarrollo</h3>
+          <p style="font-size: 0.78em;"><strong><em>Cryptosporidium</em></strong></p>
+          <p style="font-size: 0.75em;">· Inhibidores de quinasa dependientes de calcio (bumped kinase inhibitors — blanco CDPK1). Fase preclínica.</p>
+          <p style="font-size: 0.75em;">· Clofazimina (reposicionamiento en VIH)</p>
+          <p style="font-size: 0.75em;">· Combinaciones: nitazoxanida + azitromicina ± rifaximina en trasplantados (Chavez 2023)</p>
+          <p style="font-size: 0.78em;"><strong><em>Toxoplasma</em></strong></p>
+          <p style="font-size: 0.75em;">· Inhibidores de BFD1 — bloquear formación de bradizoítos → evitar la latencia</p>
+        </div>
+        <div class="card">
+          <h3>💉 Vacunas humanas</h3>
+          <p style="font-size: 0.78em;"><strong class="accent">Ninguna aprobada al día de hoy</strong></p>
+          <p style="font-size: 0.78em;">En desarrollo preclínico:</p>
+          <p style="font-size: 0.75em;"><strong><em>Cryptosporidium</em></strong> · subunitarias · mRNA fase temprana</p>
+          <p style="font-size: 0.75em;"><strong><em>Toxoplasma</em></strong> · subunitarias · atenuadas · mRNA experimentales · bloqueadores del switch bradizoítico (BFD1)</p>
+        </div>
+        <div class="card">
+          <h3>🐑 ToxoVax® · la única vacuna</h3>
+          <p style="font-size: 0.78em;">Única vacuna aprobada en el mundo contra <em>Toxoplasma</em>.</p>
+          <p style="font-size: 0.78em;"><strong>Vacuna veterinaria</strong> para ovejas.</p>
+          <p style="font-size: 0.78em;">Cepa S48 atenuada (no forma quistes tisulares). Reduce abortos ovinos.</p>
+          <p style="font-size: 0.75em;" class="secondary">Es el modelo biológico de las candidatas humanas.</p>
+        </div>
+        <div class="card">
+          <h3>📋 Cambios en guías recientes</h3>
+          <p style="font-size: 0.78em;"><strong>ECIL-9 · 2022:</strong> qPCR semanal preemptive en trasplante hematopoyético alogénico IgG+ cambió el estándar.</p>
+          <p style="font-size: 0.78em;"><strong>NIH OI-HIV:</strong> trimetoprim-sulfa como alternativa igual-eficaz a pirimetamina+sulfadiazina en encefalitis toxoplásmica.</p>
+          <p style="font-size: 0.78em;"><strong>AAP Red Book 2024-2027:</strong> ratifica 12 meses para congénita.</p>
+        </div>
+      </div>
+      <p class="centrado secondary" style="font-size: 0.78em; margin-top: 0.5em;">
+        Ventana más interesante 3-5 años: inhibidores del switch taquizoíto-bradizoíto en <em>Toxoplasma</em>, combinaciones con nitazoxanida para <em>Cryptosporidium</em> en trasplantados.
+      </p>
+      <aside class="notes">
+        Recorrer las 4 cards horario.
+        Pausa en "la única vacuna comercial es veterinaria".
+        BKI y BFD1 como las dos líneas para seguir.
+        ⏱️ 70 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 28: RESOLUCIÓN CASOS ==================== -->
+    <section>
+      <h3>Volvamos a los dos casos</h3>
+      <div class="divider"></div>
+      <div class="dos-columnas" style="font-size: 0.78em;">
+        <div class="caso-card">
+          <h3>🟢 Caso A</h3>
+          <p class="secondary" style="font-size: 0.85em;">Varón 52 años · trasplante alogénico día +40 · profilaxis trimetoprim-sulfa 3×/sem · 3 sem diarrea acuosa.</p>
+          <p><strong class="accent">¿Qué pensamos?</strong> <em>Cryptosporidium</em> · la profilaxis NO lo cubre.</p>
+          <p><strong class="accent">¿Qué pedimos?</strong> PCR multiplex gastrointestinal · Ziehl-Neelsen modificado × 3 muestras · CMV en sangre · toxina <em>Clostridioides difficile</em> · biopsia si persiste.</p>
+          <p class="secondary" style="font-size: 0.85em;"><strong>Diagnóstico diferencial:</strong> CMV · <em>C. difficile</em> · GvHD intestinal · microsporidios · norovirus.</p>
+          <p><strong class="accent">¿Cómo tratamos?</strong> Piedra angular: restaurar inmunidad (reconstitución linfocitaria). Nitazoxanida 500–1000 mg cada 12 h × 14 días (eficacia limitada). Hidratación · aislamiento de contacto.</p>
+        </div>
+        <div class="caso-card azul">
+          <h3>🔵 Caso B</h3>
+          <p class="secondary" style="font-size: 0.85em;">Mujer 34 años · VIH sin tratamiento × 2 años · CD4 65 · lesiones en anillo en ganglios basales.</p>
+          <p><strong style="color: #38bdf8;">¿Qué pensamos?</strong> Encefalitis toxoplásmica · reactivación de infección latente (CD4 &lt; 100 + IgG+).</p>
+          <p><strong style="color: #38bdf8;">¿Qué pedimos?</strong> Serología IgG Toxoplasma (esperable +) · resonancia magnética contrastada · búsqueda de VIH asociada.</p>
+          <p class="secondary" style="font-size: 0.85em;"><strong>Diagnóstico diferencial:</strong> linfoma primario del SNC · criptococoma · tuberculoma · absceso.</p>
+          <p><strong style="color: #38bdf8;">¿Cómo tratamos?</strong> Tratamiento empírico SIN biopsia: pirimetamina + sulfadiazina + leucovorina (o trimetoprim-sulfa 5 mg/kg cada 12 h) × ≥ 6 semanas. Control a 10-14 días. Si no mejora → biopsia cerebral. Iniciar TAR cuando estable.</p>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <p style="font-size: 0.82em; margin: 0;"><strong>Dos mensajes que se llevan del día:</strong></p>
+        <ul style="font-size: 0.78em;">
+          <li>Profilaxis con trimetoprim-sulfametoxazol cubre <em>Cyclospora</em> y <em>Cystoisospora</em> — pero NO cubre <em>Cryptosporidium</em>.</li>
+          <li>VIH avanzado (CD4 &lt; 100) + lesiones en anillo → trata toxoplasmosis empíricamente. Respuesta clínico-radiológica a 10-14 días es la confirmación.</li>
+        </ul>
+      </div>
+      <aside class="notes">
+        "La respuesta es Cryptosporidium" y "la respuesta es encefalitis toxoplásmica" cierran loop.
+        Repetir textualmente los dos mensajes clave.
+        ⏱️ 90 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 29: HERO QUOTE + TRIPARTITO ==================== -->
+    <section>
+      <div class="divider divider-center"></div>
+      <p class="frase-grande centrado accent" style="margin: 0.5em auto; max-width: 900px;">"La inmunidad del hospedero<br>es el mejor antiparasitario."</p>
+      <div class="divider divider-center"></div>
+
+      <div class="tres-columnas" style="margin-top: 1.2em;">
+        <div class="card">
+          <h3>Mensajes clave</h3>
+          <ul style="font-size: 0.75em;">
+            <li>Trimetoprim-sulfa cubre <em>Cyclospora</em> y <em>Cystoisospora</em> — no <em>Cryptosporidium</em></li>
+            <li>La línea de la semana 18 divide el manejo en toxoplasmosis gestacional</li>
+            <li>qPCR preemptive ≥ 6 meses en trasplante hematopoyético alogénico IgG+ (ECIL-9, 2022)</li>
+            <li>Inmunidad del hospedero &gt; antiparasitario en inmunosupresión severa</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>En la práctica</h3>
+          <ul style="font-size: 0.75em;">
+            <li>Autofluorescencia UV cuando la sospecha es <em>Cyclospora</em> o <em>Cystoisospora</em></li>
+            <li>Serología IgG Toxoplasma documentada en TODO inmunosuprimido planeado</li>
+            <li>Revisar disponibilidad institucional de qPCR para Toxoplasma</li>
+            <li>Mismatch D+/R− a detectar en candidatos a trasplante de órgano sólido</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Brechas y preguntas abiertas</h3>
+          <ul style="font-size: 0.75em;">
+            <li>Antiparasitario efectivo para <em>Cryptosporidium</em> en inmunosupresión severa</li>
+            <li>Vacuna humana contra Toxoplasma</li>
+            <li>Vigilancia nacional de coccidias en Perú</li>
+            <li>Impacto real de cepas atípicas sudamericanas en inmunocompetentes</li>
+            <li>Traslación clínica de inhibidores de BFD1 y bumped kinase inhibitors</li>
+          </ul>
+        </div>
+      </div>
+      <aside class="notes">
+        Leer el hero quote con pausa.
+        Pausa de 3 seg después de decirlo.
+        Recorrer 3 columnas rápido — 15 seg cada una.
+        Frontera/humildad en la tercera columna.
+        ⏱️ 55 seg
+      </aside>
+    </section>
+
+    <!-- ==================== SLIDE 30: GRACIAS ==================== -->
+    <section class="centrado">
+      <div class="divider divider-center"></div>
+      <p class="gracias-final" style="margin: 1.5em 0;">Gracias por su atención</p>
+      <div class="divider divider-center"></div>
+      <aside class="notes">
+        Mantener visible durante Q&A.
+        Referencias disponibles en las slides · puedo compartir la presentación después.
+        ⏱️ 8 seg
+      </aside>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    transition: 'fade',
+    transitionSpeed: 'slow',
+    backgroundTransition: 'fade',
+    progress: true,
+    controls: true,
+    controlsLayout: 'bottom-right',
+    center: false,
+    slideNumber: 'c/t',
+    width: 1280,
+    height: 800,
+    margin: 0.04,
+    plugins: [ RevealNotes ]
+  });
+</script>
+
+<!-- 📖 MODO PRESENTADOR: Presiona "S" para abrir vista de presentador
+     (muestra tus notas privadas + slide siguiente + cronómetro)
+
+     🖨️ EXPORTAR A PDF: Agrega ?print-pdf a la URL, luego Ctrl+P
+     → Márgenes: Ninguno | Gráficos de fondo: Activado | Guardar como PDF -->
+</body>
+</html>
