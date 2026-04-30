@@ -1,0 +1,1360 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LAPTOP trial — Lectura crítica</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Paleta académica Lancet — modo LIGHT */
+      --bg: #fafafa;
+      --text: #111111;
+      --secondary: #6b7280;
+      --accent-1: #0ea5e9;        /* azul Oxford — énfasis principal */
+      --accent-2: #14b8a6;        /* teal sobrio — contraste */
+      --accent-3: #dc2626;        /* rojo Lancet — críticas, brechas */
+      --frame-color: #e5e7eb;
+      --slide-frame: 2px solid var(--frame-color);
+      /* Bloques tres-fondos */
+      --bloque-paper: #f3f4f6;
+      --bloque-subtexto: #fef9c3;
+      --bloque-critica: #fee2e2;
+    }
+
+    .reveal-viewport { background: var(--bg); }
+    .reveal { font-family: 'Inter', system-ui, sans-serif; color: var(--text); }
+
+    /* Marco académico */
+    .reveal .slides > section {
+      border: var(--slide-frame);
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    /* Tipografía — sala media auditorio (mínimos +10%) */
+    .reveal h1 {
+      font-size: 4em;
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--text);
+      text-transform: none;
+      letter-spacing: -0.02em;
+      font-family: 'Source Serif Pro', Georgia, serif;
+    }
+    .reveal h2 {
+      font-size: 2.85em;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.1;
+      font-family: 'Source Serif Pro', Georgia, serif;
+    }
+    .reveal h3 {
+      font-size: 1.55em;
+      font-weight: 600;
+      color: var(--accent-1);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.6em;
+    }
+    .reveal p {
+      font-size: 1.65em;
+      font-weight: 400;
+      line-height: 1.5;
+      margin: 0.4em 0;
+    }
+    .reveal ul { list-style: none; padding: 0; margin: 0.6em 0; }
+    .reveal ul li {
+      font-size: 1.65em;
+      padding: 0.35em 0 0.35em 1.6em;
+      position: relative;
+      line-height: 1.4;
+      font-weight: 400;
+    }
+    .reveal ul li::before {
+      content: "→";
+      color: var(--accent-1);
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+    }
+    .reveal section { padding: 50px 70px; text-align: left; }
+
+    /* Utilidades */
+    .accent  { color: var(--accent-1) !important; }
+    .accent2 { color: var(--accent-2) !important; }
+    .accent3 { color: var(--accent-3) !important; }
+    .secondary { color: var(--secondary) !important; }
+    .centrado { text-align: center !important; }
+
+    .fuente {
+      font-size: 0.95em;
+      color: var(--secondary);
+      margin-top: 1.2em;
+      display: block;
+      font-weight: 400;
+      font-style: italic;
+    }
+    .divider {
+      width: 80px;
+      height: 4px;
+      background: var(--accent-3);
+      margin: 0.6em 0 1em 0;
+      border-radius: 2px;
+    }
+
+    /* SLIDE 1 — Portada */
+    .portada-grid {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 3em;
+      align-items: center;
+      height: 100%;
+    }
+    .portada-info h1 {
+      font-size: 3.4em;
+      line-height: 1.1;
+      margin-bottom: 0.3em;
+    }
+    .portada-info .journal-tag {
+      display: inline-block;
+      background: var(--accent-3);
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.55em;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      padding: 0.4em 0.9em;
+      border-radius: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1.2em;
+    }
+    .portada-info .autores {
+      font-size: 1.1em;
+      color: var(--secondary);
+      margin-top: 0.6em;
+      font-style: italic;
+    }
+    .portada-info .citacion {
+      font-size: 0.95em;
+      color: var(--secondary);
+      margin-top: 0.4em;
+      font-family: 'Source Serif Pro', serif;
+    }
+    .portada-info .ponente {
+      margin-top: 2.2em;
+      padding-top: 1.5em;
+      border-top: 2px solid var(--frame-color);
+    }
+    .portada-info .ponente .nombre {
+      font-size: 1.4em;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+    }
+    .portada-info .ponente .cargo {
+      font-size: 0.95em;
+      color: var(--secondary);
+      margin: 0.2em 0 0 0;
+      font-style: italic;
+    }
+    .portada-info .ponente .lugar {
+      font-size: 0.8em;
+      color: var(--secondary);
+      margin: 0.3em 0 0 0;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .portada-paper-img {
+      width: 280px;
+      height: auto;
+      border: 1px solid var(--frame-color);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      border-radius: 2px;
+    }
+
+    /* SLIDE 2 — Conflictos de interés */
+    .coi-intro {
+      font-size: 1.4em;
+      color: var(--text);
+      margin-bottom: 1em;
+      line-height: 1.4;
+    }
+    .coi-intro em {
+      color: var(--accent-3);
+      font-style: italic;
+      font-weight: 600;
+    }
+    .tabla-coi {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.5em 0 1em 0;
+      font-size: 1em;
+    }
+    .tabla-coi th {
+      background: #f3f4f6;
+      color: var(--text);
+      font-weight: 700;
+      padding: 0.7em 1em;
+      text-align: left;
+      border-bottom: 2px solid var(--frame-color);
+      font-size: 0.95em;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tabla-coi td {
+      padding: 0.65em 1em;
+      border-bottom: 1px solid var(--frame-color);
+      font-size: 1em;
+      vertical-align: middle;
+    }
+    .estado-activo {
+      display: inline-block;
+      background: #dcfce7;
+      color: #166534;
+      font-size: 0.85em;
+      font-weight: 600;
+      padding: 0.2em 0.7em;
+      border-radius: 4px;
+    }
+    .estado-discontinuado {
+      display: inline-block;
+      background: #f3f4f6;
+      color: var(--secondary);
+      font-size: 0.85em;
+      font-weight: 600;
+      padding: 0.2em 0.7em;
+      border-radius: 4px;
+    }
+    .coi-declaracion {
+      background: var(--bloque-paper);
+      border-left: 5px solid var(--accent-1);
+      padding: 1em 1.4em;
+      margin-top: 1.2em;
+      font-size: 1.15em;
+      line-height: 1.5;
+    }
+    .coi-declaracion strong {
+      color: var(--accent-3);
+      font-weight: 700;
+    }
+
+    /* Bloques tres-fondos para Introducción y Discusión */
+    .tres-bloques {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8em;
+      margin-top: 0.8em;
+    }
+    .bloque {
+      padding: 1em 1.4em;
+      border-radius: 6px;
+      border-left: 5px solid;
+    }
+    .bloque .etiqueta {
+      font-size: 0.85em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5em;
+      display: block;
+    }
+    .bloque p,
+    .bloque .contenido {
+      font-size: 1.1em;
+      line-height: 1.5;
+      margin: 0;
+      color: var(--text);
+    }
+    .bloque-paper {
+      background: var(--bloque-paper);
+      border-left-color: var(--secondary);
+    }
+    .bloque-paper .etiqueta { color: var(--secondary); }
+    .bloque-paper .contenido em {
+      font-style: italic;
+      color: #374151;
+    }
+    .bloque-subtexto {
+      background: var(--bloque-subtexto);
+      border-left-color: #ca8a04;
+    }
+    .bloque-subtexto .etiqueta { color: #92400e; }
+    .bloque-critica {
+      background: var(--bloque-critica);
+      border-left-color: var(--accent-3);
+    }
+    .bloque-critica .etiqueta { color: var(--accent-3); }
+
+    /* SLIDE 3b — Cinco sesgos */
+    .sesgos-tabla {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.8em;
+      font-size: 0.95em;
+    }
+    .sesgos-tabla th {
+      background: var(--accent-1);
+      color: white;
+      font-weight: 700;
+      padding: 0.7em 1em;
+      text-align: left;
+      font-size: 0.95em;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .sesgos-tabla td {
+      padding: 0.65em 1em;
+      border-bottom: 1px solid var(--frame-color);
+      vertical-align: top;
+      line-height: 1.4;
+    }
+    .sesgos-tabla tr:nth-child(even) td { background: #fafafa; }
+    .sesgos-tabla .num {
+      font-weight: 900;
+      color: var(--accent-3);
+      font-size: 1.3em;
+      width: 50px;
+    }
+    .sesgos-tabla .nombre {
+      font-weight: 700;
+      color: var(--text);
+      width: 28%;
+    }
+    .sesgos-tabla .descripcion { color: var(--text); }
+
+    /* SLIDE 4a, 4b — Métodos · dos columnas paralelas */
+    .metodos-tabla {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.6em;
+      font-size: 0.95em;
+    }
+    .metodos-tabla th {
+      padding: 0.8em 1em;
+      text-align: left;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      vertical-align: middle;
+    }
+    .metodos-tabla th.col-paper {
+      background: var(--bloque-paper);
+      color: var(--text);
+      border-bottom: 3px solid var(--secondary);
+      width: 50%;
+    }
+    .metodos-tabla th.col-critica {
+      background: var(--bloque-critica);
+      color: var(--accent-3);
+      border-bottom: 3px solid var(--accent-3);
+      width: 50%;
+    }
+    .metodos-tabla td {
+      padding: 0.65em 1em;
+      vertical-align: top;
+      line-height: 1.4;
+      border-bottom: 1px solid var(--frame-color);
+      font-size: 0.95em;
+    }
+    .metodos-tabla td.col-paper {
+      background: #fafafa;
+      border-right: 1px solid var(--frame-color);
+    }
+    .metodos-tabla td.col-critica { background: #fffbfb; }
+    .metodos-tabla strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+    .metodos-tabla .col-critica strong { color: var(--accent-3); }
+
+    /* SLIDES 5a/5b/5c — Resultados con imagen del paper */
+    .resultados-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 1.5em;
+      align-items: start;
+      height: 100%;
+    }
+    .resultados-img-wrap {
+      background: white;
+      padding: 8px;
+      border: 1px solid var(--frame-color);
+      border-radius: 4px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .resultados-img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .resultados-img-wrap .caption {
+      font-size: 0.75em;
+      color: var(--secondary);
+      margin-top: 0.5em;
+      text-align: center;
+      font-style: italic;
+    }
+    .resultados-texto h3 {
+      font-size: 1.05em;
+      margin: 0.4em 0 0.3em 0;
+    }
+    .resultados-texto .hallazgo {
+      background: #f9fafb;
+      border-left: 4px solid var(--accent-1);
+      padding: 0.7em 1em;
+      margin-bottom: 0.7em;
+      font-size: 0.95em;
+      line-height: 1.45;
+    }
+    .resultados-texto .critica {
+      background: #fee2e2;
+      border-left: 4px solid var(--accent-3);
+      padding: 0.7em 1em;
+      margin-bottom: 0.5em;
+      font-size: 0.95em;
+      line-height: 1.45;
+    }
+    .resultados-texto .critica strong { color: var(--accent-3); font-weight: 700; }
+    .resultados-texto .hallazgo strong { color: var(--text); font-weight: 700; }
+    .resultados-texto .destacado {
+      background: linear-gradient(transparent 60%, #fef08a 60%);
+      font-weight: 700;
+      padding: 0 0.1em;
+    }
+    .resultados-texto .destacado-rojo {
+      background: linear-gradient(transparent 60%, #fecaca 60%);
+      font-weight: 700;
+      padding: 0 0.1em;
+      color: var(--accent-3);
+    }
+
+    /* SLIDE 7 — Mensajes clave */
+    .mensajes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.2em;
+      margin-top: 0.5em;
+    }
+    .mensaje-card {
+      background: white;
+      border: 1px solid var(--frame-color);
+      border-top: 5px solid var(--accent-1);
+      border-radius: 6px;
+      padding: 1.2em 1.3em;
+    }
+    .mensaje-card h4 {
+      font-size: 0.95em;
+      font-weight: 700;
+      color: var(--accent-1);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 0.6em 0;
+    }
+    .mensaje-card ul li {
+      font-size: 1em;
+      padding: 0.3em 0 0.3em 1.3em;
+      line-height: 1.4;
+    }
+    .mensaje-card ul li::before { content: "•"; }
+    .mensaje-card.practica { border-top-color: var(--accent-2); }
+    .mensaje-card.practica h4 { color: var(--accent-2); }
+    .mensaje-card.brechas { border-top-color: var(--accent-3); }
+    .mensaje-card.brechas h4 { color: var(--accent-3); }
+
+    /* SLIDE 8 — Checklist */
+    .checklist {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5em;
+    }
+    .checklist td {
+      padding: 0.55em 0.9em;
+      border-bottom: 1px solid var(--frame-color);
+      font-size: 1em;
+      line-height: 1.4;
+      vertical-align: middle;
+    }
+    .checklist td.num {
+      width: 50px;
+      font-weight: 900;
+      color: var(--accent-1);
+      font-size: 1.15em;
+      text-align: center;
+    }
+    .checklist tr:nth-child(even) td { background: #fafafa; }
+    .checklist .resp {
+      width: 110px;
+      text-align: right;
+      color: var(--secondary);
+      font-size: 0.9em;
+      letter-spacing: 0.05em;
+    }
+    .checklist .resp .si,
+    .checklist .resp .no {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--secondary);
+      border-radius: 4px;
+      margin-left: 0.35em;
+      vertical-align: middle;
+    }
+
+    /* SLIDE 9 — Gracias */
+    .gracias-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+    }
+    .gracias-wrap h1 {
+      font-size: 6em;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
+    .gracias-wrap .sub {
+      font-size: 1.6em;
+      color: var(--secondary);
+      margin-top: 1em;
+      font-style: italic;
+    }
+    .gracias-wrap .ponente {
+      margin-top: 3em;
+      padding-top: 1.5em;
+      border-top: 2px solid var(--frame-color);
+      font-size: 1.05em;
+      color: var(--secondary);
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ====================================================
+         SLIDE 1 — Portada
+    ===================================================== -->
+    <section>
+      <div class="portada-grid">
+        <div class="portada-info">
+          <span class="journal-tag">The Lancet Infectious Diseases · 2026</span>
+          <h1>Lectura crítica del <span class="accent3">LAPTOP trial</span></h1>
+          <p class="autores">Behrens GMN, Assoumou L, Liegeon G, et al.</p>
+          <p class="citacion">Terapia con inhibidor de integrasa frente a inhibidor de proteasa en enfermedad por VIH avanzada (LAPTOP): ensayo multinacional, aleatorizado, abierto, de no-inferioridad. <em>Lancet Infect Dis</em> 2026;26:510-21.</p>
+
+          <div class="ponente">
+            <p class="nombre">César Copaja-Corzo, MD. MSc.</p>
+            <p class="cargo">Residente de Infectología y Medicina Tropical</p>
+          </div>
+        </div>
+
+        <div class="portada-paper-wrap">
+          <img src="portada_paper.png" alt="Portada del paper en Lancet Infectious Diseases" class="portada-paper-img">
+        </div>
+      </div>
+
+      <aside class="notes">
+        Tiempo estimado: 1 min.
+
+        Apertura formal. Presento el paper (Behrens 2026 Lancet ID) y mi rol.
+
+        Esta es una clase de lectura crítica radical. No vamos a buscar qué tiene de bueno este paper — vamos a desarmarlo.
+
+        Transición: "Antes de empezar, declaro mis conflictos de interés."
+      </aside>
+    </section>
+
+    <!-- ====================================================
+         SLIDE 2 — Conflictos de interés
+    ===================================================== -->
+    <section>
+      <h2>Conflictos de interés del ponente</h2>
+      <div class="divider"></div>
+
+      <p class="coi-intro">Como esta charla es de <em>lectura crítica radical</em> y vamos a cuestionar duramente este artículo, declaro primero mis vínculos académicos y financieros.</p>
+
+      <table class="tabla-coi">
+        <thead>
+          <tr>
+            <th>Institución</th>
+            <th>Rol</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>USIL</strong></td>
+            <td>Investigador asociado</td>
+            <td><span class="estado-activo">Activo</span></td>
+          </tr>
+          <tr>
+            <td><strong>UCSUR</strong></td>
+            <td>Investigador asociado</td>
+            <td><span class="estado-discontinuado">Descontinuado</span></td>
+          </tr>
+          <tr>
+            <td><strong>UPT</strong></td>
+            <td>Investigador asociado</td>
+            <td><span class="estado-discontinuado">Descontinuado</span></td>
+          </tr>
+          <tr>
+            <td><strong>ROE</strong></td>
+            <td>Análisis de datos de laboratorio</td>
+            <td><span class="estado-discontinuado">Descontinuado</span></td>
+          </tr>
+          <tr>
+            <td><strong>EviSalud</strong></td>
+            <td>Docencia en investigación</td>
+            <td><span class="estado-discontinuado">Descontinuado</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="coi-declaracion">
+        <strong>Sin financiamiento de la industria farmacéutica</strong> a la fecha. Sin conflicto con Gilead Sciences ni Janssen Pharmaceuticals — los dos sponsors del LAPTOP trial.
+      </div>
+
+      <aside class="notes">
+        Tiempo estimado: 1.5 min.
+
+        Declaración explícita y clara de COI. Esto es importante porque la charla va a hacer crítica fuerte al COI del paper.
+
+        Lectura sugerida en voz alta: "Mis vínculos académicos son con USIL como investigador asociado activo. UCSUR y UPT fueron afiliaciones previas, ya descontinuadas. Análisis de datos de laboratorio en ROE y docencia en investigación con EviSalud."
+
+        Línea clave a enfatizar: "No tengo ningún financiamiento de la industria farmacéutica, ni vínculo con Gilead o Janssen — los dos sponsors del paper que vamos a analizar."
+
+        Transición: "Con esto claro, entremos en materia. Primer paso: el contexto y la pregunta que el paper dice responder."
+      </aside>
+    </section>
+
+    <!-- ====================================================
+         SLIDE 3a — Introducción (3 bloques)
+    ===================================================== -->
+    <section>
+      <h2>Introducción</h2>
+      <div class="divider"></div>
+
+      <div class="tres-bloques">
+
+        <div class="bloque bloque-paper">
+          <span class="etiqueta">Texto del paper</span>
+          <p class="contenido">El VIH avanzado afecta al <strong>~30%</strong> de nuevos diagnósticos globalmente. Solo el <strong>~10%</strong> de los pacientes en ensayos pivotales de primera línea tenían CD4 &lt;200. <em>"Ningún ensayo aleatorizado grande ha comparado regímenes de primera línea específicamente en VIH avanzado."</em> Comparamos <strong>bictegravir/FTC/TAF</strong> (Biktarvy®) frente a <strong>darunavir/cobicistat/FTC/TAF</strong> (Symtuza®).</p>
+        </div>
+
+        <div class="bloque bloque-subtexto">
+          <span class="etiqueta">Lo que en realidad buscan</span>
+          <p class="contenido">Capturar un <strong>nicho de mercado no conquistado</strong> por Biktarvy®: la primera línea en VIH avanzado (CD4 &lt;200), donde existían dudas históricas sobre los inhibidores de integrasa por riesgo de IRIS y rebote en inmunodeprimidos severos. Generar evidencia aleatorizada que justifique posicionar Biktarvy® como <em>"preferido"</em> en guías globales (EACS, IAS-USA, DHHS).</p>
+        </div>
+
+        <div class="bloque bloque-critica">
+          <span class="etiqueta">Crítica formal</span>
+          <p class="contenido">El "vacío" se construye con <strong>cita selectiva</strong>. El comparador estándar OMS — <strong>dolutegravir genérico + TDF/3TC (TLD)</strong> — está ausente del marco conceptual. La pregunta clínica honesta sería <em>"¿Biktarvy supera a TLD en VIH avanzado?"</em>, no <em>"¿es no-inferior a Symtuza?"</em>. La elección del comparador define qué pregunta responde el ensayo.</p>
+        </div>
+
+      </div>
+
+      <span class="fuente">Behrens GMN et al. <em>Lancet Infect Dis</em> 2026;26:510-21 · Texto extraído del Background y Methods (pp. 510-512)</span>
+
+      <aside class="notes">
+        Tiempo estimado: 3 min.
+
+        Esta es la primera slide donde introducimos el formato de tres bloques: lo que dice el paper, lo que en realidad busca, y la crítica formal.
+
+        Lectura sugerida:
+
+        Bloque 1: "El paper dice que el VIH avanzado afecta al 30% de los diagnósticos, que solo el 10% de los pivotales tenían CD4 menor de 200, y que ningún ensayo aleatorizado grande ha comparado regímenes de primera línea específicamente en esta población. Comparan Biktarvy contra Symtuza."
+
+        Bloque 2: "Pero leamos entre líneas. La pregunta que se hicieron no es '¿qué es mejor para mi paciente?'. Es '¿podemos capturar el nicho de mercado de VIH avanzado, donde Biktarvy todavía no estaba posicionado?'. Esa frase 'preferred first-line' que aparece al final del paper no es accidental — es lenguaje copia-pega para guías clínicas."
+
+        Bloque 3: "La crítica concreta es que el vacío de evidencia se construye con cita selectiva. El verdadero estándar global de primera línea — el régimen recomendado por la OMS para todos los países — es dolutegravir genérico más TDF/3TC, conocido como TLD. Cuesta 50 a 75 dólares por persona por año. Ese comparador no aparece en LAPTOP. Si lo hubieran usado, probablemente el resultado también sería no-inferior — pero entonces no habría incentivo de mercado para Biktarvy."
+
+        Pregunta dialógica al cerrar: "¿La pregunta correcta era 'INI versus PI', o 'régimen patentado versus régimen disponible'?"
+
+        Transición: "Esto nos lleva a los cinco sesgos que vamos a tener en mente al leer todo el resto del paper."
+      </aside>
+    </section>
+
+    <!-- ====================================================
+         SLIDE 3b — Cinco sesgos a vigilar
+    ===================================================== -->
+    <section>
+      <h2>Cinco sesgos a vigilar</h2>
+      <div class="divider"></div>
+      <p style="font-size:1.1em; color:var(--secondary); margin-bottom:0.5em;">Antes de entrar a métodos: los cinco lentes con que vamos a leer todo lo que sigue.</p>
+
+      <table class="sesgos-tabla">
+        <thead>
+          <tr>
+            <th style="width:50px;">#</th>
+            <th>Sesgo</th>
+            <th>Dónde se filtra</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">1</td>
+            <td class="nombre">Diseño abierto (open-label)</td>
+            <td class="descripcion">Sin enmascaramiento. Sesga el reporte de eventos adversos subjetivos a favor del brazo "nuevo".</td>
+          </tr>
+          <tr>
+            <td class="num">2</td>
+            <td class="nombre">Margen de no-inferioridad permisivo</td>
+            <td class="descripcion">HR 1.606 (≈12% absoluto). Casi cualquier régimen razonable pasa. Los ensayos clínicos de VIH típicos de la FDA usan diferencias de proporción de 10-12%.</td>
+          </tr>
+          <tr>
+            <td class="num">3</td>
+            <td class="nombre">Desenlace compuesto heterogéneo</td>
+            <td class="descripcion">Mezcla muerte, evento AIDS, IRIS, falla virológica e interrupción de fármaco &gt;5 días. Componentes de severidad muy distinta — el efecto puede concentrarse en el más blando.</td>
+          </tr>
+          <tr>
+            <td class="num">4</td>
+            <td class="nombre">Conflicto de interés estructural</td>
+            <td class="descripcion">Gilead y Janssen financian el ensayo y aportan los fármacos. Más de 40 autores reciben honorarios de ambos patrocinadores simultáneamente.</td>
+          </tr>
+          <tr>
+            <td class="num">5</td>
+            <td class="nombre">Comparador no estándar OMS</td>
+            <td class="descripcion">El estándar global de primera línea es dolutegravir genérico + TDF/3TC (TLD). Está ausente del ensayo — la comparación es entre dos productos patentados.</td>
+
+          </tr>
+        </tbody>
+      </table>
+
+      <aside class="notes">
+        Tiempo estimado: 2 min.
+
+        Slide-prólogo metodológico. No pretendo profundizar cada sesgo aquí — solo nombrarlos para que cuando aparezcan en el paper, ya tengan la lente puesta.
+
+        Lectura sugerida (rápida, lista de cinco):
+        1. Diseño abierto: nadie está cegado. AE leves se reportan distinto.
+        2. Margen de no-inferioridad permisivo: 1.606 es de los más amplios en HIV trials.
+        3. Endpoint compuesto que mezcla cosas muy distintas en severidad.
+        4. Los dos sponsors financian el ensayo y proveen ambos fármacos.
+        5. El comparador real de la OMS — TLD genérico — no aparece.
+
+        Frase de cierre: "Estos cinco sesgos no son acusaciones, son lentes. Veamos si el paper los activa."
+
+        Transición: "Empecemos por la metodología — diseño y población."
+      </aside>
+    </section>
+
+    <!-- ====================================================
+         SLIDE 4a — Métodos · Diseño y población
+    ===================================================== -->
+    <section>
+      <h2>Métodos · diseño y población</h2>
+      <div class="divider"></div>
+
+      <table class="metodos-tabla">
+        <thead>
+          <tr>
+            <th class="col-paper">Lo que el paper hizo</th>
+            <th class="col-critica">Por qué importa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-paper"><strong>RCT abierto, multicéntrico, no-inferioridad.</strong> 56 sitios en NEAT-ID Network · 7 países europeos.</td>
+            <td class="col-critica">Sin cegamiento + red europea homogénea. Difícil extrapolar a contextos LATAM/África.</td>
+          </tr>
+          <tr>
+            <td class="col-paper"><strong>447 aleatorizados 1:1.</strong> Bictegravir/FTC/TAF (Biktarvy®) vs Darunavir/cobi/FTC/TAF (Symtuza®). 48 semanas.</td>
+            <td class="col-critica">Comparador del mismo dueño: Gilead patrocina y aporta Biktarvy; Janssen aporta Symtuza. <strong>DTG genérico (TLD) ausente.</strong></td>
+          </tr>
+          <tr>
+            <td class="col-paper"><strong>Población:</strong> sin tratamiento antirretroviral previo, ≥18 años, VIH avanzado por una de 4 vías (evento definitorio de SIDA · CD4 &lt;200 + infección bacteriana severa · CD4 &lt;100 · infección oportunista activa).</td>
+            <td class="col-critica">Las 4 vías son clínicamente muy distintas. Mezclar candidiasis esofágica + CD4 600 con CD4 30 + neumonía produce <strong>heterogeneidad</strong>.</td>
+          </tr>
+          <tr>
+            <td class="col-paper"><strong>Exclusiones:</strong> tuberculosis activa o esperada, meningitis criptocócica, quimioterapia activa, hepatopatía Child-Pugh C, embarazo/lactancia.</td>
+            <td class="col-critica"><strong>TB y criptococo son las dos OI más letales en VIH avanzado en LATAM/África.</strong> Se excluye exactamente la población donde Biktarvy se complica más (rifampicina ↓BIC −75%).</td>
+          </tr>
+          <tr>
+            <td class="col-paper"><strong>Aleatorización 1:1</strong> en bloques permutados de 4, estratificada por país y CD4 basal (&lt;50, 50-199, ≥200).</td>
+            <td class="col-critica">Aleatorización correcta — pero sin enmascaramiento, todo lo que pasa después de la línea de salida queda expuesto a sesgo de detección.</td>
+          </tr>
+          <tr>
+            <td class="col-paper"><strong>Adherencia:</strong> autorreporte en visitas semanas 12, 24, 36 y 48.</td>
+            <td class="col-critica">El autorreporte sobreestima la adherencia ~20%. Sin conteo de pastillas, sin niveles plasmáticos, sin monitoreo electrónico (MEMS).</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <span class="fuente">Behrens GMN et al. <em>Lancet Infect Dis</em> 2026;26:510-21 · Methods (pp. 511-513) · NCT03696160</span>
+
+      <aside class="notes">
+        Tiempo estimado: 4 min.
+
+        Esta es la primera slide de "doble columna" — paper a la izquierda, crítica a la derecha. Lectura por filas, no por columnas.
+
+        Hilo: leer el dato del paper, hacer pausa breve, leer la crítica.
+
+        Punto fuerte de esta slide: la exclusión de tuberculosis y meningitis criptocócica. Es la mini-analogía del paraguas: "evaluar un paraguas pero solo en días sin lluvia". Justo las dos infecciones que matan al paciente del lunes en Rebagliati con CD4 menor de 100.
+
+        Pregunta dialógica: "¿Por qué no testaron contra el régimen que la OMS recomienda como estándar global? ¿Por qué Symtuza, un producto en erosión comercial, y no dolutegravir genérico?"
+
+        Transición: "Vamos a la parte estadística — endpoint compuesto y margen de no-inferioridad."
+      </aside>
+    </section>
+
+    <!-- ====================================================
+         SLIDE 4b — Métodos · Estadística y endpoint compuesto
+    ===================================================== -->
+    <section>
+      <h2>Métodos · desenlace compuesto y estadística</h2>
+      <div class="divider"></div>
+
+      <table class="metodos-tabla">
+        <thead>
+          <tr>
+            <th class="col-paper">Lo que el paper hizo</th>
+            <th class="col-critica">Por qué importa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-paper"><strong>Desenlace primario compuesto:</strong> falla virológica (carga &gt;50 sem 48 o reducción &lt;1 log a sem 12) <em>o</em> evento clínico (muerte VIH, AIDS, OI, IRIS, AE que requiera interrupción &gt;5 días).</td>
+            <td class="col-critica">Mezcla <strong>muerte</strong> con <strong>"interrupción de pastilla &gt;5 días"</strong>. Dureza muy distinta. Si el efecto se concentra en el componente blando, el "ganador" no necesariamente lo es en mortalidad.</td>
+          </tr>
+          <tr>
+            <td class="col-paper"><strong>Margen de no-inferioridad:</strong> HR 1.606 (≈12% diferencia absoluta acumulada).</td>
+            <td class="col-critica">Margen <strong>extremo permisivo</strong>. HIV trials FDA típicos usan 10-12% absoluto, pero con HR cercano a 1.3-1.4. Aquí casi cualquier régimen razonable pasa.</td>
+          </tr>
+          <tr>
+            <td class="col-paper"><strong>Tamaño muestral:</strong> 440 pacientes (220 por brazo). Asume 25% eventos en PI, 23% en INI · α 0.05 dos colas · poder 80%.</td>
+            <td class="col-critica">Si el margen fuera 1.3 (más estricto), el N requerido subiría a varios miles. La <strong>elección del margen es la primera decisión calibrada del trial</strong>.</td>
+          </tr>
+          <tr>
+            <td class="col-paper"><strong>Análisis:</strong> Cox proporcional ajustado por país y CD4 basal &lt;50. Análisis primario en mITT y per-protocolo.</td>
+            <td class="col-critica">Correcto. La regla en NI exige que ambos análisis (mITT y per-protocolo) converjan — y aquí coinciden. Esto sí está bien hecho.</td>
+          </tr>
+          <tr>
+            <td class="col-paper"><strong>Subgrupos:</strong> declarados <em>post-hoc</em> en métodos (presencia de resistencia, CD4 &lt;50 vs ≥50, carga viral basal).</td>
+            <td class="col-critica">Subgrupos post-hoc sin corrección por multiplicidad. <strong>"Consistencia entre subgrupos" no es prueba de homogeneidad real</strong>.</td>
+          </tr>
+          <tr>
+            <td class="col-paper"><strong>Comité de revisión de desenlaces clínicos:</strong> independiente, confirmaba todos los eventos clínicos antes de contarlos.</td>
+            <td class="col-critica">Es el único contrapeso al diseño abierto. <strong>Pregunta abierta:</strong> ¿en qué versión del protocolo se formalizó? El protocolo tuvo 5 versiones — revisar el suplemento.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <span class="fuente">Behrens GMN et al. <em>Lancet Infect Dis</em> 2026;26:510-21 · Statistical analysis (pp. 513-514)</span>
+
+      <aside class="notes">
+        Tiempo estimado: 4 min.
+
+        Slide más densa estadísticamente. No espero que la audiencia la entienda completa — espero que se queden con tres ideas:
+
+        1. El endpoint compuesto mezcla muerte con interrupción de pastilla. Eso ya cuestiona el resultado antes de mirarlo.
+
+        2. El margen 1.606 es muy permisivo. Casi cualquier régimen pasa.
+
+        3. Los subgrupos son post-hoc, no pre-especificados.
+
+        Mini-analogía: "Es como aceptar un paracaídas que falla 12% más seguido y decir 'no inferior'. Bajo definición conveniente, son equivalentes."
+
+        Pregunta dialógica: "Si el desenlace primario fuera solo 'eventos clínicos' (sin falla virológica), ¿el resultado sería el mismo? Spoiler: HR 0.99 — empate puro. Pero eso lo veremos en resultados."
+
+        Transición: "Con esto claro, vamos a los resultados. Primero, quién entró al ensayo."
+      </aside>
+    </section>
+
+    <!-- ====================================================
+         SLIDE 5a — Resultados · Flowchart + Población basal
+    ===================================================== -->
+    <section>
+      <h2>Resultados · quién entró al ensayo</h2>
+      <div class="divider"></div>
+
+      <div class="resultados-grid">
+        <div class="resultados-img-wrap">
+          <img src="crop_flowchart.png" alt="Figura 1 — Flowchart del ensayo LAPTOP">
+          <p class="caption">Figura 1 · LAPTOP trial profile (Behrens 2026, p.514)</p>
+        </div>
+
+        <div class="resultados-texto">
+          <div class="hallazgo">
+            <strong>475 evaluados → 447 aleatorizados (1:1)</strong> · 442 mITT · 441 per-protocolo. <strong>178 (81%) INI</strong> y <strong>185 (83%) PI</strong> continuaron a la semana 48.
+          </div>
+
+          <div class="hallazgo">
+            <strong>Población basal:</strong> mediana 43 años · 81% varones · <span class="destacado">62% etnia blanca europea</span> · CD4 mediano 41 (16-81) · 86% con CD4 &lt;100 · 45% con carga viral &gt;500 000 copias/mL · 59% con evento AIDS al ingreso.
+          </div>
+
+          <div class="hallazgo">
+            <strong>Resistencia basal:</strong> 6% con resistencia alta o intermedia (mayoritariamente NNRTI). <span class="destacado">3 pacientes con M184V (resistencia a FTC)</span> — un componente del espinazo de ambos brazos.
+          </div>
+
+          <div class="critica">
+            <strong>Discontinuaciones:</strong> 42 INI vs 37 PI. <span class="destacado-rojo">9 muertes en INI vs 3 en PI</span> · 4 vs 9 por AE/eventos serios · 5 vs 1 retiro de consentimiento.
+          </div>
+
+          <div class="critica">
+            <strong>Aleatorización balanceada</strong> en edad, sexo y CD4. Pero la M184V se minimiza, los eventos definitorios de SIDA se reportan agregados sin desglose, y la cohorte 62% blanca europea limita la extrapolación a Perú/LATAM.
+          </div>
+        </div>
+      </div>
+
+      <span class="fuente">Behrens GMN et al. <em>Lancet Infect Dis</em> 2026;26:510-21 · Figure 1 (p.514) y Table 1 (p.515)</span>
+
+      <aside class="notes">
+        Tiempo estimado: 4 min.
+
+        Slide combinada: flowchart como referencia visual (todos lo conocen del CONSORT) + lectura puntual de la Tabla 1 + crítica.
+
+        Lectura sugerida:
+
+        Hallazgo 1: el flujo está bien — 475 tamizados, 447 aleatorizados, 442 en mITT.
+
+        Hallazgo 2: población balanceada en edad y sexo. Pero noten dos detalles que vamos a usar después: 86% con CD4 menor de 100 (severa inmunodepresión, IRIS posible) y 62% blancos europeos.
+
+        Hallazgo 3: la M184V. Tres pacientes al basal con resistencia a emtricitabina. Y FTC está en el espinazo de los dos brazos. Eso significa que ningún brazo arranca con régimen "limpio" para esos tres pacientes. El paper lo menciona en pie de página y enseguida pasa a otra cosa.
+
+        Crítica clave: las discontinuaciones. 9 muertes en INI vs 3 en PI. Vamos a volver sobre esto en la slide 5c.
+
+        Pregunta dialógica: "Si la aleatorización funcionó tan bien para edad y CD4, ¿por qué hubo 3 veces más muertes en el brazo INI? ¿Es solo azar?"
+
+        Transición: "Vamos al desenlace primario."
+      </aside>
+    </section>
+
+    <!-- ====================================================
+         SLIDE 5b — Resultados · Endpoint primario y componentes
+    ===================================================== -->
+    <section>
+      <h2>Resultados · desenlace primario y componentes</h2>
+      <div class="divider"></div>
+
+      <div class="resultados-grid">
+        <div class="resultados-img-wrap">
+          <img src="crop_figura2.png" alt="Figura 2A — Forest plot del desenlace primario">
+          <p class="caption">Figura 2A · aHR del desenlace primario y sus componentes (p.517)</p>
+        </div>
+
+        <div class="resultados-texto">
+          <div class="hallazgo">
+            <strong>Desenlace primario compuesto (mITT):</strong> 49/220 (22%) INI vs 70/222 (32%) PI · <strong>aHR 0.70 (IC 95% 0.48-1.00) · p=0.052.</strong> No-inferioridad demostrada (límite superior &lt; 1.606). <span class="destacado">Superioridad NO demostrada</span> (IC toca 1.00).
+          </div>
+
+          <div class="hallazgo">
+            <strong>Falla virológica:</strong> 11% INI vs 21% PI · HR 0.54 (0.33-0.88) · p=0.013. La <span class="destacado">cinética virológica temprana</span> manda: a la semana 4, 16% INI vs 1% PI con carga &lt;50 (aRR 11.64).
+          </div>
+
+          <div class="hallazgo">
+            <strong>Eventos clínicos (componente duro):</strong> 11% INI vs 12% PI · <span class="destacado-rojo">HR 0.99 (0.57-1.72) · p=0.97</span>. Empate puro entre brazos.
+          </div>
+
+          <div class="critica">
+            <strong>El "30% menos riesgo" del compuesto está manejado por el componente blando.</strong> Si el desenlace primario fuera solo eventos clínicos, no habría diferencia entre brazos.
+          </div>
+
+          <div class="critica">
+            <strong>p=0.052</strong> no es "casi significativo". El IC superior del aHR toca 1.00 — formalmente, NO superioridad. La biología no cambia entre p=0.048 y p=0.052.
+          </div>
+        </div>
+      </div>
+
+      <span class="fuente">Behrens GMN et al. <em>Lancet Infect Dis</em> 2026;26:510-21 · Table 2 y Figure 2 (pp.516-517)</span>
+
+      <aside class="notes">
+        Tiempo estimado: 5 min.
+
+        Esta es una de las slides más importantes de la charla. La Figura 2A del paper muestra el forest plot con los tres niveles: desenlace primario, falla virológica, y eventos clínicos.
+
+        Lectura sugerida:
+
+        Hallazgo 1: el desenlace primario compuesto. aHR 0.70 con IC superior 1.00. Cumple no-inferioridad porque está por debajo del margen 1.606. Pero NO cumple superioridad — el IC toca 1.00. Y el p es 0.052.
+
+        Hallazgo 2: la falla virológica. Aquí sí hay diferencia (HR 0.54, p=0.013). Y la cinética temprana es brutal: 11.64 veces más probabilidad de tener carga viral menor de 50 a la semana 4 con INI. Pero ojo: a la semana 48 esa diferencia se desinfla a 8% (69 vs 61).
+
+        Hallazgo 3 — el momento clave de la charla: los eventos clínicos. HR 0.99. IC 0.57 a 1.72. Empate puro. Esto es lo que el paper no enfatiza.
+
+        Mini-analogía: "El equipo ganó la liga porque sumas goles, asistencias y tiros al palo. Si solo cuentas goles, fue empate."
+
+        Pregunta dialógica: "¿Qué prefieren? Que su paciente tenga una carga viral menor de 50 a la semana 4, o que esté vivo a la semana 48 sin OI? Porque el paper les da lo primero como evidencia de éxito — pero lo segundo es empate."
+
+        Transición: "Y aquí entra la parte que el paper minimiza: la mortalidad."
+      </aside>
+    </section>
+
+    <!-- ====================================================
+         SLIDE 5c — Resultados · Mortalidad y eventos adversos
+    ===================================================== -->
+    <section>
+      <h2>Resultados · mortalidad y eventos adversos</h2>
+      <div class="divider"></div>
+
+      <div class="resultados-grid">
+        <div class="resultados-img-wrap">
+          <img src="crop_tabla3.png" alt="Tabla 3 — Eventos adversos">
+          <p class="caption">Tabla 3 · Eventos adversos en mITT (p.518)</p>
+        </div>
+
+        <div class="resultados-texto">
+          <div class="hallazgo">
+            <strong>Cualquier evento adverso ≥grado 2:</strong> 56% INI vs 63% PI · aIRR 0.82 (p=0.0024). <strong>EA relacionados al fármaco ≥grado 2:</strong> 7% INI vs 14% PI · aIRR 0.61 (p=0.043).
+          </div>
+
+          <div class="hallazgo">
+            <strong>EA relacionados al fármaco grado 3-4:</strong> aIRR 0.99 (p=0.99). <strong>EA que llevaron a discontinuación:</strong> aIRR 1.03 (p=0.92). Sin diferencia.
+          </div>
+
+          <div class="critica">
+            <span class="destacado-rojo">Muertes: 9 (4%) INI vs 3 (1%) PI · aIRR 3.22 (0.87-11.9) · p=0.079.</span> Triple riesgo de muerte en el brazo "ganador".
+          </div>
+
+          <div class="critica">
+            <strong>Tiempo mediano a la muerte:</strong> 29 días INI (IQR 20-44) vs 114 días PI. Los pacientes INI mueren en la ventana donde el IRIS típicamente debuta.
+          </div>
+
+          <div class="critica">
+            <strong>2 muertes por IRIS solo en el brazo INI</strong> + 3 fallas respiratorias en pacientes con CD4 &lt;100 (sospecha PJP-IRIS / TB-IRIS no diagnosticado). Wijting 2019 ya documentó mayor IRIS con INI en late presenters.
+          </div>
+
+          <div class="critica">
+            <strong>El paper concluye:</strong> <em>"todas las muertes consideradas no relacionadas a los fármacos del estudio"</em>. Atribución del propio investigador, sin proceso de adjudicación claro.
+          </div>
+        </div>
+      </div>
+
+      <span class="fuente">Behrens GMN et al. <em>Lancet Infect Dis</em> 2026;26:510-21 · Table 3 y texto Results (pp.517-518)</span>
+
+      <aside class="notes">
+        Tiempo estimado: 5 min.
+
+        Slide más adversarial de la charla. Aquí mostramos la verdadera señal de daño que el paper minimiza.
+
+        Lectura sugerida:
+
+        Hallazgos arriba: lo que el paper sí presenta favorable — menos AE drug-related en INI (7 vs 14%, aIRR 0.61). Pero noten: los AE drug-related grado 3-4 son iguales (aIRR 0.99) y la discontinuación es igual (aIRR 1.03). Si la diferencia fuera real, esperaríamos menos discontinuación. El "menos AE leves" es probable artefacto del open-label.
+
+        Crítica abajo — el momento adversarial:
+
+        Las muertes. 9 vs 3. aIRR 3.22 — TRIPLE riesgo en el brazo "ganador". p=0.079. El paper lo presenta como "no significativo, no preocupa". Pero el trial NO tiene poder estadístico para mortalidad. Con solo 12 muertes totales, no hay forma de detectar diferencias incluso de magnitud relativa 3 veces.
+
+        Tiempo mediano a la muerte: 29 días en INI, 114 días en PI. Los INI mueren al INICIO del tratamiento — ventana clásica de IRIS. Y dos muertes por IRIS confirmadas solo en INI. Más tres fallas respiratorias en pacientes con CD4 menor de 100, donde el PJP-IRIS y el TB-IRIS son sospechosos clínicos.
+
+        Mini-analogía: "Es como un piloto que estrella tres aviones y dice: 'no fue por pilotear, fue por el clima'. Y el reporte oficial lo acepta sin investigar."
+
+        Pregunta dialógica: "Si en su servicio mueren 3 pacientes con un fármaco en lugar de 1 con otro — aunque la N sea pequeña — ¿lo ignorarían? ¿O al menos investigarían?"
+
+        Transición: "Con esto cerramos resultados. Vamos a la discusión, donde el paper convierte un endpoint compuesto que toca 1.00 en una recomendación de guía clínica."
+      </aside>
+    </section>
+
+    <!-- ====================================================
+         SLIDE 6a — Discusión · Spin
+    ===================================================== -->
+    <section>
+      <h2>Discusión · spin</h2>
+      <div class="divider"></div>
+
+      <div class="tres-bloques">
+
+        <div class="bloque bloque-paper">
+          <span class="etiqueta">Texto del paper</span>
+          <p class="contenido"><em>"En personas sin tratamiento antirretroviral previo con enfermedad por VIH avanzada, el régimen de inhibidor de integrasa fue no-inferior al régimen de inhibidor de proteasa potenciado, tuvo un riesgo 30% menor para el desenlace primario compuesto, mejor respuesta virológica a las 48 semanas, y menos eventos adversos. <strong>Estos hallazgos apoyan su uso como régimen antirretroviral preferido de primera línea en esta población vulnerable.</strong>"</em></p>
+        </div>
+
+        <div class="bloque bloque-subtexto">
+          <span class="etiqueta">Lo que en realidad buscan</span>
+          <p class="contenido">La frase <em>"apoyando su uso como régimen preferido de primera línea"</em> es <strong>lenguaje copia-pega para guías clínicas</strong> (EACS, IAS-USA, DHHS). El resumen abre con "30% menos riesgo… menos eventos adversos" antes de mencionar p=0.052. Las muertes triples se reportan como <em>"numéricamente mayores"</em>. Es la fórmula clásica del <em>spin</em> (sesgo de presentación): énfasis en el desenlace secundario favorable, lenguaje suavizado para los hallazgos negativos, y conclusión <strong>lista para incorporar en guías</strong>.</p>
+        </div>
+
+        <div class="bloque bloque-critica">
+          <span class="etiqueta">Crítica formal</span>
+          <p class="contenido">Spin documentado por Boutron 2010 (<em>JAMA</em> 303:2058-64) — afecta al ~50% de los RCT con primario no significativo. <strong>Aquí están las 6 técnicas activas:</strong> énfasis selectivo en secundario · suavizado del p=0.052 · conclusión que excede los datos · cita selectiva de IRIS (Hill 2018 cancela a Wijting 2019) · subgrupos post-hoc presentados como "consistencia" · tratamiento minimalista de 3× muertes ("numerically higher").</p>
+        </div>
+
+      </div>
+
+      <span class="fuente">Behrens GMN et al. <em>Lancet Infect Dis</em> 2026;26:510-21 · Discussion (p.517) · Boutron I et al. <em>JAMA</em> 2010;303(20):2058-64</span>
+
+      <aside class="notes">
+        Tiempo estimado: 4 min.
+
+        Volvemos al formato de tres bloques (igual que Introducción).
+
+        Lectura sugerida:
+
+        Bloque 1: la cita textual del primer párrafo de la discusión. Noten cómo arranca: "no-inferior, 30% lower risk, mejor respuesta virológica, menos eventos adversos". Solo después aparece el matiz de "no alcanzó la reducción de 50% para superioridad y el p no fue convencionalmente significativo". Es la estrategia clásica: positivo primero, negativo después.
+
+        Bloque 2: la frase clave es "supporting its use as preferred first-line antiretroviral regimen". Esa frase es lenguaje copia-pega para que la próxima guía EACS o DHHS lo cite literal. No es accidental — es funcional.
+
+        Bloque 3: las 6 técnicas de spin. Boutron 2010, en JAMA, documentó este patrón en RCT con primario no significativo. El paper LAPTOP las activa todas.
+
+        Mini-analogía: "El spin es el subtítulo que ya nadie lee porque ya cerró el paper. Pero queda en el cerebro de quien escribe la próxima guía."
+
+        Pregunta dialógica: "Si el desenlace primario hubiera sido eventos clínicos solos (HR 0.99), ¿el paper concluiría 'preferred first-line'? Imposible. La conclusión está construida sobre el componente blando."
+
+        Transición: "Y todo esto encaja con la arquitectura económica del ensayo. Que es lo que viene."
+      </aside>
+    </section>
+
+    <!-- ====================================================
+         SLIDE 6b — Discusión · arquitectura económica (COI)
+    ===================================================== -->
+    <section>
+      <h2>Discusión · arquitectura económica</h2>
+      <div class="divider"></div>
+
+      <div class="tres-bloques">
+
+        <div class="bloque bloque-paper">
+          <span class="etiqueta">Texto del paper</span>
+          <p class="contenido"><em>"El estudio LAPTOP fue apoyado por la NEAT-ID Foundation, una fundación sin fines de lucro... Gilead Sciences fue el patrocinador de este ensayo iniciado por investigadores y proveyó soporte financiero, así como el suministro del fármaco del estudio (Biktarvy). Janssen Pharmaceuticals también proveyó soporte mediante el suministro del fármaco del estudio (Symtuza) y fondos para los costos asociados de manejo del fármaco. <strong>Los patrocinadores no tuvieron rol en el diseño del estudio, recolección de datos, análisis, interpretación, o escritura del reporte.</strong>"</em></p>
+        </div>
+
+        <div class="bloque bloque-subtexto">
+          <span class="etiqueta">Lo que en realidad buscan</span>
+          <p class="contenido">La etiqueta <em>"iniciado por investigadores"</em> es <strong>cosmética contable</strong>. La frase "sin rol" cubre la ejecución, no el diseño — y es en el diseño donde se decide qué comparador usar, qué margen elegir, qué población excluir. <strong>Más de 40 autores reciben honorarios de Gilead Y Janssen al mismo tiempo</strong>; el redactor médico (Julia Granerod, Dr JGW Consulting) lo paga típicamente el patrocinador. NEAT-ID es la <em>bata académica</em> que legitima el cofinanciamiento.</p>
+        </div>
+
+        <div class="bloque bloque-critica">
+          <span class="etiqueta">Crítica formal</span>
+          <p class="contenido">La crítica no es "la industria pagó = ensayo inválido". Es <strong>arquitectura específica</strong>: comparador no estándar (no dolutegravir) · margen amplio (1.606) · exclusiones que protegen al producto del patrocinador (tuberculosis, criptococo) · desenlace compuesto heterogéneo · lenguaje listo para guías en la discusión · autores en comités asesores de <strong>ambos</strong> patrocinadores. Cada decisión por separado es defendible. <strong>Las seis juntas configuran un patrón</strong> — y ese patrón coincide con la estrategia comercial de Gilead para capturar el VIH avanzado en primera línea.</p>
+        </div>
+
+      </div>
+
+      <span class="fuente">Behrens GMN et al. <em>Lancet Infect Dis</em> 2026;26:510-21 · Acknowledgments y Declaration of interests (p.520) · NCT03696160</span>
+
+      <aside class="notes">
+        Tiempo estimado: 4 min.
+
+        Esta es la slide más adversarial sobre COI. Hay que ser cuidadoso con el lenguaje — la crítica debe quedar como patrón estructural, no como acusación personal a los autores.
+
+        Lectura sugerida:
+
+        Bloque 1: cita textual del Acknowledgments. Noten que el paper reconoce explícitamente que Gilead y Janssen aportan dinero y fármacos. La frase "no role" es la fórmula estandarizada que ICMJE recomienda y todos los journals piden.
+
+        Bloque 2: "investigator-initiated" suena académico, pero cuando los dos sponsors aportan fondos, fármacos y medical writer, la etiqueta es cosmética. La influencia se ejerce en el diseño, no en la ejecución. Para cuando aparece "no role", todas las decisiones importantes ya están tomadas.
+
+        Bloque 3: la crítica clave — cada decisión sola es defendible. Las siete juntas configuran un patrón. Ese es el argumento más sólido y el menos atacable: no decimos que Gilead manipuló los datos, decimos que cada decisión de diseño favorece la dirección comercial del producto.
+
+        Mini-analogía: "Es como decir que el dueño del restaurante no influye en el menú porque no entra a la cocina."
+
+        Pregunta dialógica: "Si cada decisión sola es defendible, pero las siete juntas favorecen el mismo producto, ¿es eso azar o calibración?"
+
+        Transición: "Última parte de discusión: qué cambia esto en Rebagliati."
+      </aside>
+    </section>
+
+    <!-- ====================================================
+         SLIDE 6c — Discusión · aplicabilidad Rebagliati
+    ===================================================== -->
+    <section>
+      <h2>Discusión · aplicabilidad en Rebagliati</h2>
+      <div class="divider"></div>
+
+      <div class="tres-bloques">
+
+        <div class="bloque bloque-paper">
+          <span class="etiqueta">Texto del paper</span>
+          <p class="contenido"><em>"Aunque comparamos dos regímenes de pastilla única con espinazos idénticos de inhibidor de transcriptasa reversa, <strong>nuestros resultados son probablemente relevantes a otros regímenes de tres drogas de primera línea conteniendo dolutegravir</strong> en personas con enfermedad por VIH avanzada y podrían potencialmente informar guías globales de tratamiento. Costo y problemas de acceso pueden restringir la generalización en escenarios con recursos limitados."</em></p>
+        </div>
+
+        <div class="bloque bloque-subtexto">
+          <span class="etiqueta">Lo que en realidad buscan</span>
+          <p class="contenido">Los autores reconocen entre líneas que <strong>el mismo resultado se sostendría con dolutegravir genérico (TLD)</strong> — pero entonces sin incentivo de mercado para Biktarvy®. La frase <em>"podrían informar guías globales de tratamiento"</em> es la <strong>autopista hacia EACS, IAS-USA, DHHS</strong>. Para Perú: si la próxima guía cita <em>"Biktarvy preferido en primera línea"</em>, la presión sobre EsSalud/MINSA será comprar el producto patentado en lugar de seguir con TLD.</p>
+        </div>
+
+        <div class="bloque bloque-critica">
+          <span class="etiqueta">Crítica formal · qué hacer en Rebagliati</span>
+          <p class="contenido">Eventos clínicos: <strong>HR 0.99</strong> — TLD genérico es clínicamente equivalente. <strong>(1)</strong> No hay justificación para reemplazar TLD por Biktarvy con base en este ensayo. <strong>(2)</strong> Inicio rápido de TARV sí es transferible (Boulware 2014). <strong>(3)</strong> Tuberculosis activa NO se excluye en la práctica — se ajusta dosis (rifampicina + dolutegravir 50 mg cada 12 h, INSPIRING 2020). <strong>(4)</strong> Criptococo: tratar primero, TARV a las 4-6 semanas (estrategia COAT 2014). <strong>El sobrecosto de Biktarvy frente a TLD no se justifica por los datos del propio ensayo.</strong></p>
+        </div>
+
+      </div>
+
+      <span class="fuente">Behrens GMN et al. <em>Lancet Infect Dis</em> 2026;26:510-21 · Discussion (pp.518-519)</span>
+
+      <aside class="notes">
+        Tiempo estimado: 4 min.
+
+        Esta es la slide más relevante para la audiencia: ¿qué hago el lunes con un paciente?
+
+        Lectura sugerida:
+
+        Bloque 1: el paper mismo reconoce, casi al cierre, que "los hallazgos probablemente se extiendan a regímenes basados en dolutegravir". Esa frase la dijeron ellos, no nosotros. Es admisión de que el resultado se sostiene con DTG genérico.
+
+        Bloque 2: pero la frase también es funcional. "Could potentially inform global treatment guidelines" es lenguaje que prepara la próxima edición de EACS para citar el paper. Si EsSalud o MINSA reciben presión para incorporar Biktarvy basándose en ese argumento, terminamos pagando varios miles de dólares por paciente al año sin beneficio clínico documentado.
+
+        Bloque 3 — los puntos prácticos:
+
+        Primero: eventos clínicos HR 0.99. TLD es clínicamente equivalente. No hay justificación para cambiar el régimen estándar.
+
+        Segundo: inicio rápido de ART. Eso sí es transferible. Boulware 2014 ya lo demostró. Implementarlo en EsSalud requiere logística, pero no requiere Biktarvy.
+
+        Tercero y cuarto: TB y criptococo. El trial las excluyó. Nosotros NO podemos excluirlas — son nuestros pacientes reales. Para TB: rifampicina con DTG ajustado a doble dosis. Para criptococo: tratar primero, ART a las 4-6 semanas (estrategia COAT 2014).
+
+        Mini-analogía: "Comprar Biktarvy cuando hay TLD es como comprar un Tesla cuando tienes un Yaris que va al mismo destino. Ambos te llevan. Solo que uno cuesta varios miles de dólares más."
+
+        Transición: "Cerramos con los mensajes clave."
+      </aside>
+    </section>
+
+    <!-- ====================================================
+         SLIDE 7 — Mensajes clave
+    ===================================================== -->
+    <section>
+      <h2>Mensajes clave</h2>
+      <div class="divider"></div>
+
+      <div class="mensajes-grid">
+
+        <div class="mensaje-card">
+          <h4>Sobre el paper</h4>
+          <ul>
+            <li>No-inferioridad demostrada · superioridad NO (IC toca 1.00)</li>
+            <li>El "30% menos riesgo" está manejado por el componente blando del compuesto</li>
+            <li>Eventos clínicos: <strong>HR 0.99</strong> · empate puro</li>
+            <li>3× muertes en INI minimizadas como "no relacionadas"</li>
+            <li>Cinco versiones del protocolo · revisar el suplemento siempre</li>
+          </ul>
+        </div>
+
+        <div class="mensaje-card practica">
+          <h4>En la práctica</h4>
+          <ul>
+            <li>Mantener <strong>TLD genérico</strong> como primera línea — es clínicamente equivalente a Biktarvy</li>
+            <li>Iniciar TARV <strong>rápido</strong> en VIH avanzado (Boulware 2014)</li>
+            <li>TB activa: ajustar DTG a 50 mg cada 12 h con rifampicina (INSPIRING 2020)</li>
+            <li>Criptococo: tratar primero · TARV a las 4-6 semanas (COAT 2014)</li>
+            <li>El comparador real importa más que el margen</li>
+          </ul>
+        </div>
+
+        <div class="mensaje-card brechas">
+          <h4>Brechas y preguntas abiertas</h4>
+          <ul>
+            <li>¿Por qué 9 vs 3 muertes en el brazo "ganador" — y todas se atribuyeron como no relacionadas?</li>
+            <li>El paper no testó contra DTG genérico (TLD)</li>
+            <li>Resistencia <em>"pendiente"</em> al publicar — esperar próxima publicación</li>
+            <li>Seguimiento solo a 48 semanas — durabilidad y mortalidad a largo plazo desconocidas</li>
+            <li>Aplicabilidad en TB y criptococo — sin datos del trial</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <aside class="notes">
+        Tiempo estimado: 3 min.
+
+        Cierre tripartito en versión académica R3+, sin emojis.
+
+        Lectura sugerida:
+
+        Columna 1 — Sobre el paper: cinco hallazgos que vamos a recordar del trial.
+
+        Columna 2 — En la práctica: cinco recomendaciones concretas para Rebagliati.
+
+        Columna 3 — Brechas: cinco preguntas abiertas que el trial NO responde y que merecen seguimiento.
+
+        Frase final: "El paper no es malo. Es un trial bien hecho dentro de un marco diseñado para ganar. La diferencia entre prescribir basado en lo que el paper dice y prescribir basado en lo que el paper demuestra se traduce, paciente por paciente, en el tipo de medicina que hacemos."
+
+        Transición: "Y cierro con una herramienta concreta — una lista de verificación para que ustedes apliquen este mismo análisis a cualquier paper que les pongan en la mesa."
+      </aside>
+    </section>
+
+    <!-- ====================================================
+         SLIDE 8 — Checklist verificación
+    ===================================================== -->
+    <section>
+      <h2>Lista de verificación · calidad de un artículo de investigación</h2>
+      <div class="divider"></div>
+      <p style="font-size:0.95em; color:var(--secondary); margin-bottom:0.4em;">11 preguntas para aplicar a cualquier paper antes de cambiar tu práctica.</p>
+
+      <table class="checklist">
+        <tbody>
+          <tr><td class="num">1</td><td>¿El artículo ha sido revisado por pares?</td><td class="resp">Sí <span class="si"></span> No <span class="no"></span></td></tr>
+          <tr><td class="num">2</td><td>Basado en la afiliación del autor o la fuente de financiamiento, ¿existen conflictos de interés?</td><td class="resp">Sí <span class="si"></span> No <span class="no"></span></td></tr>
+          <tr><td class="num">3</td><td>¿Están claramente definidos la pregunta de investigación o los objetivos del estudio?</td><td class="resp">Sí <span class="si"></span> No <span class="no"></span></td></tr>
+          <tr><td class="num">4</td><td>¿El diseño del estudio es apropiado para la pregunta de investigación?</td><td class="resp">Sí <span class="si"></span> No <span class="no"></span></td></tr>
+          <tr><td class="num">5</td><td>¿Está justificado el tamaño de muestra? ¿Es representativo de la población objetivo?</td><td class="resp">Sí <span class="si"></span> No <span class="no"></span></td></tr>
+          <tr><td class="num">6</td><td>¿Los investigadores describen la metodología de recolección de datos?</td><td class="resp">Sí <span class="si"></span> No <span class="no"></span></td></tr>
+          <tr><td class="num">7</td><td>¿Se describen claramente los parámetros y medidas utilizadas?</td><td class="resp">Sí <span class="si"></span> No <span class="no"></span></td></tr>
+          <tr><td class="num">8</td><td>¿Se utilizaron métodos estadísticos apropiados?</td><td class="resp">Sí <span class="si"></span> No <span class="no"></span></td></tr>
+          <tr><td class="num">9</td><td>¿Se da respuesta a la pregunta de investigación o a los objetivos del estudio?</td><td class="resp">Sí <span class="si"></span> No <span class="no"></span></td></tr>
+          <tr><td class="num">10</td><td>¿Se tomaron en cuenta los factores de confusión?</td><td class="resp">Sí <span class="si"></span> No <span class="no"></span></td></tr>
+          <tr><td class="num">11</td><td>¿Las conclusiones de los autores fueron sólo acerca de los grupos representados en la investigación?</td><td class="resp">Sí <span class="si"></span> No <span class="no"></span></td></tr>
+        </tbody>
+      </table>
+
+      <aside class="notes">
+        Tiempo estimado: 2 min.
+
+        Lista de verificación clásica para lectura crítica. La audiencia puede fotografiarla y aplicarla a cualquier paper futuro.
+
+        Lectura sugerida (rápida):
+
+        "Estas 11 preguntas son la lista mínima. Si las aplican a LAPTOP, encontrarán que la mayoría se responden con 'sí' formal pero con matices importantes. Por ejemplo, la pregunta 2 — ¿existen conflictos de interés? — formalmente declarados, sí. Pero el patrón estructural que vimos en la slide anterior va más allá de la declaración formal."
+
+        Frase final: "Esta lista es el piso, no el techo. El verdadero análisis crítico empieza cuando ustedes se preguntan, además, '¿quién diseñó esta pregunta y por qué?'."
+
+        Transición: "Gracias."
+      </aside>
+    </section>
+
+    <!-- ====================================================
+         SLIDE 9 — Gracias
+    ===================================================== -->
+    <section>
+      <div class="gracias-wrap">
+        <h1>Gracias</h1>
+        <p class="sub">Preguntas y discusión.</p>
+
+        <div class="ponente">
+          César Copaja-Corzo, MD. MSc. · Residente de Infectología y Medicina Tropical
+        </div>
+      </div>
+
+      <aside class="notes">
+        Tiempo estimado: 10-15 min de discusión y preguntas.
+
+        Anticipar los ataques más probables (ver guion):
+        - Margen 1.606 — defensa: cualquier margen es político tanto como técnico.
+        - 9 vs 3 muertes "unrelated" — defensa: tiempo a muerte 29 vs 114 días + IRIS confirmado en INI.
+        - p=0.052 vs 0.048 — defensa: una vez fijado α, el corte es binario.
+        - "¿Cherry-picking en muerte?" — defensa: el compuesto mezcla dureza, no es cherry-picking pedir desagregar.
+        - "¿Como R3 cuestionas un Lancet ID?" — defensa: la autoridad académica no inmuniza la lectura crítica.
+
+        Cierre: "Lean siempre con dos cerebros — el clínico y el escéptico."
+      </aside>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    transition: 'fade',
+    transitionSpeed: 'slow',
+    backgroundTransition: 'fade',
+    progress: true,
+    controls: true,
+    controlsLayout: 'bottom-right',
+    center: false,
+    slideNumber: 'c/t',
+    plugins: [ RevealNotes ]
+  });
+</script>
+
+<!-- 📖 MODO PRESENTADOR: Presiona "S" para abrir vista de presentador
+     (muestra tus notas privadas + slide siguiente + cronómetro)
+
+     🖨️ EXPORTAR A PDF: Agrega ?print-pdf a la URL, luego Ctrl+P
+     → Márgenes: Ninguno | Gráficos de fondo: Activado | Guardar como PDF -->
+</body>
+</html>
